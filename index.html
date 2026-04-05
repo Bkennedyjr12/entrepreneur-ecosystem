@@ -1,138 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrepreneur Ecosystem | AmPac Business Capital</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-    .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .glass-card:hover { background: rgba(255, 255, 255, 0.07); border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-    .hero-glow { background: radial-gradient(circle at 50% -20%, #1e40af 0%, #020617 70%); }
-    .text-gradient { background: linear-gradient(to right, #60a5fa, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .app-shadow { box-shadow: 0 0 60px rgba(59, 130, 246, 0.2); }
-    .btn-primary { background: linear-gradient(to right, #2563eb, #1d4ed8); transition: all 0.3s ease; }
-    .btn-primary:hover { box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); transform: scale(1.02); }
-  </style>
-  <script>
-    function getAppLink() {
-      var ua = navigator.userAgent || navigator.vendor || window.opera;
-      if (/android/i.test(ua)) {
-        return 'https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1';
-      }
-      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
-        return 'https://apps.apple.com/us/app/ampac-business-capital/id1581189648';
-      }
-      return null;
-    }
-    function goToApp(e) {
-      var link = getAppLink();
-      if (link) {
-        e.preventDefault();
-        window.open(link, '_blank');
-      }
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneur Ecosystem - AmPac Business Capital</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #0A0A0F; color: #ffffff; overflow-x: hidden; }
+        :root { --bg-primary: #0A0A0F; --bg-secondary: #0F1117; --bg-tertiary: #131620; --accent-navy-1: #0A1628; --accent-navy-2: #0D2137; --accent-navy-3: #1a2744; --accent-blue-primary: #2563eb; --accent-blue-secondary: #3b82f6; --text-primary: #ffffff; --text-secondary: #94a3b8; --text-subtle: #64748b; --border-light: rgba(255,255,255,0.06); --border-lighter: rgba(255,255,255,0.08); --glass-light: rgba(255,255,255,0.03); --glass-lighter: rgba(255,255,255,0.06); }
+        html { scroll-behavior: smooth; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(10,10,15,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-light); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
+        .logo-ecosystem { color: var(--accent-blue-primary); }
+        .nav-links { display: none; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--accent-blue-secondary); }
+        .nav-links a.active { color: var(--accent-blue-primary); }
+        @media (min-width: 1024px) { .nav-links { display: flex; } .hamburger { display: none; } }
+        .btn-get-app { background: linear-gradient(135deg, var(--accent-blue-primary), var(--accent-blue-secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-get-app:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37,99,235,0.3); }
+        .hamburger { display: flex; flex-direction: column; gap: 0.5rem; background: none; border: none; cursor: pointer; padding: 0; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-primary); border-radius: 1px; transition: all 0.3s ease; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10,10,15,0.95); backdrop-filter: blur(10px); z-index: 999; flex-direction: column; padding: 6rem 2rem 2rem; gap: 2rem; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 1.25rem; transition: color 0.3s ease; }
+        .mobile-menu a:hover { color: var(--accent-blue-secondary); }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; margin-top: 60px; padding: 3rem 2rem; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(13,33,55,0.4) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+        .hero-content { position: relative; z-index: 10; text-align: center; max-width: 900px; }
+        .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border: 1px solid var(--accent-blue-primary); border-radius: 9999px; color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem; background: rgba(37,99,235,0.05); }
+        .badge i { color: var(--accent-blue-primary); }
+        .hero h1 { font-size: clamp(2.5rem, 7vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .hero p { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary); line-height: 1.6; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .btn-hero { padding: 1rem 2rem; border-radius: 0.75rem; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; cursor: pointer; border: none; text-decoration: none; display: inline-block; min-width: 200px; }
+        .btn-hero-primary { background: white; color: #0A0A0F; }
+        .btn-hero-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.2); }
+        .btn-hero-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); }
+        .btn-hero-outline:hover { border-color: var(--accent-blue-primary); transform: translateY(-3px); }
+        .glass-card { background: var(--glass-light); backdrop-filter: blur(12px); border: 1px solid var(--border-light); border-radius: 1rem; padding: 2rem; transition: all 0.4s ease; }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(37,99,235,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .section-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; text-align: center; margin-bottom: 1rem; }
+        .section-sub { color: var(--text-secondary); text-align: center; font-size: 1.1rem; max-width: 600px; margin: 0 auto 3rem; }
+        .feature-pill { display: inline-block; padding: 0.35rem 0.85rem; background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2); border-radius: 9999px; font-size: 0.75rem; color: var(--accent-blue-secondary); font-weight: 500; }
+        .cred-bar { background: var(--accent-navy-1); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 1.5rem 2rem; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <script>
+        function getAppLink() { var ua = navigator.userAgent || navigator.vendor || window.opera; if (/android/i.test(ua)) return 'https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1'; if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'https://apps.apple.com/us/app/ampac-business-capital/id1581189648'; return null; }
+        function goToApp(e) { var link = getAppLink(); if (link) { if(e) e.preventDefault(); window.open(link, '_blank'); } }
+    </script>
 </head>
-<body class="bg-[#020617] text-slate-300">
+<body>
+    <nav><div class="nav-container"><div class="logo">ENTREPRENEUR <span class="logo-ecosystem">ECOSYSTEM</span></div><ul class="nav-links"><li><a href="#home" class="active">Home</a></li><li><a href="#ecosystem">The Ecosystem</a></li><li><a href="/finance-ai.html">Finance AI</a></li><li><a href="/tech-ai.html">Tech AI</a></li><li><a href="https://ampac.com" target="_blank">AmPac Capital</a></li></ul><button class="btn-get-app" onclick="goToApp(event)">Get the App</button><button class="hamburger" id="hamburger"><span></span><span></span><span></span></button></div></nav>
+    <div class="mobile-menu" id="mobileMenu"><a href="#home">Home</a><a href="#ecosystem">The Ecosystem</a><a href="/finance-ai.html">Finance AI</a><a href="/tech-ai.html">Tech AI</a><a href="https://ampac.com" target="_blank">AmPac Capital</a><button class="btn-get-app" onclick="goToApp(event)" style="width:100%;text-align:center;">Get the App</button></div>
 
-  <nav class="fixed w-full z-50 px-6 py-4 backdrop-blur-lg border-b border-slate-800 bg-[#020617]/70">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2"><div class="text-xl font-extrabold tracking-tighter text-white uppercase">Entrepreneur<span class="text-blue-500">Ecosystem</span></div></div>
-      <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-        <a href="#ecosystem" class="hover:text-white transition">The Ecosystem</a>
-        <a href="#ampac" class="hover:text-white transition">AmPac Capital</a>
-        <a href="#download" onclick="goToApp(event)" class="btn-primary text-white px-6 py-2 rounded-full font-semibold">Get the App</a>
-      </div>
-    </div>
-  </nav>
+    <section class="hero" id="home"><div class="hero-content"><div class="badge fade-in"><i class="fas fa-check-circle"></i><span>TRUSTED CDFI & SBA LENDER</span></div><h1 class="fade-in">Scaling Dreams into<br>Scalable Enterprises.</h1><p class="fade-in">The Entrepreneur Ecosystem by AmPac Business Capital connects you to the three critical pillars of growth: <strong style="color:white">Capital, Coaching, and Community.</strong></p><div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center" class="fade-in"><a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" onclick="goToApp(event)" class="btn-hero btn-hero-primary"><i class="fab fa-apple" style="margin-right:8px"></i> Download on App Store</a><a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" onclick="goToApp(event)" class="btn-hero btn-hero-outline"><i class="fab fa-google-play" style="margin-right:8px"></i> Get it on Google Play</a></div></div></section>
 
-  <section class="hero-glow pt-32 pb-20 px-6 relative overflow-hidden">
-    <div class="max-w-5xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-8"><i class="fas fa-shield-halved"></i> Trusted CDFI & SBA Lender</div>
-      <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tight">Scaling Dreams into <br><span class="text-gradient">Scalable Enterprises.</span></h1>
-      <p class="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">The Entrepreneur Ecosystem by AmPac Business Capital connects you to the three critical pillars of growth: <span class="text-white font-semibold">Capital, Coaching, and Community.</span></p>
-      <div id="download" class="flex flex-col sm:flex-row justify-center gap-5">
-        <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank" rel="noopener" class="flex items-center justify-center bg-white text-black px-8 py-4 rounded-2xl hover:bg-slate-200 transition transform hover:scale-105 duration-200"><i class="fab fa-apple text-2xl mr-3"></i><div class="text-left"><div class="text-[10px] uppercase font-bold opacity-60 leading-none">Download on the</div><div class="text-lg font-bold leading-tight">App Store</div></div></a>
-        <a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" target="_blank" rel="noopener" class="flex items-center justify-center bg-slate-800 text-white px-8 py-4 rounded-2xl border border-slate-700 hover:bg-slate-700 transition transform hover:scale-105 duration-200"><i class="fab fa-google-play text-2xl mr-3"></i><div class="text-left"><div class="text-[10px] uppercase font-bold opacity-60 leading-none">Get it on</div><div class="text-lg font-bold leading-tight">Google Play</div></div></a>
-      </div>
-    </div>
-  </section>
+    <div class="cred-bar"><div style="max-width:1200px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:2rem;align-items:center"><div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.85rem;font-weight:600;letter-spacing:0.05em"><i class="fas fa-shield-halved" style="color:var(--accent-blue-primary)"></i> SBA APPROVED</div><div style="width:1px;height:20px;background:var(--border-light)"></div><div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.85rem;font-weight:600;letter-spacing:0.05em"><i class="fas fa-certificate" style="color:var(--accent-blue-primary)"></i> CDFI CERTIFIED</div><div style="width:1px;height:20px;background:var(--border-light)"></div><div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.85rem;font-weight:600;letter-spacing:0.05em"><i class="fas fa-landmark" style="color:var(--accent-blue-primary)"></i> US TREASURY DEPT</div><div style="width:1px;height:20px;background:var(--border-light)"></div><div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.85rem;font-weight:600;letter-spacing:0.05em"><i class="fas fa-heart" style="color:var(--accent-blue-primary)"></i> NON-PROFIT</div></div></div>
 
-  <section class="py-12 border-y border-slate-800 bg-[#020617]">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-20 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
-        <span class="text-sm font-bold text-white tracking-widest uppercase">SBA Approved</span>
-        <span class="text-sm font-bold text-white tracking-widest uppercase">CDFI Certified</span>
-        <span class="text-sm font-bold text-white tracking-widest uppercase">US Treasury Dept</span>
-        <span class="text-sm font-bold text-white tracking-widest uppercase">Non-Profit</span>
-      </div>
-    </div>
-  </section>
+    <section style="padding:80px 24px;background:var(--bg-secondary)" id="ecosystem"><div style="max-width:1200px;margin:0 auto"><h2 class="section-title fade-in">AI-Powered Business Intelligence</h2><p class="section-sub fade-in">Our proprietary AI agents work 24/7 to give you an unfair advantage.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem"><div class="glass-card fade-in" style="position:relative;overflow:hidden"><div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(37,99,235,0.08),transparent);border-radius:50%"></div><div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><div style="width:48px;height:48px;background:linear-gradient(135deg,#2563eb,#1d4ed8);border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="fas fa-chart-line" style="color:white;font-size:1.2rem"></i></div><div><h3 style="font-size:1.3rem;font-weight:700;margin:0">AmPac Finance AI</h3><p style="color:var(--accent-blue-secondary);font-size:0.85rem;margin:0">Your Virtual CFO</p></div></div><p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:20px">Get instant access to bookkeeping, financial reporting, loan readiness assessment, tax strategy, and wealth planning — powered by AI trained on SBA lending expertise.</p><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px"><span class="feature-pill">P&L Analysis</span><span class="feature-pill">Loan Readiness</span><span class="feature-pill">Tax Strategy</span><span class="feature-pill">Cash Flow</span><span class="feature-pill">QuickBooks</span><span class="feature-pill">Debt Mgmt</span></div><a href="/finance-ai.html" style="color:var(--accent-blue-primary);font-weight:600;text-decoration:none;font-size:0.95rem">Explore Finance AI <i class="fas fa-arrow-right" style="margin-left:4px"></i></a></div><div class="glass-card fade-in" style="position:relative;overflow:hidden"><div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(139,92,246,0.08),transparent);border-radius:50%"></div><div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><div style="width:48px;height:48px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);border-radius:12px;display:flex;align-items:center;justify-content:center"><i class="fas fa-microchip" style="color:white;font-size:1.2rem"></i></div><div><h3 style="font-size:1.3rem;font-weight:700;margin:0">AmPac Tech AI</h3><p style="color:#a78bfa;font-size:0.85rem;margin:0">Your Virtual CTO</p></div></div><p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6;margin-bottom:20px">From CRM setup to cybersecurity, get expert technology guidance. We help you build the right tech stack, automate workflows, and scale your digital infrastructure.</p><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px"><span class="feature-pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:#a78bfa">CRM Setup</span><span class="feature-pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:#a78bfa">Automation</span><span class="feature-pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:#a78bfa">Cybersecurity</span><span class="feature-pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:#a78bfa">Website</span><span class="feature-pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:#a78bfa">SEO</span><span class="feature-pill" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2);color:#a78bfa">Cloud</span></div><a href="/tech-ai.html" style="color:#a78bfa;font-weight:600;text-decoration:none;font-size:0.95rem">Explore Tech AI <i class="fas fa-arrow-right" style="margin-left:4px"></i></a></div></div></div></section>
 
-  <section id="ecosystem" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-20">
-        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Success Made <span class="text-blue-500">As Easy As ABC.</span></h2>
-        <p class="text-slate-400 max-w-2xl mx-auto text-lg">We have digitized the path to business success. Everything you need to scale is now in the palm of your hand.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass-card p-10 rounded-[2rem]"><div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black mb-8 shadow-lg shadow-blue-600/30">A</div><h3 class="text-2xl font-bold text-white mb-4">Access to Capital</h3><p class="text-slate-400 leading-relaxed">Strategic financing via SBA 504 loans and CDFI programs designed specifically for underserved and emerging entrepreneurs.</p></div>
-        <div class="glass-card p-10 rounded-[2rem]"><div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black mb-8 shadow-lg shadow-blue-600/30">B</div><h3 class="text-2xl font-bold text-white mb-4">Business Coaching</h3><p class="text-slate-400 leading-relaxed">Professional mentorship and technical assistance to move your company from a concept to a bankable, high-growth asset.</p></div>
-        <div class="glass-card p-10 rounded-[2rem]"><div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black mb-8 shadow-lg shadow-blue-600/30">C</div><h3 class="text-2xl font-bold text-white mb-4">Community</h3><p class="text-slate-400 leading-relaxed">A proprietary network of founders, investors, and experts. Stop building in a vacuum and start building in an ecosystem.</p></div>
-      </div>
-    </div>
-  </section>
+    <section style="padding:80px 24px"><div style="max-width:1200px;margin:0 auto"><h2 class="section-title fade-in">Success Made As Easy As <span style="background:linear-gradient(to right,#60a5fa,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent">ABC</span>.</h2><p class="section-sub fade-in">We have digitized the path to business success. Everything you need to scale is now in the palm of your hand.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem"><div class="glass-card fade-in"><div style="width:56px;height:56px;background:linear-gradient(135deg,rgba(37,99,235,0.15),rgba(37,99,235,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-size:1.5rem;font-weight:800;color:var(--accent-blue-primary)">A</span></div><h3 style="font-size:1.2rem;font-weight:700;margin-bottom:8px">Access to Capital</h3><p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6">Strategic financing via SBA 504 loans and CDFI programs designed specifically for underserved and emerging entrepreneurs.</p></div><div class="glass-card fade-in"><div style="width:56px;height:56px;background:linear-gradient(135deg,rgba(37,99,235,0.15),rgba(37,99,235,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-size:1.5rem;font-weight:800;color:var(--accent-blue-primary)">B</span></div><h3 style="font-size:1.2rem;font-weight:700;margin-bottom:8px">Business Coaching</h3><p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6">Professional mentorship and technical assistance to move your company from a concept to a bankable, high-growth asset.</p></div><div class="glass-card fade-in"><div style="width:56px;height:56px;background:linear-gradient(135deg,rgba(37,99,235,0.15),rgba(37,99,235,0.05));border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-size:1.5rem;font-weight:800;color:var(--accent-blue-primary)">C</span></div><h3 style="font-size:1.2rem;font-weight:700;margin-bottom:8px">Community</h3><p style="color:var(--text-secondary);font-size:0.95rem;line-height:1.6">A proprietary network of founders, investors, and experts. Stop building in a vacuum and start building in an ecosystem.</p></div></div></div></section>
 
-  <section class="py-24 px-6 bg-slate-900/30 relative">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
-      <div class="md:w-1/2 order-2 md:order-1 flex justify-center relative">
-        <div class="absolute inset-0 bg-blue-600/20 blur-[120px] rounded-full"></div>
-        <div class="w-72 h-[580px] bg-slate-800 border-[10px] border-slate-700 rounded-[3.5rem] relative z-10 app-shadow overflow-hidden">
-          <div class="absolute top-0 w-full h-8 bg-slate-700"></div>
-          <div class="p-6 pt-12 space-y-6">
-            <div class="h-4 w-1/3 bg-slate-700 rounded-full"></div>
-            <div class="h-40 w-full bg-gradient-to-br from-blue-600 to-blue-900 rounded-3xl flex items-center justify-center text-white text-xs font-bold italic text-center px-4">AmPac Dashboard <br> Capital & Resources</div>
-            <div class="grid grid-cols-2 gap-4"><div class="h-24 bg-slate-700 rounded-2xl"></div><div class="h-24 bg-slate-700 rounded-2xl"></div></div>
-            <div class="space-y-3"><div class="h-3 w-full bg-slate-700 rounded"></div><div class="h-3 w-3/4 bg-slate-700 rounded"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="md:w-1/2 order-1 md:order-2">
-        <div class="inline-block px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-6">Digital Experience</div>
-        <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">Everything you need, <br><span class="text-blue-500">all in one app.</span></h2>
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 group"><div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"><i class="fas fa-check text-xs"></i></div><p class="text-slate-300 font-medium">Real-time Loan Pipeline Tracking</p></div>
-          <div class="flex items-center gap-4 group"><div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"><i class="fas fa-check text-xs"></i></div><p class="text-slate-300 font-medium">On-Demand Business Resource Library</p></div>
-          <div class="flex items-center gap-4 group"><div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"><i class="fas fa-check text-xs"></i></div><p class="text-slate-300 font-medium">Direct Networking & Expert Access</p></div>
-        </div>
-        <a href="#download" onclick="goToApp(event)" class="mt-12 inline-block btn-primary text-white px-8 py-4 rounded-2xl font-bold">Download the App &rarr;</a>
-      </div>
-    </div>
-  </section>
+    <section style="padding:80px 24px;background:var(--bg-secondary)" id="app"><div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:center"><div><h2 style="font-size:clamp(2rem,4vw,2.5rem);font-weight:800;margin-bottom:12px" class="fade-in">Everything you need,<br><span style="color:var(--accent-blue-primary)">all in one app.</span></h2><div style="display:flex;flex-direction:column;gap:20px;margin-top:32px"><div class="fade-in" style="display:flex;align-items:center;gap:16px"><div style="width:44px;height:44px;background:rgba(37,99,235,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-chart-pie" style="color:var(--accent-blue-primary)"></i></div><div><h4 style="font-weight:600;margin:0 0 4px">Real-time Loan Pipeline Tracking</h4><p style="color:var(--text-secondary);font-size:0.85rem;margin:0">Monitor your loan application status in real-time</p></div></div><div class="fade-in" style="display:flex;align-items:center;gap:16px"><div style="width:44px;height:44px;background:rgba(37,99,235,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-book-open" style="color:var(--accent-blue-primary)"></i></div><div><h4 style="font-weight:600;margin:0 0 4px">On-Demand Business Resource Library</h4><p style="color:var(--text-secondary);font-size:0.85rem;margin:0">Access guides, templates, and expert resources</p></div></div><div class="fade-in" style="display:flex;align-items:center;gap:16px"><div style="width:44px;height:44px;background:rgba(37,99,235,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="fas fa-users" style="color:var(--accent-blue-primary)"></i></div><div><h4 style="font-weight:600;margin:0 0 4px">Direct Networking & Expert Access</h4><p style="color:var(--text-secondary);font-size:0.85rem;margin:0">Connect with mentors, investors, and entrepreneurs</p></div></div></div><div style="margin-top:32px" class="fade-in"><a href="#download" onclick="goToApp(event)" style="display:inline-block;padding:14px 28px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;border-radius:12px;font-weight:700;text-decoration:none">Download the App <i class="fas fa-arrow-right" style="margin-left:6px"></i></a></div></div><div class="fade-in" style="display:flex;justify-content:center"><div style="width:280px;height:500px;background:linear-gradient(180deg,var(--accent-navy-2),var(--accent-navy-1));border-radius:32px;border:2px solid var(--border-lighter);display:flex;align-items:center;justify-content:center;box-shadow:0 40px 80px rgba(0,0,0,0.4)"><div style="text-align:center"><i class="fas fa-mobile-alt" style="font-size:3rem;color:var(--accent-blue-primary);margin-bottom:16px;display:block"></i><p style="color:var(--text-secondary);font-size:0.9rem">Available on iOS & Android</p></div></div></div></div></section>
 
-  <section id="ampac" class="py-24 px-6 border-t border-slate-800">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-white mb-6">Built on Institutional Trust</h2>
-      <p class="text-lg text-slate-400 leading-relaxed mb-10">The Entrepreneur Ecosystem is a strategic initiative of <strong>AmPac Business Capital</strong>. As a non-profit SBA Lender and a U.S. Department of the Treasury Certified Community Development Financial Institution (CDFI), we are committed to empowering underserved entrepreneurs with the tools and capital required to create lasting economic impact.</p>
-      <a href="https://ampac.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition">Explore AmPac Business Capital <i class="fas fa-arrow-right text-xs"></i></a>
-    </div>
-  </section>
+    <section style="padding:80px 24px" id="ampac"><div style="max-width:800px;margin:0 auto;text-align:center"><h2 class="section-title fade-in">Built on Institutional Trust</h2><p style="color:var(--text-secondary);font-size:1.05rem;line-height:1.7;margin-bottom:24px" class="fade-in">AmPac Business Capital is an SBA-approved lender and certified Community Development Financial Institution (CDFI) with over 20 years of experience supporting underserved entrepreneurs. We're more than just capital — we're your partners in sustainable growth, backed by the trust of the U.S. Treasury Department and the nonprofit mission to create economic opportunity.</p><a href="https://ampac.com" target="_blank" style="color:var(--accent-blue-primary);font-weight:600;text-decoration:none" class="fade-in">Explore AmPac Business Capital <i class="fas fa-arrow-right" style="margin-left:4px"></i></a></div></section>
 
-  <footer class="bg-[#020617] py-12 px-6 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-      <div class="text-lg font-extrabold tracking-tighter text-white uppercase">Entrepreneur<span class="text-blue-500">Ecosystem</span></div>
-      <p class="text-slate-500 text-xs text-center">&copy; 2024 Entrepreneur Ecosystem. A division of AmPac Business Capital. All rights reserved.</p>
-      <div class="flex gap-6 text-slate-400">
-        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </footer>
+    <section style="padding:80px 24px;background:linear-gradient(135deg,#0A1628,#0D2137 50%,#0A0A0F)"><div style="max-width:900px;margin:0 auto;text-align:center"><span style="display:inline-block;padding:6px 16px;border:1px solid rgba(37,99,235,0.3);border-radius:9999px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;color:#3b82f6;margin-bottom:24px" class="fade-in">CONNECT WITH US</span><h2 style="font-size:2.5rem;font-weight:800;margin-bottom:16px" class="fade-in">Ready to Start Your Journey?</h2><p style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:48px;max-width:600px;margin-left:auto;margin-right:auto" class="fade-in">Connect directly with Brian Kennedy Jr., Founder of the Entrepreneur Ecosystem, and take the first step toward scaling your business.</p><div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center" class="fade-in"><a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;border-radius:12px;font-weight:700;text-decoration:none;transition:all 0.3s"><i class="fas fa-calendar-check"></i> Schedule a Consultation</a><a href="https://hihello.com/p/aa9827b2-b576-44bb-87bc-bbf9182a4eb0" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:12px;font-weight:700;text-decoration:none;transition:all 0.3s"><i class="fas fa-address-card"></i> Connect with Brian</a></div></div></section>
 
+    <footer style="border-top:1px solid var(--border-light);padding:48px 24px;background:var(--bg-primary)"><div style="max-width:1200px;margin:0 auto"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-bottom:2rem"><div><div style="font-weight:800;margin-bottom:12px">ENTREPRENEUR <span style="color:var(--accent-blue-primary)">ECOSYSTEM</span></div><p style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:16px">Connecting entrepreneurs to capital, coaching, and community.</p><div style="display:flex;gap:12px"><a href="https://linkedin.com/company/ampac-business-capital" target="_blank" style="width:36px;height:36px;background:var(--glass-lighter);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;transition:all 0.3s"><i class="fab fa-linkedin-in"></i></a><a href="https://facebook.com/ampacbusinesscapital" target="_blank" style="width:36px;height:36px;background:var(--glass-lighter);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;transition:all 0.3s"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/ampacbusinesscapital" target="_blank" style="width:36px;height:36px;background:var(--glass-lighter);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;transition:all 0.3s"><i class="fab fa-instagram"></i></a></div></div><div><h4 style="font-weight:700;margin-bottom:12px;font-size:0.9rem">Product</h4><div style="display:flex;flex-direction:column;gap:8px"><a href="#home" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">Home</a><a href="#ecosystem" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">The Ecosystem</a><a href="/finance-ai.html" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">Finance AI</a><a href="/tech-ai.html" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">Tech AI</a></div></div><div><h4 style="font-weight:700;margin-bottom:12px;font-size:0.9rem">Company</h4><div style="display:flex;flex-direction:column;gap:8px"><a href="https://ampac.com" target="_blank" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">About AmPac</a><a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">Schedule a Call</a><a href="https://hihello.com/p/aa9827b2-b576-44bb-87bc-bbf9182a4eb0" target="_blank" style="color:var(--text-secondary);text-decoration:none;font-size:0.85rem">Contact</a></div></div></div><div style="border-top:1px solid var(--border-light);padding-top:24px;text-align:center"><p style="color:var(--text-subtle);font-size:0.8rem">&copy; 2025 Entrepreneur Ecosystem. A division of AmPac Business Capital. All rights reserved.</p></div></div></footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(hamburger) hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileMenu.classList.toggle('active'); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
