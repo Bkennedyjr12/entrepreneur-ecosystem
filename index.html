@@ -17,18 +17,39 @@
     .btn-primary { background: linear-gradient(to right, #2563eb, #1d4ed8); transition: all 0.3s ease; }
     .btn-primary:hover { box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); transform: scale(1.02); }
   </style>
+  <script>
+    function getAppLink() {
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      if (/android/i.test(ua)) {
+        return 'https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1';
+      }
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        return 'https://apps.apple.com/us/app/ampac-business-capital/id1581189648';
+      }
+      return null;
+    }
+    function goToApp(e) {
+      var link = getAppLink();
+      if (link) {
+        e.preventDefault();
+        window.open(link, '_blank');
+      }
+    }
+  </script>
 </head>
 <body class="bg-[#020617] text-slate-300">
+
   <nav class="fixed w-full z-50 px-6 py-4 backdrop-blur-lg border-b border-slate-800 bg-[#020617]/70">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2"><div class="text-xl font-extrabold tracking-tighter text-white uppercase">Entrepreneur<span class="text-blue-500">Ecosystem</span></div></div>
       <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
         <a href="#ecosystem" class="hover:text-white transition">The Ecosystem</a>
         <a href="#ampac" class="hover:text-white transition">AmPac Capital</a>
-        <a href="#download" class="btn-primary text-white px-6 py-2 rounded-full font-semibold">Get the App</a>
+        <a href="#download" onclick="goToApp(event)" class="btn-primary text-white px-6 py-2 rounded-full font-semibold">Get the App</a>
       </div>
     </div>
   </nav>
+
   <section class="hero-glow pt-32 pb-20 px-6 relative overflow-hidden">
     <div class="max-w-5xl mx-auto text-center relative z-10">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest mb-8"><i class="fas fa-shield-halved"></i> Trusted CDFI & SBA Lender</div>
@@ -40,6 +61,7 @@
       </div>
     </div>
   </section>
+
   <section class="py-12 border-y border-slate-800 bg-[#020617]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex flex-wrap justify-center items-center gap-8 md:gap-20 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
@@ -50,6 +72,7 @@
       </div>
     </div>
   </section>
+
   <section id="ecosystem" class="py-24 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-20">
@@ -63,6 +86,7 @@
       </div>
     </div>
   </section>
+
   <section class="py-24 px-6 bg-slate-900/30 relative">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
       <div class="md:w-1/2 order-2 md:order-1 flex justify-center relative">
@@ -85,10 +109,11 @@
           <div class="flex items-center gap-4 group"><div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"><i class="fas fa-check text-xs"></i></div><p class="text-slate-300 font-medium">On-Demand Business Resource Library</p></div>
           <div class="flex items-center gap-4 group"><div class="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300"><i class="fas fa-check text-xs"></i></div><p class="text-slate-300 font-medium">Direct Networking & Expert Access</p></div>
         </div>
-        <a href="#download" class="mt-12 inline-block btn-primary text-white px-8 py-4 rounded-2xl font-bold">Download the App &rarr;</a>
+        <a href="#download" onclick="goToApp(event)" class="mt-12 inline-block btn-primary text-white px-8 py-4 rounded-2xl font-bold">Download the App &rarr;</a>
       </div>
     </div>
   </section>
+
   <section id="ampac" class="py-24 px-6 border-t border-slate-800">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-3xl font-bold text-white mb-6">Built on Institutional Trust</h2>
@@ -96,6 +121,7 @@
       <a href="https://ampac.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition">Explore AmPac Business Capital <i class="fas fa-arrow-right text-xs"></i></a>
     </div>
   </section>
+
   <footer class="bg-[#020617] py-12 px-6 border-t border-slate-800">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="text-lg font-extrabold tracking-tighter text-white uppercase">Entrepreneur<span class="text-blue-500">Ecosystem</span></div>
@@ -107,5 +133,6 @@
       </div>
     </div>
   </footer>
+
 </body>
 </html>
