@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The operating system of the AmPac Entrepreneur Ecosystem — marketplace, programs, capital, coaching, and community for 3,085+ members across CA, AZ, and NV.">
+<title>Back Office | Entrepreneur Ecosystem</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { font-family: 'Plus Jakarta Sans', sans-serif; }
+.nav-blur { backdrop-filter: blur(10px); background-color: rgba(17, 24, 39, 0.7); }
+.fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+.card-hover { transition: all 0.3s ease; }
+.card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15); }
+.gradient-emerald { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.text-emerald { color: #10b981; }
+.badge { display: inline-block; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; color: #10b981; }
+.btn-primary { background: #10b981; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-primary:hover { background: #059669; transform: translateY(-2px); }
+.btn-outline { border: 2px solid #10b981; color: #10b981; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; background: transparent; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-outline:hover { background: #10b981; color: white; }
+.stat-number { font-size: 2.75rem; font-weight: 800; color: #10b981; line-height: 1; }
+.stat-label { color: #d1d5db; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 600; }
+.section-title { font-size: 2.5rem; font-weight: 800; color: white; line-height: 1.15; }
+@media (min-width: 768px) { .section-title { font-size: 3rem; } }
+table.data { width: 100%; border-collapse: collapse; color: #d1d5db; }
+table.data th { text-align: left; padding: 0.75rem 1rem; background: rgba(16,185,129,0.1); color: #6ee7b7; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(16,185,129,0.3); }
+table.data td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(75,85,99,0.4); font-size: 0.95rem; }
+table.data tr:hover td { background: rgba(16,185,129,0.05); }
+.pillar { background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.02)); border: 1px solid rgba(16,185,129,0.2); }
+</style>
+<script>
+tailwind.config = { theme: { extend: { colors: { emerald: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#145231' } } } } }
+</script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
+        <span class="font-bold text-xl text-white">AmPac Business Capital</span>
+      </a>
+      <div class="hidden lg:flex items-center space-x-6">
+          <a href="index.html" class="text-gray-300 hover:text-emerald-500 transition">Home</a>
+          <a href="back-office.html" class="text-emerald-500 font-semibold">Back Office</a>
+          <a href="finance-ai.html" class="text-gray-300 hover:text-emerald-500 transition">Finance AI</a>
+          <a href="tech-ai.html" class="text-gray-300 hover:text-emerald-500 transition">Tech AI</a>
+          <a href="economic-development.html" class="text-gray-300 hover:text-emerald-500 transition">Economic Development</a>
+          <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-primary text-sm">Book a Meeting</a>
+      </div>
+      <button class="lg:hidden text-gray-300 hover:text-emerald-500" id="menuBtn">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden lg:hidden pb-4 border-t border-gray-800">
+        <a href="index.html" class="block py-2 text-gray-300 hover:text-emerald-500">Home</a>
+        <a href="back-office.html" class="block py-2 text-emerald-500 font-semibold">Back Office</a>
+        <a href="finance-ai.html" class="block py-2 text-gray-300 hover:text-emerald-500">Finance AI</a>
+        <a href="tech-ai.html" class="block py-2 text-gray-300 hover:text-emerald-500">Tech AI</a>
+        <a href="economic-development.html" class="block py-2 text-gray-300 hover:text-emerald-500">Economic Development</a>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-primary w-full mt-4 justify-center">Book a Meeting</a>
+    </div>
+  </div>
+</nav>
+<section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-transparent"></div>
+  <div class="max-w-5xl mx-auto relative z-10 text-center fade-in">
+    <span class="badge"><i class="fas fa-warehouse mr-2"></i>The Back Office of the Entrepreneur Ecosystem</span>
+    <h1 class="mt-6 text-5xl md:text-6xl font-bold text-white leading-tight">Capital. Coaching. Community.<br/><span class="text-emerald-500">All in one place.</span></h1>
+    <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">The back office is the operating system of the Entrepreneur Ecosystem &mdash; where 3,085+ members access lending programs, incubator cohorts, AI advisors, the marketplace of vetted service providers, and a 20-year-deep network of capital and community resources.</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center"><a href="#marketplace" class="btn-primary text-lg">Explore the Marketplace</a><a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" class="btn-outline text-lg">Book a Member Call</a></div>
+  </div>
+</section>
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-900/20 to-emerald-600/10"><div class="max-w-7xl mx-auto"><div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10"><div class="text-center fade-in"><div class="stat-number">3,085+</div><div class="stat-label">Ecosystem Members</div></div><div class="text-center fade-in"><div class="stat-number">$2B+</div><div class="stat-label">Capital Deployed (20 Yrs)</div></div><div class="text-center fade-in"><div class="stat-number">5,500+</div><div class="stat-label">Jobs Created</div></div><div class="text-center fade-in"><div class="stat-number">50+</div><div class="stat-label">Financial Institution Partners</div></div></div></div></section>
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="section-title">The 3 C's of the Ecosystem</h2>
+      <p class="text-gray-300 text-lg mt-4 max-w-2xl mx-auto">Everything we build for entrepreneurs sits on three pillars. The back office is how members access all three.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="pillar rounded-lg p-8 fade-in">
+        <div class="w-14 h-14 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-6"><i class="fas fa-hand-holding-dollar text-emerald-500 text-2xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3">Capital</h3>
+        <p class="text-gray-300 leading-relaxed mb-4">Direct access to AmPac's full lending stack &mdash; SBA 504, SBA 7(a) Community Advantage, microloans, CDFI lending, Down Payment Assistance, Veteran Advantage, and three active municipal revolving loan funds.</p>
+        <div class="text-emerald-400 text-sm font-semibold">$215.5M project financing in 2025 alone</div>
+      </div>
+      <div class="pillar rounded-lg p-8 fade-in">
+        <div class="w-14 h-14 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-6"><i class="fas fa-chalkboard-user text-emerald-500 text-2xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3">Coaching</h3>
+        <p class="text-gray-300 leading-relaxed mb-4">Two flagship incubator programs &mdash; LEAP 2 Launch and the City of Ontario Executive Incubator &mdash; plus 24/7 AI advisors, cohort-based curriculum, BBO workbooks, and direct 1:1 mentorship from AmPac's team.</p>
+        <div class="text-emerald-400 text-sm font-semibold">17 LEAP graduates &middot; 10 Ontario graduates in 2025</div>
+      </div>
+      <div class="pillar rounded-lg p-8 fade-in">
+        <div class="w-14 h-14 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-6"><i class="fas fa-people-group text-emerald-500 text-2xl"></i></div>
+        <h3 class="text-2xl font-bold text-white mb-3">Community</h3>
+        <p class="text-gray-300 leading-relaxed mb-4">A 3,085-member ecosystem with 51% women, 42.3% Black/African American, and 24.1% Hispanic/Latino representation &mdash; intentionally built to serve entrepreneurs most often left out of traditional capital and support networks.</p>
+        <div class="text-emerald-400 text-sm font-semibold">CA &middot; AZ &middot; NV &middot; 22+ Congressional districts</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800/40">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="section-title">Programs &amp; Services</h2>
+      <p class="text-gray-300 text-lg mt-4 max-w-2xl mx-auto">Click any tile to go deeper into the programs that members can join, refer, or partner on.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="leap-to-launch.html" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in block">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-rocket text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">LEAP 2 Launch</h3>
+        <p class="text-gray-300 text-sm">10-month entrepreneur development program. 17 graduates in 2025 with $56K in equity grants. 90% women, 70% Black/AA cohort.</p>
+        <div class="text-emerald-400 text-sm font-semibold mt-3">Learn more &rarr;</div>
+      </a>
+      <a href="executive-incubator.html" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in block">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-building-circle-arrow-right text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Executive Incubator</h3>
+        <p class="text-gray-300 text-sm">City of Ontario Entrepreneurship Incubator. Doubled cohort size from 5 to 10 entrepreneurs. $4.2M+ in capital incubated in 2025.</p>
+        <div class="text-emerald-400 text-sm font-semibold mt-3">Learn more &rarr;</div>
+      </a>
+      <a href="economic-development.html" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in block">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-city text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Economic Development</h3>
+        <p class="text-gray-300 text-sm">We design and run revolving loan funds and incubator programs for cities, counties, and states. Trusted by City of Ontario, City of Fontana, County of Riverside.</p>
+        <div class="text-emerald-400 text-sm font-semibold mt-3">Learn more &rarr;</div>
+      </a>
+      <a href="finance-ai.html" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in block">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-robot text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Eco Finance AI Agent</h3>
+        <p class="text-gray-300 text-sm">Virtual CFO. 24/7 financial guidance on tax strategy, cash flow, loan readiness, and wealth building.</p>
+        <div class="text-emerald-400 text-sm font-semibold mt-3">Open the agent &rarr;</div>
+      </a>
+      <a href="tech-ai.html" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in block">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-microchip text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Eco Tech AI Agent</h3>
+        <p class="text-gray-300 text-sm">Virtual CTO. Help with CRM, automation, web, cybersecurity, and the rest of your tech stack.</p>
+        <div class="text-emerald-400 text-sm font-semibold mt-3">Open the agent &rarr;</div>
+      </a>
+      <a href="#marketplace" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in block">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-store text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Member Marketplace</h3>
+        <p class="text-gray-300 text-sm">Vetted service providers and product makers from inside the ecosystem &mdash; legal, marketing, finance, tech, beauty, and more.</p>
+        <div class="text-emerald-400 text-sm font-semibold mt-3">Browse providers &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+<section id="marketplace" class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 fade-in">
+      <span class="badge"><i class="fas fa-store mr-2"></i>Ecosystem Marketplace</span>
+      <h2 class="section-title mt-6">Members Doing Business With Members</h2>
+      <p class="text-gray-300 text-lg mt-4 max-w-3xl mx-auto">Filter by category to find vetted service and product providers from inside the Ecosystem. Every provider is a member of AmPac's network &mdash; book directly or send an inquiry.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
+      <button data-mp-filter="all" class="bg-emerald-500 text-white hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">All Providers</button>
+      <button data-mp-filter="capital" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Capital</button>
+      <button data-mp-filter="coaching" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Coaching</button>
+      <button data-mp-filter="finance" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Finance</button>
+      <button data-mp-filter="tech" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Technology</button>
+      <button data-mp-filter="marketing" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Marketing</button>
+      <button data-mp-filter="ops" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Operations</button>
+      <button data-mp-filter="beauty" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Beauty &amp; Personal Care</button>
+      <button data-mp-filter="health" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Health &amp; Wellness</button>
+      <button data-mp-filter="real-estate" class="bg-gray-800 text-gray-300 hover:bg-emerald-600 hover:text-white px-4 py-2 rounded-full text-sm font-semibold transition">Real Estate</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div data-mp-card="coaching" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-lightbulb text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Coaching</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Bright Business Project</h3>
+        <p class="text-gray-300 text-sm mb-4">Curriculum, BBO Workbook & cohort facilitation</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">From $2,500 / engagement</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="capital" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-hand-holding-dollar text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Capital</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">AmPac Lending Desk</h3>
+        <p class="text-gray-300 text-sm mb-4">SBA 504, 7(a), microloans, DPAP & CDFI lending</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Loans $5K – $30M</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="finance" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-robot text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Finance</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Eco Finance AI Agent</h3>
+        <p class="text-gray-300 text-sm mb-4">Virtual CFO available 24/7 for tax & cashflow</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Free with app download</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="tech" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-microchip text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Technology</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Eco Tech AI Agent</h3>
+        <p class="text-gray-300 text-sm mb-4">Virtual CTO for CRM, automation & web stack</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Free with app download</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="finance" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-graduation-cap text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Finance</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">529-MAX</h3>
+        <p class="text-gray-300 text-sm mb-4">Financial education & EdTech for families</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Custom pricing</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="tech" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-database text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Technology</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">I Love My CRM</h3>
+        <p class="text-gray-300 text-sm mb-4">CRM implementation & sales-ops consulting</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">From $1,500 / month</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="finance" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-chart-line text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Finance</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Northwestern Mutual (Vega)</h3>
+        <p class="text-gray-300 text-sm mb-4">Wealth strategy &amp; financial planning</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Free initial consult</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="marketing" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-shirt text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Marketing</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Empire Custom Prints</h3>
+        <p class="text-gray-300 text-sm mb-4">Branded apparel, signage &amp; promo merch</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Quote on request</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="beauty" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-scissors text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Beauty</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Avaris Hair Salon</h3>
+        <p class="text-gray-300 text-sm mb-4">Full-service salon &amp; bridal styling</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">By appointment</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="beauty" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-spa text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Beauty</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">YS Aesthetics</h3>
+        <p class="text-gray-300 text-sm mb-4">Medical-grade skincare &amp; aesthetics</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">From $85 / treatment</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="health" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-dumbbell text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Health</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">MFP Fitness</h3>
+        <p class="text-gray-300 text-sm mb-4">Personal training &amp; group fitness</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">From $49 / session</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="ops" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-people-group text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Operations</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Acosta Staffing LLC</h3>
+        <p class="text-gray-300 text-sm mb-4">Workforce solutions &amp; placement services</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Custom rates</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="real-estate" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-building-columns text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Real Estate</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Thomas Appraisal Co.</h3>
+        <p class="text-gray-300 text-sm mb-4">Commercial &amp; residential appraisals</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">From $450</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="real-estate" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-house-chimney text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Real Estate</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Grow Better Homes</h3>
+        <p class="text-gray-300 text-sm mb-4">Commercial real estate brokerage</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Brokerage fees apply</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="finance" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-piggy-bank text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Finance</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Higher Impact Financial</h3>
+        <p class="text-gray-300 text-sm mb-4">Wealth management &amp; retirement planning</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Free intro call</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+      <div data-mp-card="coaching" class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+            <i class="fas fa-people-arrows text-emerald-500 text-xl"></i>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Coaching</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">The Good Part Consulting</h3>
+        <p class="text-gray-300 text-sm mb-4">Youth enrichment &amp; education consulting</p>
+        <div class="text-emerald-400 text-sm font-semibold mb-4">Custom rates</div>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-outline w-full text-sm justify-center">Book / Inquire</a>
+      </div>
+    </div>
+    <div class="mt-12 text-center fade-in">
+      <p class="text-gray-300 mb-4">Are you an Ecosystem member who wants to be listed?</p>
+      <a href="mailto:Bkennedyjr@ampac.com?subject=Marketplace%20Listing%20Request" class="btn-primary">Apply to be a Featured Provider</a>
+    </div>
+  </div>
+</section>
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800/40">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="section-title">Resources for Members</h2>
+      <p class="text-gray-300 text-lg mt-4 max-w-2xl mx-auto">Capital, coaching, and community resources you can put to work today.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <i class="fas fa-book-open text-emerald-500 text-2xl mb-4"></i>
+        <h3 class="text-lg font-bold text-white mb-2">BBO Workbook &amp; Discovery Class</h3>
+        <p class="text-gray-300 text-sm">Building Business Owners workbook, business assessment tool, and the discovery class delivered by Bright Business Project.</p>
+      </div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <i class="fas fa-file-invoice text-emerald-500 text-2xl mb-4"></i>
+        <h3 class="text-lg font-bold text-white mb-2">Business Plan &amp; Projections Template</h3>
+        <p class="text-gray-300 text-sm">A 12-month financial projections template plus an EOS Vision/Traction Organizer to lock in your 1, 3, and 10-year plan.</p>
+      </div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <i class="fas fa-magnifying-glass-chart text-emerald-500 text-2xl mb-4"></i>
+        <h3 class="text-lg font-bold text-white mb-2">Loan Readiness Self-Assessment</h3>
+        <p class="text-gray-300 text-sm">Evaluate your business against AmPac's underwriting criteria for SBA 504, 7(a), and microloan products before you apply.</p>
+      </div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <i class="fas fa-graduation-cap text-emerald-500 text-2xl mb-4"></i>
+        <h3 class="text-lg font-bold text-white mb-2">Intern-Preneur Program</h3>
+        <p class="text-gray-300 text-sm">University partnerships with Pepperdine (Graziadio), Claremont McKenna, and Cal Baptist. Four intern tracks: General, Outreach, Marketing, and Data.</p>
+      </div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <i class="fas fa-hand-holding-heart text-emerald-500 text-2xl mb-4"></i>
+        <h3 class="text-lg font-bold text-white mb-2">Thrive Grant Program</h3>
+        <p class="text-gray-300 text-sm">1,465 grants awarded totaling $951,500 to-date. Average award $2,620. Open to Ecosystem members meeting eligibility criteria.</p>
+      </div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <i class="fas fa-house-chimney-window text-emerald-500 text-2xl mb-4"></i>
+        <h3 class="text-lg font-bold text-white mb-2">Down Payment Assistance (DPAP)</h3>
+        <p class="text-gray-300 text-sm">Up to $100K toward commercial real estate down payment. 40 businesses served, $63M in member wealth created since 2022.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="gradient-emerald rounded-lg p-12 text-center fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Ready to Plug In?</h2>
+      <p class="text-emerald-50 text-lg mb-8 max-w-2xl mx-auto">Join 3,085+ entrepreneurs already using the back office of the Entrepreneur Ecosystem to access capital, coaching, and community across CA, AZ, and NV.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" class="bg-white text-emerald-600 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition flex items-center justify-center"><i class="fas fa-mobile-screen mr-2"></i>Get the App</a>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white hover:text-emerald-600 transition flex items-center justify-center"><i class="fas fa-calendar mr-2"></i>Book a Member Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="bg-gray-800 border-t border-gray-700 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
+          <span class="font-bold text-lg text-white">AmPac Business Capital</span>
+        </div>
+        <p class="text-gray-400 text-sm">A 501(c)(3) mission-based lender, SBA Certified Development Company, and U.S. Treasury-authorized CDFI serving entrepreneurs across California, Arizona, and Nevada.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-4">Ecosystem</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="index.html" class="hover:text-emerald-500 transition">Home</a></li>
+          <li><a href="back-office.html" class="hover:text-emerald-500 transition">Back Office</a></li>
+          <li><a href="finance-ai.html" class="hover:text-emerald-500 transition">Eco Finance AI Agent</a></li>
+          <li><a href="tech-ai.html" class="hover:text-emerald-500 transition">Eco Technology AI Agent</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-4">Programs</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="leap-to-launch.html" class="hover:text-emerald-500 transition">LEAP 2 Launch Program</a></li>
+          <li><a href="executive-incubator.html" class="hover:text-emerald-500 transition">Executive Incubator</a></li>
+          <li><a href="economic-development.html" class="hover:text-emerald-500 transition">Economic Development</a></li>
+          <li><a href="back-office.html#marketplace" class="hover:text-emerald-500 transition">Marketplace</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-4">Connect</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="https://www.ampac.com" class="hover:text-emerald-500 transition">AmPac.com</a></li>
+          <li><a href="mailto:Bkennedyjr@ampac.com" class="hover:text-emerald-500 transition">Bkennedyjr@ampac.com</a></li>
+          <li><span>3110-B Inland Empire Blvd.</span></li>
+          <li><span>Ontario, CA 91764</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-8">
+      <div class="text-center text-gray-400 text-sm mb-2">&copy; 2025 Entrepreneur Ecosystem. All rights reserved.</div>
+      <div class="text-center text-gray-500 text-sm mb-2">Empowering Businesses from Cradle to Legacy</div>
+      <div class="text-center text-gray-600 text-xs">Powered by AmPac Business Capital</div>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById("menuBtn").addEventListener("click", function() {
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+});
+</script>
+<script>
+// Marketplace category filter (only runs on back-office page)
+document.addEventListener("DOMContentLoaded", function() {
+  const filterBtns = document.querySelectorAll("[data-mp-filter]");
+  const cards = document.querySelectorAll("[data-mp-card]");
+  if (!filterBtns.length || !cards.length) return;
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cat = btn.dataset.mpFilter;
+      filterBtns.forEach(b => {
+        b.classList.remove("bg-emerald-500", "text-white");
+        b.classList.add("bg-gray-800", "text-gray-300");
+      });
+      btn.classList.remove("bg-gray-800", "text-gray-300");
+      btn.classList.add("bg-emerald-500", "text-white");
+      cards.forEach(c => {
+        const cats = (c.dataset.mpCard || "").split(",");
+        c.style.display = (cat === "all" || cats.includes(cat)) ? "" : "none";
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>

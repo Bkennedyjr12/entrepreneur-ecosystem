@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Leap 2 Launch Entrepreneur Development Program — AmPac's 12-month cohort incubator with two tracks: Leap for early-stage and Launch for scale-stage businesses. Two completed cohorts, $4.2M+ in capital incubated, and the standalone Executive Incubator model for cities and organizations.">
+<title>Leap 2 Launch | Executive Incubator | Entrepreneur Ecosystem</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background-color: #0f172a; color: #f1f5f9; }
+.nav-blur { backdrop-filter: blur(12px); background-color: rgba(15,23,42,0.88); }
+
+/* Gradients */
+.gradient-emerald { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.gradient-gold    { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+.gradient-blue    { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+
+/* Badges */
+.badge       { display:inline-block; padding:.35rem 1rem; background:rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.4); border-radius:9999px; font-size:.78rem; font-weight:700; color:#34d399; letter-spacing:.04em; }
+.badge-gold  { display:inline-block; padding:.35rem 1rem; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.4); border-radius:9999px; font-size:.78rem; font-weight:700; color:#fbbf24; letter-spacing:.04em; }
+.badge-blue  { display:inline-block; padding:.35rem 1rem; background:rgba(59,130,246,.12); border:1px solid rgba(59,130,246,.4); border-radius:9999px; font-size:.78rem; font-weight:700; color:#60a5fa; letter-spacing:.04em; }
+.badge-prev  { display:inline-block; padding:.3rem .8rem; background:rgba(100,116,139,.15); border:1px solid rgba(100,116,139,.35); border-radius:9999px; font-size:.72rem; font-weight:700; color:#94a3b8; letter-spacing:.04em; }
+
+/* Buttons */
+.btn-primary { background:linear-gradient(135deg,#10b981,#059669); color:white; padding:.85rem 2rem; border-radius:.6rem; font-weight:700; font-size:.95rem; transition:all .3s; display:inline-flex; align-items:center; gap:.5rem; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(16,185,129,.35); }
+.btn-outline { border:2px solid #10b981; color:#34d399; padding:.85rem 2rem; border-radius:.6rem; font-weight:700; font-size:.95rem; transition:all .3s; display:inline-flex; align-items:center; gap:.5rem; background:transparent; }
+.btn-outline:hover { background:rgba(16,185,129,.1); transform:translateY(-2px); }
+.btn-gold { background:linear-gradient(135deg,#f59e0b,#d97706); color:white; padding:.85rem 2rem; border-radius:.6rem; font-weight:700; font-size:.95rem; transition:all .3s; display:inline-flex; align-items:center; gap:.5rem; }
+.btn-gold:hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(245,158,11,.35); }
+
+/* Cards */
+.card { background:rgba(30,41,59,.65); border:1px solid rgba(255,255,255,.07); border-radius:1.25rem; transition:all .3s; }
+.card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,.25); }
+.track-leap   { border-top:4px solid #10b981; }
+.track-launch { border-top:4px solid #f59e0b; }
+.cohort-blue  { border-left:4px solid #3b82f6; }
+.cohort-green { border-left:4px solid #10b981; }
+.exec-block   { background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(5,150,105,.02)); border:1px solid rgba(16,185,129,.18); border-radius:1.25rem; }
+.pillar       { background:rgba(16,185,129,.04); border:1px solid rgba(16,185,129,.14); border-radius:1rem; }
+
+/* Stats */
+.stat-em  { font-size:3rem; font-weight:800; color:#10b981; line-height:1; }
+.stat-bl  { font-size:3rem; font-weight:800; color:#3b82f6;  line-height:1; }
+
+/* Section helpers */
+.section-divider { width:56px; height:4px; background:linear-gradient(90deg,#10b981,#059669); border-radius:2px; margin:.75rem auto; }
+.section-divider-blue { width:56px; height:4px; background:linear-gradient(90deg,#3b82f6,#1d4ed8); border-radius:2px; margin:.75rem auto; }
+.highlight-box { background:rgba(16,185,129,.06); border-left:4px solid #10b981; border-radius:0 .75rem .75rem 0; padding:1.2rem 1.5rem; }
+.highlight-gold { background:rgba(245,158,11,.06); border-left:4px solid #f59e0b; border-radius:0 .75rem .75rem 0; padding:1.2rem 1.5rem; }
+
+/* Tables */
+table.data { width:100%; border-collapse:collapse; color:#cbd5e1; }
+table.data th { text-align:left; padding:.8rem 1rem; background:rgba(16,185,129,.08); color:#6ee7b7; font-weight:700; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid rgba(16,185,129,.25); }
+table.data td { padding:.75rem 1rem; border-bottom:1px solid rgba(71,85,105,.28); font-size:.88rem; }
+table.data tr:last-child td { border-bottom:none; }
+table.data tr:hover td { background:rgba(16,185,129,.04); }
+table.data-blue th { background:rgba(59,130,246,.08); color:#93c5fd; border-bottom-color:rgba(59,130,246,.25); }
+
+/* Timeline */
+.milestone { display:flex; gap:1.25rem; align-items:flex-start; padding:1.25rem 0; border-bottom:1px solid rgba(255,255,255,.05); }
+.milestone:last-child { border-bottom:none; }
+.milestone-dot { width:2.5rem; height:2.5rem; background:rgba(59,130,246,.15); border:2px solid rgba(59,130,246,.4); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:.1rem; }
+
+/* Fade */
+.fade-in { opacity:1; transition:opacity .6s ease; }
+
+/* Sticky section nav */
+.section-nav a { font-size:.82rem; font-weight:600; color:#94a3b8; padding:.4rem .9rem; border-radius:9999px; transition:all .25s; white-space:nowrap; }
+.section-nav a:hover { color:#10b981; background:rgba(16,185,129,.08); }
+.section-nav a.active { color:#10b981; background:rgba(16,185,129,.12); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg gradient-emerald flex items-center justify-center">
+          <i class="fas fa-seedling text-white text-sm"></i>
+        </div>
+        <span class="font-bold text-lg text-white">AmPac Business Capital</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="index.html" class="text-gray-300 hover:text-emerald-400 transition text-sm font-medium">Home</a>
+        <a href="back-office.html" class="text-gray-300 hover:text-emerald-400 transition text-sm font-medium">Back Office</a>
+        <a href="finance-ai.html" class="text-gray-300 hover:text-emerald-400 transition text-sm font-medium">Finance AI</a>
+        <a href="tech-ai.html" class="text-gray-300 hover:text-emerald-400 transition text-sm font-medium">Tech AI</a>
+        <a href="executive-incubator.html" class="text-emerald-400 font-semibold text-sm">Leap 2 Launch</a>
+        <a href="economic-development.html" class="text-gray-300 hover:text-emerald-400 transition text-sm font-medium">Economic Development</a>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-2 px-4">Book a Meeting</a>
+      </div>
+      <button class="lg:hidden text-gray-300 hover:text-emerald-400" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden lg:hidden pb-4 border-t border-white/5 pt-3 space-y-1">
+      <a href="index.html" class="block py-2 text-gray-300 hover:text-emerald-400 text-sm">Home</a>
+      <a href="back-office.html" class="block py-2 text-gray-300 hover:text-emerald-400 text-sm">Back Office</a>
+      <a href="finance-ai.html" class="block py-2 text-gray-300 hover:text-emerald-400 text-sm">Finance AI</a>
+      <a href="tech-ai.html" class="block py-2 text-gray-300 hover:text-emerald-400 text-sm">Tech AI</a>
+      <a href="executive-incubator.html" class="block py-2 text-emerald-400 font-semibold text-sm">Leap 2 Launch</a>
+      <a href="economic-development.html" class="block py-2 text-gray-300 hover:text-emerald-400 text-sm">Economic Development</a>
+      <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" class="btn-primary w-full mt-3 justify-center text-sm py-2">Book a Meeting</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════ SECTION NAV ══════════════════════ -->
+<div class="sticky top-16 z-40 bg-slate-900/90 backdrop-blur border-b border-white/5 hidden md:block">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="section-nav flex items-center gap-1 overflow-x-auto py-2 scrollbar-none">
+      <a href="#program">The Program</a>
+      <a href="#tracks">Two Tracks</a>
+      <a href="#framework">Framework</a>
+      <a href="#graduation">Graduation</a>
+      <a href="#cohorts">Cohort History</a>
+      <a href="#executive">Executive Incubator</a>
+      <a href="#apply">Apply</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section id="program" class="pt-28 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/12 to-transparent pointer-events-none"></div>
+  <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-emerald-500/4 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="max-w-5xl mx-auto relative z-10 text-center fade-in">
+    <span class="badge"><i class="fas fa-seedling mr-2"></i>AmPac Entrepreneur Development</span>
+    <h1 class="mt-5 text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+      Leap 2 Launch<br>
+      <span class="text-emerald-400">Entrepreneur Development</span><br>
+      Program
+    </h1>
+    <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      A 12-month structured cohort program built to move entrepreneurs from idea to execution — and from execution to scale. Powered by AmPac Business Capital's Capital, Coaching &amp; Community framework.
+    </p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#apply" class="btn-primary text-base"><i class="fas fa-rocket"></i>Apply to the Program</a>
+      <a href="#tracks" class="btn-outline text-base"><i class="fas fa-arrow-down"></i>Explore the Tracks</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TOP STATS ══════════════════════ -->
+<section class="py-14 px-4 sm:px-6 lg:px-8 bg-emerald-900/8 border-y border-emerald-900/20">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="fade-in"><div class="stat-em">12</div><div class="text-gray-300 text-sm font-semibold mt-2">Month Program</div></div>
+      <div class="fade-in"><div class="stat-em">2</div><div class="text-gray-300 text-sm font-semibold mt-2">Completed Cohorts</div></div>
+      <div class="fade-in"><div class="stat-em">10</div><div class="text-gray-300 text-sm font-semibold mt-2">Total Graduates</div></div>
+      <div class="fade-in"><div class="stat-em">$4.2M+</div><div class="text-gray-300 text-sm font-semibold mt-2">Capital Incubated</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TWO TRACKS ══════════════════════ -->
+<section id="tracks" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <span class="badge">The Two Tracks</span>
+      <div class="section-divider"></div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">One Program. Two Pathways.</h2>
+      <p class="text-gray-400 text-lg mt-4 max-w-2xl mx-auto">Leap 2 Launch meets entrepreneurs where they are — whether you're building your foundation or ready to scale.</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- LEAP -->
+      <div class="card track-leap p-10 fade-in">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-xl gradient-emerald flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-seedling text-white text-xl"></i>
+          </div>
+          <div>
+            <span class="badge text-xs">Track 1</span>
+            <h3 class="text-2xl font-bold text-white mt-1">The Leap Program</h3>
+          </div>
+        </div>
+        <p class="text-gray-300 text-base leading-relaxed mb-6">
+          For <strong class="text-white">early-stage entrepreneurs</strong> building their business foundation. Pre-revenue, newly launched, or in your first few years — the Leap Program gives you structure, coaching, and capital connections to move forward with confidence.
+        </p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">12-month structured cohort experience</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Business planning, marketing, operations &amp; financial training</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Peer cohort accountability and expert mentorship</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Formal 30-point judged pitch graduation</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-emerald-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Access to the 3,000+ member Entrepreneur Ecosystem upon graduation</span></li>
+        </ul>
+        <div class="highlight-box mb-8">
+          <p class="text-emerald-300 font-bold text-sm uppercase tracking-wider mb-1">Participation Model</p>
+          <p class="text-white font-semibold text-base">$1,000 deposit to join</p>
+          <p class="text-gray-300 text-sm mt-1">At graduation, you pitch to a panel of judges and compete for a <strong class="text-emerald-400">grant award</strong>.</p>
+        </div>
+        <a href="mailto:Bkennedyjr@ampac.com?subject=Leap%20Program%20Application" class="btn-primary w-full justify-center"><i class="fas fa-seedling"></i>Apply — Leap Program</a>
+      </div>
+
+      <!-- LAUNCH -->
+      <div class="card track-launch p-10 fade-in">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-xl gradient-gold flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-rocket text-white text-xl"></i>
+          </div>
+          <div>
+            <span class="badge-gold text-xs">Track 2</span>
+            <h3 class="text-2xl font-bold text-white mt-1">The Launch Program</h3>
+          </div>
+        </div>
+        <p class="text-gray-300 text-base leading-relaxed mb-6">
+          For <strong class="text-white">seasoned, scale-stage businesses</strong> ready to grow aggressively. You have revenue, a proven concept, and you're ready for executive-level coaching and serious capital access.
+        </p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-yellow-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">12-month executive coaching group format</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-yellow-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Strategic growth, capital readiness &amp; operational systems</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-yellow-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Executive peer group with accountability structure</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-yellow-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Direct introduction to AmPac's capital network and lending programs</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-yellow-400 mt-0.5 flex-shrink-0"></i><span class="text-gray-300 text-sm">Qualify for SBA loans, CDFI lending, or investor capital at completion</span></li>
+        </ul>
+        <div class="highlight-gold mb-8">
+          <p class="text-yellow-300 font-bold text-sm uppercase tracking-wider mb-1">Participation Model</p>
+          <p class="text-white font-semibold text-base">Monthly membership fee</p>
+          <p class="text-gray-300 text-sm mt-1">At completion, qualify for a <strong class="text-yellow-300">loan or investment</strong> from a traditional lender or capital partner.</p>
+        </div>
+        <a href="mailto:Bkennedyjr@ampac.com?subject=Launch%20Program%20Application" class="btn-gold w-full justify-center"><i class="fas fa-rocket"></i>Apply — Launch Program</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ 3 C's FRAMEWORK ══════════════════════ -->
+<section id="framework" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/50 border-y border-white/5">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <span class="badge">Our Framework</span>
+      <div class="section-divider"></div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Built on the 3 C's</h2>
+      <p class="text-gray-400 text-lg mt-4 max-w-2xl mx-auto">Capital. Coaching. Community. The foundation of everything AmPac builds — applied as a 12-month structured transformation.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="pillar p-10 fade-in text-center">
+        <div class="w-16 h-16 bg-emerald-500/12 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+          <i class="fas fa-hand-holding-dollar text-emerald-400 text-3xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">Capital</h3>
+        <p class="text-gray-300 leading-relaxed">Direct access to SBA 504, 7(a) Community Advantage, microloans, CDFI lending, Down Payment Assistance, Veteran Advantage, and state guaranty programs. Participants leave with real capital relationships — not just knowledge about them.</p>
+      </div>
+      <div class="pillar p-10 fade-in text-center">
+        <div class="w-16 h-16 bg-emerald-500/12 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+          <i class="fas fa-chalkboard-user text-emerald-400 text-3xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">Coaching</h3>
+        <p class="text-gray-300 leading-relaxed">Facilitated curriculum including the Building Business Owners (BBO) workbook, EOS Vision/Traction Organizer, financial management frameworks, and the Entrepreneurial Leap 1-2-3 Roadmap — covering business planning, finance, marketing, operations, and strategic growth.</p>
+      </div>
+      <div class="pillar p-10 fade-in text-center">
+        <div class="w-16 h-16 bg-emerald-500/12 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+          <i class="fas fa-people-group text-emerald-400 text-3xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">Community</h3>
+        <p class="text-gray-300 leading-relaxed">Every graduate enters the 3,000+ member Entrepreneur Ecosystem. Inaugural alumni return as mentors for incoming cohorts — creating a living, growing network where experience flows forward continuously.</p>
+      </div>
+    </div>
+
+    <!-- 12-Month Quarters -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-bold text-white text-center mb-8">What Happens Over 12 Months</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <div class="bg-slate-800/60 border border-white/8 rounded-xl p-6 fade-in">
+          <div class="text-emerald-400 font-black text-4xl mb-3">Q1</div>
+          <h4 class="text-white font-bold mb-2">Foundation</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">Business model clarity, market positioning, competitive analysis, and value proposition development.</p>
+        </div>
+        <div class="bg-slate-800/60 border border-white/8 rounded-xl p-6 fade-in">
+          <div class="text-emerald-400 font-black text-4xl mb-3">Q2</div>
+          <h4 class="text-white font-bold mb-2">Operations</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">Financial management, bookkeeping, cash flow, P&amp;L, and operational systems that scale.</p>
+        </div>
+        <div class="bg-slate-800/60 border border-white/8 rounded-xl p-6 fade-in">
+          <div class="text-emerald-400 font-black text-4xl mb-3">Q3</div>
+          <h4 class="text-white font-bold mb-2">Growth</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">Marketing strategy, brand development, customer acquisition, and 1-3-10 year vision/traction planning.</p>
+        </div>
+        <div class="bg-slate-800/60 border border-white/8 rounded-xl p-6 fade-in">
+          <div class="text-emerald-400 font-black text-4xl mb-3">Q4</div>
+          <h4 class="text-white font-bold mb-2">Capital &amp; Pitch</h4>
+          <p class="text-gray-400 text-sm leading-relaxed">Capital readiness, pitch preparation, and a formal 30-point judged pitch graduation ceremony.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PITCH GRADUATION ══════════════════════ -->
+<section id="graduation" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto text-center fade-in">
+    <span class="badge"><i class="fas fa-microphone mr-2"></i>Pitch Graduation</span>
+    <div class="section-divider"></div>
+    <h2 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-3">You Don't Just Complete the Program.<br>You Earn Your Graduation.</h2>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-14">Every Leap participant graduates by delivering a 3-minute business pitch, scored by a panel of judges on a 30-point rubric. Real accountability for real results.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-slate-800/60 border border-white/8 rounded-xl p-8 fade-in">
+        <div class="text-emerald-400 text-4xl font-black mb-3">10 pts</div>
+        <h3 class="text-white font-bold text-lg mb-2">Quality of Pitch</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Scored "unclear" (0–3) to "compelling" (9–10). Tests how effectively you communicate your business in 3 minutes.</p>
+      </div>
+      <div class="bg-slate-800/60 border border-white/8 rounded-xl p-8 fade-in">
+        <div class="text-emerald-400 text-4xl font-black mb-3">10 pts</div>
+        <h3 class="text-white font-bold text-lg mb-2">Business Structure &amp; KPIs</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Scored "not identified" (0–3) to "actively used" (9–10). Tests whether you run your business by metrics.</p>
+      </div>
+      <div class="bg-slate-800/60 border border-white/8 rounded-xl p-8 fade-in">
+        <div class="text-emerald-400 text-4xl font-black mb-3">10 pts</div>
+        <h3 class="text-white font-bold text-lg mb-2">Growth &amp; Program Impact</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Scored "minimal" (0–3) to "significant" (9–10). Tests the measurable lift produced during your 12 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ COHORT HISTORY ══════════════════════ -->
+<section id="cohorts" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900/50 border-y border-white/5">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <span class="badge">Program History</span>
+      <div class="section-divider"></div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Two Cohorts. Real Results.</h2>
+      <p class="text-gray-400 text-lg mt-4 max-w-2xl mx-auto">From an 18-month pilot to a refined 12-month model — the Leap 2 Launch Entrepreneur Development Program has completed two cohorts and set a clear trajectory.</p>
+    </div>
+
+    <!-- ── COHORT 1: 2023–2024 ── -->
+    <div class="card cohort-blue p-0 mb-10 overflow-hidden fade-in">
+      <div class="px-8 pt-8 pb-6 border-b border-white/5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <span class="badge-prev">Previous Cohort</span>
+              <span class="badge-blue">Inaugural</span>
+            </div>
+            <h3 class="text-3xl font-bold text-white">2023–2024 Cohort</h3>
+            <p class="text-blue-300 font-semibold mt-1">The 18-Month Pilot That Proved the Model</p>
+          </div>
+          <div class="flex gap-6 sm:gap-10 flex-shrink-0">
+            <div class="text-center">
+              <div class="stat-bl">10</div>
+              <div class="text-gray-400 text-xs font-semibold mt-1">Graduates</div>
+            </div>
+            <div class="text-center">
+              <div class="stat-bl">18</div>
+              <div class="text-gray-400 text-xs font-semibold mt-1">Months</div>
+            </div>
+            <div class="text-center">
+              <div class="stat-bl text-2xl pt-2">$2.5M</div>
+              <div class="text-gray-400 text-xs font-semibold mt-1">Capital Coached</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="px-8 py-7 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <p class="text-gray-300 leading-relaxed mb-5">
+            The 2023–2024 class was the first-ever cohort of the Leap 2 Launch Entrepreneur Development Program — and they ran an extended 18-month pilot format. Ten entrepreneurs committed to the full journey, putting in the work to build, validate, and strengthen their businesses under AmPac's Capital, Coaching &amp; Community framework.
+          </p>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            This inaugural class established the proof of concept. The insights from their 18 months directly shaped the refined 12-month curriculum now used in every cohort that follows. Their participation — and their businesses — are the foundation of this program's track record.
+          </p>
+          <!-- 18-month timeline -->
+          <h4 class="text-white font-bold text-base mb-4">The 18-Month Journey</h4>
+          <div class="space-y-0">
+            <div class="milestone">
+              <div class="milestone-dot"><i class="fas fa-flag text-blue-400 text-xs"></i></div>
+              <div>
+                <p class="text-blue-300 text-xs font-bold uppercase tracking-wider">Months 1–4 · Foundation</p>
+                <p class="text-gray-300 text-sm mt-1">Business model clarity, market analysis, value proposition, and initial financial baseline. Goals set for the full program.</p>
+              </div>
+            </div>
+            <div class="milestone">
+              <div class="milestone-dot"><i class="fas fa-gears text-blue-400 text-xs"></i></div>
+              <div>
+                <p class="text-blue-300 text-xs font-bold uppercase tracking-wider">Months 5–9 · Operations &amp; Finance</p>
+                <p class="text-gray-300 text-sm mt-1">Financial management, bookkeeping, cash flow, 12-month projections, and capital readiness work begins.</p>
+              </div>
+            </div>
+            <div class="milestone">
+              <div class="milestone-dot"><i class="fas fa-bullhorn text-blue-400 text-xs"></i></div>
+              <div>
+                <p class="text-blue-300 text-xs font-bold uppercase tracking-wider">Months 10–14 · Marketing &amp; Growth</p>
+                <p class="text-gray-300 text-sm mt-1">Brand development, customer acquisition strategy, and 1-3-10 year vision using the EOS Traction Organizer.</p>
+              </div>
+            </div>
+            <div class="milestone">
+              <div class="milestone-dot"><i class="fas fa-trophy text-blue-400 text-xs"></i></div>
+              <div>
+                <p class="text-blue-300 text-xs font-bold uppercase tracking-wider">Months 15–18 · Capital &amp; Graduation</p>
+                <p class="text-gray-300 text-sm mt-1">Capital request development, lender introductions, and program graduation. Learnings from this phase informed the formal 30-point pitch rubric introduced in Cohort 2.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">2023–2024 Graduate Roster — Inaugural Class</p>
+          <div class="bg-slate-900/60 rounded-xl overflow-hidden overflow-x-auto mb-5">
+            <table class="data">
+              <thead><tr><th>#</th><th>Entrepreneur</th><th>Recognition</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Charles Carter</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>2</td><td>Clarence Billingsea</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>3</td><td>David Namazi</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>4</td><td>Diana McKee</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>5</td><td>John Edgar</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>6</td><td>Lionel Thomas</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>7</td><td>Mandy Johnson</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>8</td><td>Marie Vernon</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>9</td><td>Milly Golia</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+                <tr><td>10</td><td>Stephanie Wells</td><td><span class="text-blue-400 text-xs font-semibold">Founding Alumnus</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Legacy callouts -->
+          <div class="space-y-3">
+            <div class="flex gap-3 items-start bg-slate-800/50 rounded-lg p-4">
+              <i class="fas fa-flask text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-white font-semibold text-sm">They Were the Test Case</p>
+                <p class="text-gray-400 text-xs mt-0.5">The 18-month format generated the data needed to build the refined 12-month model that defines the program today.</p>
+              </div>
+            </div>
+            <div class="flex gap-3 items-start bg-slate-800/50 rounded-lg p-4">
+              <i class="fas fa-trophy text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-white font-semibold text-sm">Graduation: December 18, 2023</p>
+                <p class="text-gray-400 text-xs mt-0.5">AmPac Entrepreneur Ecosystem · Ontario, CA · Judged pitch competition with remarks from the Office of Congresswoman Norma Torres &amp; Assembly Member Eloise Reyes.</p>
+              </div>
+            </div>
+            <div class="flex gap-3 items-start bg-slate-800/50 rounded-lg p-4">
+              <i class="fas fa-dollar-sign text-blue-400 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-white font-semibold text-sm">$2.5M in Capital Requests · $5,000 in Equity Grants</p>
+                <p class="text-gray-400 text-xs mt-0.5">The inaugural class set the baseline that every cohort builds from. Ten founders, one proof of concept.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ── Media / Press bar ── -->
+      <div class="px-8 py-6 border-t border-white/5 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div>
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3"><i class="fas fa-play-circle mr-1 text-blue-400"></i>Graduation Video</p>
+          <div class="relative w-full rounded-xl overflow-hidden" style="padding-bottom:56.25%">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/MANUTsRA8Sw" title="Leap 2 Launch 2023 Graduation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div>
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3"><i class="fas fa-newspaper mr-1 text-blue-400"></i>In the Press</p>
+          <a href="https://iebizjournal.com/ampac-business-capital-announces-graduates-from-leap-2-launch-entrepreneur-development-program/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 bg-slate-800/60 border border-white/8 rounded-xl p-5 hover:border-blue-500/40 transition group">
+            <div class="w-10 h-10 bg-blue-500/15 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-external-link-alt text-blue-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-blue-300 transition">IE Business Journal</p>
+              <p class="text-gray-400 text-xs mt-1 leading-relaxed">AmPac Business Capital Announces Graduates from Leap 2 Launch Entrepreneur Development Program</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COHORT 2: 2024–2025 ── -->
+    <div class="card cohort-green p-0 mb-12 overflow-hidden fade-in">
+      <div class="px-8 pt-8 pb-6 border-b border-white/5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <span class="badge-prev">Previous Cohort</span>
+              <span class="badge">Completed</span>
+            </div>
+            <h3 class="text-3xl font-bold text-white">2024–2025 Cohort</h3>
+            <p class="text-emerald-300 font-semibold mt-1">The 12-Month Refined Program — 10 Graduates</p>
+          </div>
+          <div class="flex gap-6 sm:gap-10 flex-shrink-0">
+            <div class="text-center">
+              <div class="stat-em">10</div>
+              <div class="text-gray-400 text-xs font-semibold mt-1">Graduates</div>
+            </div>
+            <div class="text-center">
+              <div class="stat-em">12</div>
+              <div class="text-gray-400 text-xs font-semibold mt-1">Months</div>
+            </div>
+            <div class="text-center">
+              <div class="stat-em text-2xl pt-2">$4.2M+</div>
+              <div class="text-gray-400 text-xs font-semibold mt-1">Capital Incubated</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="px-8 py-7 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            The refined 12-month cohort matched the inaugural class in graduates — 10 entrepreneurs across 9+ industries completing a fully structured program that culminated in a formal 30-point judged pitch graduation. Combined capital requests reached $4.2M+, up 68% from the inaugural year, and the program produced equity grants of $7,000 — 40% more than Cohort 1.
+          </p>
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="bg-emerald-900/15 border border-emerald-900/30 rounded-xl p-4 text-center">
+              <div class="text-emerald-400 font-bold text-xl">$4.2M+</div>
+              <div class="text-gray-400 text-xs mt-1">Capital Incubated</div>
+            </div>
+            <div class="bg-emerald-900/15 border border-emerald-900/30 rounded-xl p-4 text-center">
+              <div class="text-emerald-400 font-bold text-xl">9+</div>
+              <div class="text-gray-400 text-xs mt-1">Industries</div>
+            </div>
+            <div class="bg-emerald-900/15 border border-emerald-900/30 rounded-xl p-4 text-center">
+              <div class="text-emerald-400 font-bold text-xl">$7,000</div>
+              <div class="text-gray-400 text-xs mt-1">Grants Awarded</div>
+            </div>
+          </div>
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">Program Leadership</p>
+          <div class="space-y-2 text-sm text-gray-300">
+            <div><span class="text-white font-semibold">Brian Kennedy Jr.</span> — Program Lead, AmPac</div>
+            <div><span class="text-white font-semibold">Florin Diumea</span> — Cohort Leader, Bright Business Project</div>
+            <div><span class="text-white font-semibold">Hilda Kennedy</span> — Founder &amp; President, AmPac</div>
+          </div>
+        </div>
+        <div>
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">2024–2025 Graduate Roster</p>
+          <div class="bg-slate-900/60 rounded-xl overflow-hidden overflow-x-auto">
+            <table class="data">
+              <thead><tr><th>#</th><th>Entrepreneur</th><th>Business</th><th>Industry</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Bill Cortus</td><td>529-MAX</td><td>Financial Education</td></tr>
+                <tr><td>2</td><td>Michael Garcia</td><td>I Love My CRM</td><td>Technology / CRM</td></tr>
+                <tr><td>3</td><td>Miguel Gonzalez</td><td>MFP Fitness</td><td>Health &amp; Fitness</td></tr>
+                <tr><td>4</td><td>Eddie Pasillas</td><td>Sid Opportunity LLC</td><td>Retail / E-Commerce</td></tr>
+                <tr><td>5</td><td>Philip Vega</td><td>Northwestern Mutual</td><td>Financial Services</td></tr>
+                <tr><td>6</td><td>Kevin Gonzalez</td><td>Empire Custom Prints</td><td>Custom Apparel</td></tr>
+                <tr><td>7</td><td>Alba Castro</td><td>Avaris Hair Salon</td><td>Beauty &amp; Personal Care</td></tr>
+                <tr><td>8</td><td>Jessica Lopez</td><td>YS Aesthetics</td><td>Aesthetics / Skincare</td></tr>
+                <tr><td>9</td><td>Betty Carlos</td><td>My Skeleton Heart</td><td>Creative / Artisan</td></tr>
+                <tr><td>10</td><td>Osbaldo Acosta</td><td>Acosta Staffing LLC</td><td>Staffing &amp; Workforce</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- ── Media / Press bar ── -->
+      <div class="px-8 py-6 border-t border-white/5 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div>
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3"><i class="fas fa-play-circle mr-1 text-emerald-400"></i>Graduation Video</p>
+          <div class="relative w-full rounded-xl overflow-hidden" style="padding-bottom:56.25%">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/0sBPlWyorkI" title="Leap 2 Launch 2025 Graduation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div>
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3"><i class="fas fa-newspaper mr-1 text-emerald-400"></i>In the Press</p>
+          <a href="https://ampac.com/ampacs-leap-2-launch-program-celebrates-second-annual-graduation-50000-awarded-to-california-entrepreneurs/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 bg-slate-800/60 border border-white/8 rounded-xl p-5 hover:border-emerald-500/40 transition group">
+            <div class="w-10 h-10 bg-emerald-500/15 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-external-link-alt text-emerald-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-emerald-300 transition">AmPac.com</p>
+              <p class="text-gray-400 text-xs mt-1 leading-relaxed">AmPac's Leap 2 Launch Program Celebrates Second Annual Graduation — $50,000 Awarded to California Entrepreneurs</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- YEAR OVER YEAR -->
+    <div class="fade-in">
+      <h3 class="text-xl font-bold text-white text-center mb-6">Year-Over-Year Program Growth</h3>
+      <div class="bg-slate-800/40 border border-white/8 rounded-xl overflow-hidden overflow-x-auto">
+        <table class="data">
+          <thead><tr><th>Metric</th><th>2023–2024 Inaugural</th><th>2024–2025 Cohort</th><th>Growth</th></tr></thead>
+          <tbody>
+            <tr><td>Program Duration</td><td>18 months (pilot)</td><td>12 months (refined)</td><td class="text-emerald-400 font-semibold">Optimized</td></tr>
+            <tr><td>Participants / Graduates</td><td>10</td><td>10</td><td class="text-emerald-400 font-semibold">Sustained</td></tr>
+            <tr><td>Industries Represented</td><td>5+</td><td>9+</td><td class="text-emerald-400 font-semibold">+80%</td></tr>
+            <tr><td>Capital Requests Incubated</td><td>$2,500,000</td><td>$4,200,000+</td><td class="text-emerald-400 font-semibold">+68%</td></tr>
+            <tr><td>Equity Grants Awarded</td><td>$5,000</td><td>$7,000</td><td class="text-emerald-400 font-semibold">+40%</td></tr>
+            <tr><td>Pitch Graduation Format</td><td>Informal presentation</td><td>10 pitches, 30-pt rubric</td><td class="text-emerald-400 font-semibold">Formalized</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════ EXECUTIVE INCUBATOR ══════════════════════ -->
+<section id="executive" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-950/25 to-slate-900 border-y border-white/5">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <span class="badge"><i class="fas fa-building mr-2"></i>Premium Tier</span>
+      <div class="section-divider"></div>
+      <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Executive Incubator</h2>
+      <p class="text-emerald-300 font-semibold text-lg mt-2">A Standalone Program for Cities, Counties &amp; Organizations</p>
+      <p class="text-gray-400 text-lg mt-4 max-w-3xl mx-auto">The Executive Incubator is AmPac's premium, fully customized model — built on the Leap 2 Launch framework but deployed as a standalone program for municipalities, economic development agencies, and organizations that want to invest in their business community at a higher level.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
+      <!-- What makes it different -->
+      <div class="fade-in">
+        <h3 class="text-2xl font-bold text-white mb-7">What Makes It Different</h3>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="w-11 h-11 bg-emerald-500/12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-crown text-emerald-400"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold">Higher-Level Program Design</p>
+              <p class="text-gray-400 text-sm mt-1">Built on the Leap 2 Launch model but elevated — deeper curriculum, more intensive coaching, and customized deliverables built around your community's specific needs.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-11 h-11 bg-emerald-500/12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-calendar-check text-emerald-400"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold">12-Month Structured Format</p>
+              <p class="text-gray-400 text-sm mt-1">The proven 12-month framework, adapted to your organization's timeline, cohort size, and program goals — with AmPac managing curriculum and delivery end to end.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-11 h-11 bg-emerald-500/12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-chart-line text-emerald-400"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold">Measurable Outcomes &amp; Reporting</p>
+              <p class="text-gray-400 text-sm mt-1">Comprehensive reporting on participant growth, capital incubated, pitch performance, and community impact — giving funders and stakeholders clear, defensible ROI.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-11 h-11 bg-emerald-500/12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-handshake text-emerald-400"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold">Turnkey Partnership with AmPac</p>
+              <p class="text-gray-400 text-sm mt-1">AmPac handles program design, curriculum delivery, mentorship, and capital connectivity. You bring the community and the mission — we bring the model.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case study + CTA -->
+      <div class="space-y-6 fade-in">
+        <div class="exec-block p-8">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 bg-emerald-500/18 rounded-xl flex items-center justify-center">
+              <i class="fas fa-city text-emerald-400"></i>
+            </div>
+            <div>
+              <p class="text-gray-400 text-xs uppercase tracking-wider font-bold">Case Study</p>
+              <p class="text-white font-bold text-lg">City of Ontario Executive Incubator</p>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed mb-5">AmPac deployed the Executive Incubator model for the City of Ontario — a fully branded, city-sponsored incubator program built on the Leap 2 Launch framework. Now in its second year, the result is a scalable, repeatable model the City builds upon year after year, with professional program management and measurable community impact.</p>
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="bg-emerald-900/18 rounded-lg p-3 text-center">
+              <div class="text-emerald-400 font-bold text-lg">2</div>
+              <div class="text-gray-400 text-xs mt-1">Cohorts</div>
+            </div>
+            <div class="bg-emerald-900/18 rounded-lg p-3 text-center">
+              <div class="text-emerald-400 font-bold text-lg">$10K</div>
+              <div class="text-gray-400 text-xs mt-1">Grants ('23)</div>
+            </div>
+            <div class="bg-emerald-900/18 rounded-lg p-3 text-center">
+              <div class="text-emerald-400 font-bold text-lg">&#10003;</div>
+              <div class="text-gray-400 text-xs mt-1">Repeatable</div>
+            </div>
+          </div>
+          <!-- 2023 Cohort Photos -->
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">Ontario Incubator — Inaugural Cohort · December 2023</p>
+          <div class="grid grid-cols-2 gap-3 mb-5">
+            <img src="images/ontario-incubator-2023-check.jpg" alt="City of Ontario Incubator 2023 — $10,000 Winners Check" class="rounded-xl w-full object-cover aspect-video" onerror="this.parentElement.style.display='none'">
+            <img src="images/ontario-incubator-2023-graduates.jpg" alt="City of Ontario Incubator 2023 — Graduating Class" class="rounded-xl w-full object-cover aspect-video" onerror="this.parentElement.style.display='none'">
+          </div>
+          <!-- 2025 Video -->
+          <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3"><i class="fas fa-play-circle mr-1 text-emerald-400"></i>2025 Graduation Video</p>
+          <div class="relative w-full rounded-xl overflow-hidden mb-5" style="padding-bottom:56.25%">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/8dIQjk2g9EI" title="City of Ontario Incubator Graduation 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <!-- Press link -->
+          <a href="https://ampac.com/city-of-ontario-entrepreneurship-program-graduation-2025/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 bg-slate-800/60 border border-white/8 rounded-xl p-4 hover:border-emerald-500/40 transition group">
+            <div class="w-9 h-9 bg-emerald-500/15 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-external-link-alt text-emerald-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm group-hover:text-emerald-300 transition">AmPac.com</p>
+              <p class="text-gray-400 text-xs mt-1">City of Ontario Entrepreneurship Program Graduation 2025</p>
+            </div>
+          </a>
+        </div>
+        <div class="bg-slate-800/60 border border-white/8 rounded-xl p-7">
+          <p class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-2">Bring This to Your Community</p>
+          <p class="text-gray-300 text-sm mb-5 leading-relaxed">The Executive Incubator model is available for cities, counties, chambers of commerce, CDFIs, and economic development organizations. If you want to launch a high-impact, accountable incubator with measurable outcomes — let's build it together.</p>
+          <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm py-3 px-6 w-full justify-center">
+            <i class="fas fa-calendar"></i>Schedule a Discovery Call
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ APPLY / CTA ══════════════════════ -->
+<section id="apply" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto text-center fade-in">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-5">Ready to Leap, Launch, or Partner?</h2>
+    <p class="text-gray-300 text-xl mb-14 max-w-2xl mx-auto">Whether you're an entrepreneur ready to grow, or an organization ready to invest in your business community — there's a path here for you.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+      <a href="mailto:Bkennedyjr@ampac.com?subject=Leap%20Program%20Application" class="btn-primary justify-center py-4 text-base">
+        <i class="fas fa-seedling"></i>Apply — Leap
+      </a>
+      <a href="mailto:Bkennedyjr@ampac.com?subject=Launch%20Program%20Application" class="btn-gold justify-center py-4 text-base">
+        <i class="fas fa-rocket"></i>Apply — Launch
+      </a>
+      <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="btn-outline justify-center py-4 text-base">
+        <i class="fas fa-city"></i>Exec Incubator
+      </a>
+    </div>
+    <p class="text-gray-500 text-sm mt-10">Program Lead: <span class="text-gray-300 font-semibold">Brian Kennedy Jr.</span> &mdash; <a href="mailto:Bkennedyjr@ampac.com" class="text-emerald-400 hover:underline">Bkennedyjr@ampac.com</a></p>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="bg-slate-900/80 border-t border-white/5 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg gradient-emerald flex items-center justify-center">
+            <i class="fas fa-seedling text-white text-sm"></i>
+          </div>
+          <span class="font-bold text-white">AmPac Business Capital</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">A 501(c)(3) mission-based lender, SBA Certified Development Company, and U.S. Treasury-authorized CDFI. Empowering businesses from cradle to legacy.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4">Ecosystem</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
+          <li><a href="back-office.html" class="hover:text-emerald-400 transition">Back Office</a></li>
+          <li><a href="finance-ai.html" class="hover:text-emerald-400 transition">Finance AI Agent</a></li>
+          <li><a href="tech-ai.html" class="hover:text-emerald-400 transition">Tech AI Agent</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4">Programs</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="executive-incubator.html" class="text-emerald-400 font-semibold hover:text-emerald-300 transition">Leap 2 Launch Program</a></li>
+          <li><a href="executive-incubator.html#tracks" class="hover:text-emerald-400 transition">Leap &amp; Launch Tracks</a></li>
+          <li><a href="executive-incubator.html#cohorts" class="hover:text-emerald-400 transition">Cohort History</a></li>
+          <li><a href="executive-incubator.html#executive" class="hover:text-emerald-400 transition">Executive Incubator</a></li>
+          <li><a href="economic-development.html" class="hover:text-emerald-400 transition">Economic Development</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4">Connect</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="https://www.ampac.com" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">AmPac.com</a></li>
+          <li><a href="mailto:Bkennedyjr@ampac.com" class="hover:text-emerald-400 transition">Bkennedyjr@ampac.com</a></li>
+          <li>3110-B Inland Empire Blvd.</li>
+          <li>Ontario, CA 91764</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-8 text-center">
+      <p class="text-gray-400 text-sm mb-1">&copy; 2025 Entrepreneur Ecosystem &mdash; All rights reserved.</p>
+      <p class="text-gray-500 text-sm mb-1">Empowering Businesses from Cradle to Legacy</p>
+      <p class="text-gray-600 text-xs">Powered by AmPac Business Capital</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Section nav active state -->
+<script>
+const sectionIds = ['program','tracks','framework','graduation','cohorts','executive','apply'];
+const navLinks = document.querySelectorAll('.section-nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.section-nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sectionIds.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+</script>
+
+</body>
+</html>

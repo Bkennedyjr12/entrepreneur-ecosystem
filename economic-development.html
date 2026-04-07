@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AmPac partners with cities, counties, and states to design and operate revolving loan funds, incubator programs, and federally-funded technical assistance — $2B+ deployed, 5,500+ jobs created.">
+<title>Economic Development | AmPac Business Capital</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { font-family: 'Plus Jakarta Sans', sans-serif; }
+.nav-blur { backdrop-filter: blur(10px); background-color: rgba(17, 24, 39, 0.7); }
+.fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+.card-hover { transition: all 0.3s ease; }
+.card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15); }
+.gradient-emerald { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.text-emerald { color: #10b981; }
+.badge { display: inline-block; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; color: #10b981; }
+.btn-primary { background: #10b981; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-primary:hover { background: #059669; transform: translateY(-2px); }
+.btn-outline { border: 2px solid #10b981; color: #10b981; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; background: transparent; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-outline:hover { background: #10b981; color: white; }
+.stat-number { font-size: 2.75rem; font-weight: 800; color: #10b981; line-height: 1; }
+.stat-label { color: #d1d5db; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 600; }
+.section-title { font-size: 2.5rem; font-weight: 800; color: white; line-height: 1.15; }
+@media (min-width: 768px) { .section-title { font-size: 3rem; } }
+table.data { width: 100%; border-collapse: collapse; color: #d1d5db; }
+table.data th { text-align: left; padding: 0.75rem 1rem; background: rgba(16,185,129,0.1); color: #6ee7b7; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(16,185,129,0.3); }
+table.data td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(75,85,99,0.4); font-size: 0.95rem; }
+table.data tr:hover td { background: rgba(16,185,129,0.05); }
+.pillar { background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.02)); border: 1px solid rgba(16,185,129,0.2); }
+</style>
+<script>
+tailwind.config = { theme: { extend: { colors: { emerald: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#145231' } } } } }
+</script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
+        <span class="font-bold text-xl text-white">AmPac Business Capital</span>
+      </a>
+      <div class="hidden lg:flex items-center space-x-6">
+          <a href="index.html" class="text-gray-300 hover:text-emerald-500 transition">Home</a>
+          <a href="back-office.html" class="text-gray-300 hover:text-emerald-500 transition">Back Office</a>
+          <a href="finance-ai.html" class="text-gray-300 hover:text-emerald-500 transition">Finance AI</a>
+          <a href="tech-ai.html" class="text-gray-300 hover:text-emerald-500 transition">Tech AI</a>
+          <a href="economic-development.html" class="text-emerald-500 font-semibold">Economic Development</a>
+          <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-primary text-sm">Book a Meeting</a>
+      </div>
+      <button class="lg:hidden text-gray-300 hover:text-emerald-500" id="menuBtn">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden lg:hidden pb-4 border-t border-gray-800">
+        <a href="index.html" class="block py-2 text-gray-300 hover:text-emerald-500">Home</a>
+        <a href="back-office.html" class="block py-2 text-gray-300 hover:text-emerald-500">Back Office</a>
+        <a href="finance-ai.html" class="block py-2 text-gray-300 hover:text-emerald-500">Finance AI</a>
+        <a href="tech-ai.html" class="block py-2 text-gray-300 hover:text-emerald-500">Tech AI</a>
+        <a href="economic-development.html" class="block py-2 text-emerald-500 font-semibold">Economic Development</a>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-primary w-full mt-4 justify-center">Book a Meeting</a>
+    </div>
+  </div>
+</nav>
+<section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-transparent"></div>
+  <div class="max-w-5xl mx-auto relative z-10 text-center fade-in">
+    <span class="badge"><i class="fas fa-city mr-2"></i>Economic Development &middot; AmPac Business Capital</span>
+    <h1 class="mt-6 text-5xl md:text-6xl font-bold text-white leading-tight">We design, run, and scale <span class="text-emerald-500">programs that work.</span></h1>
+    <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">AmPac partners with cities, counties, and states to manage revolving loan funds, design and operate incubator programs, and deliver federally-funded technical assistance &mdash; with the institutional rigor of a 20-year SBA Certified Development Company and U.S. Treasury-authorized CDFI.</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center"><a href="mailto:Bkennedyjr@ampac.com?subject=ED%20Partnership%20Inquiry" class="btn-primary text-lg">Become a Partner</a><a href="#case-studies" class="btn-outline text-lg">See Case Studies</a></div>
+  </div>
+</section>
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-900/20 to-emerald-600/10"><div class="max-w-7xl mx-auto"><div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10"><div class="text-center fade-in"><div class="stat-number">$2B+</div><div class="stat-label">Capital Deployed (20 Yrs)</div></div><div class="text-center fade-in"><div class="stat-number">5,500+</div><div class="stat-label">Jobs Created</div></div><div class="text-center fade-in"><div class="stat-number">3</div><div class="stat-label">States Served (CA · AZ · NV)</div></div><div class="text-center fade-in"><div class="stat-number">BBB</div><div class="stat-label">AERIS Investment Rating</div></div></div></div></section>
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <span class="badge"><i class="fas fa-toolbox mr-2"></i>What We Do for Public-Sector Partners</span>
+      <h2 class="section-title mt-6">A turnkey economic development engine.</h2>
+      <p class="text-gray-300 text-lg mt-4 max-w-3xl mx-auto">From RLF design to underwriting, deployment, compliance reporting, and incubator operations &mdash; AmPac is the operating partner that lets municipalities deliver real outcomes without standing up new infrastructure.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-rotate text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Revolving Loan Fund Management</h3>
+        <p class="text-gray-300 text-sm">Full-cycle RLF operation: program design, intake, underwriting to AmPac's 20-year credit standards, deployment, servicing, collections, and quarterly reporting back to the funding entity.</p>
+      </div>
+      <div class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-building-circle-arrow-right text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Incubator Program Design &amp; Operations</h3>
+        <p class="text-gray-300 text-sm">Built and tested with the City of Ontario: 10-month curriculum, BBO workbook, judged pitch graduation, and capital pairing through AmPac's lending stack.</p>
+      </div>
+      <div class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-chalkboard-user text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Technical Assistance Delivery</h3>
+        <p class="text-gray-300 text-sm">Active SSBCI Technical Assistance recipient. 20+ training events, 300+ attendees, 50+ businesses in intensive counseling, and a $26.4M SSBCI loan pipeline.</p>
+      </div>
+      <div class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-house-chimney text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Down Payment Assistance Programs</h3>
+        <p class="text-gray-300 text-sm">DPAP infrastructure currently serving 40 businesses with $926K deployed and $22M in leveraged project value, generating $63M in member wealth since 2022.</p>
+      </div>
+      <div class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-shield-halved text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Compliance &amp; Reporting</h3>
+        <p class="text-gray-300 text-sm">SBA Certified Development Company, U.S. Treasury CDFI, and SSBCI participant. Audit-ready quarterly metrics, federal compliance, and transparent fund utilization tracking.</p>
+      </div>
+      <div class="card-hover bg-gray-800 border border-gray-700 rounded-lg p-6 fade-in">
+        <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-handshake text-emerald-500 text-xl"></i></div>
+        <h3 class="text-xl font-bold text-white mb-2">Capital Pairing</h3>
+        <p class="text-gray-300 text-sm">Every program graduate has a clear pathway to AmPac's $2B+ lending stack &mdash; SBA 504, 7(a) Community Advantage, microloans, CDFI lending, and DPAP &mdash; multiplying public dollars with private capital.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="case-studies" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800/40">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <span class="badge"><i class="fas fa-trophy mr-2"></i>Featured Case Studies</span>
+      <h2 class="section-title mt-6">Real cities. Real loan funds. Real outcomes.</h2>
+    </div>
+
+    <!-- CASE STUDY 1: City of Ontario Incubator -->
+    <div class="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden mb-12 fade-in">
+      <div class="grid grid-cols-1 lg:grid-cols-3">
+        <div class="lg:col-span-1 gradient-emerald p-8 flex flex-col justify-center">
+          <div class="text-emerald-50 text-sm font-bold uppercase tracking-wider mb-2">Flagship Case Study</div>
+          <h3 class="text-3xl font-bold text-white mb-4">City of Ontario Entrepreneurship Incubator</h3>
+          <p class="text-emerald-50">Designed, launched, and operated by AmPac in partnership with the City of Ontario and Bright Business Project.</p>
+        </div>
+        <div class="lg:col-span-2 p-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">5 → 10</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Cohort Growth</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">$4.2M+</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Capital Incubated</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">10+</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Industries</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">+100%</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">YoY Growth</div></div>
+          </div>
+          <p class="text-gray-300 leading-relaxed mb-4">Launched with an inaugural class of 5 entrepreneurs in 2023 generating $2.5M in coached capital requests &mdash; including coaching one borrower's request strategically down from $300K to a fundable $50K, and a $1.95M commercial real estate acquisition. AmPac then submitted a 2024 expansion proposal targeting a doubled cohort. The 2025 cohort delivered: 10 entrepreneurs, $4.2M+ in capital incubation, formal judged pitches, and an alumni mentor-mentee feedback loop.</p>
+          <a href="executive-incubator.html" class="text-emerald-500 hover:text-emerald-400 font-semibold inline-flex items-center">Read the full story <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 2: RivCo BizBoost RLF -->
+    <div class="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden mb-12 fade-in">
+      <div class="grid grid-cols-1 lg:grid-cols-3">
+        <div class="lg:col-span-1 bg-emerald-900/40 p-8 flex flex-col justify-center">
+          <div class="text-emerald-300 text-sm font-bold uppercase tracking-wider mb-2">Revolving Loan Fund</div>
+          <h3 class="text-3xl font-bold text-white mb-4">RivCo BizBoost</h3>
+          <p class="text-gray-300">A County of Riverside revolving loan fund operated by AmPac since June 2020.</p>
+        </div>
+        <div class="lg:col-span-2 p-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">71</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Loans Funded</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">$1.82M</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Total Deployed</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">69%</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Success Rate</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">$25.6K</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Avg Loan Size</div></div>
+          </div>
+          <p class="text-gray-300 leading-relaxed">The RivCo BizBoost program was launched in June 2020 to deploy capital quickly to small businesses across Riverside County during the pandemic. Five years in, the fund has funded 71 loans with a 69% success rate &mdash; well above industry averages for small-dollar small business lending. AmPac handles the full lifecycle: intake, underwriting, deployment, servicing, and county-level reporting.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 3: Fontana Empowerment Loan Fund -->
+    <div class="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden mb-12 fade-in">
+      <div class="grid grid-cols-1 lg:grid-cols-3">
+        <div class="lg:col-span-1 bg-emerald-900/40 p-8 flex flex-col justify-center">
+          <div class="text-emerald-300 text-sm font-bold uppercase tracking-wider mb-2">Municipal Loan Fund</div>
+          <h3 class="text-3xl font-bold text-white mb-4">Fontana Empowerment Loan Fund</h3>
+          <p class="text-gray-300">A City of Fontana economic empowerment fund with an intentional women-owned business focus.</p>
+        </div>
+        <div class="lg:col-span-2 p-8">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">$280K+</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Deployed</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">6</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Businesses Funded</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">59</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Jobs Created</div></div>
+            <div class="text-center bg-gray-900/50 rounded-lg p-3"><div class="text-2xl font-bold text-emerald-500">67%</div><div class="text-xs text-gray-400 uppercase tracking-wider mt-1">Women-Owned</div></div>
+          </div>
+          <p class="text-gray-300 leading-relaxed">The Fontana Empowerment Loan Fund was established in 2023 in partnership with the City of Fontana to channel capital to women-owned and minority-owned small businesses. With $280K+ deployed across just 6 loans, the fund has produced 59 jobs &mdash; a per-dollar job creation rate that ranks among the best in AmPac's portfolio. 67% of recipient businesses are women-owned.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aggregate RLF stats -->
+    <div class="text-center fade-in">
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">Across the full RLF portfolio (2020–2025), AmPac has deployed <span class="text-emerald-500 font-bold">$2.1M+</span> across <span class="text-emerald-500 font-bold">82 applications</span> with an <span class="text-emerald-500 font-bold">86.6% fund utilization rate</span> &mdash; consistent, high-impact deployment of public dollars.</p>
+    </div>
+  </div>
+</section>
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 fade-in">
+      <h2 class="section-title">Government &amp; Agency Partners</h2>
+      <p class="text-gray-300 text-lg mt-4">Trusted by federal, state, county, and municipal partners across the tri-state region.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in">
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-landmark text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">U.S. Small Business Administration</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-building-columns text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">U.S. Treasury CDFI Fund</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-flag-usa text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">State of California (SSBCI)</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-city text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">City of Ontario</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-city text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">City of Fontana</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-map text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">County of Riverside</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-rocket text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">Inland SoCal Accelerate Hub</div></div>
+      <div class="bg-gray-800 border border-gray-700 rounded-lg p-5 text-center"><i class="fas fa-graduation-cap text-emerald-500 text-2xl mb-2"></i><div class="text-white font-semibold text-sm">Pepperdine, CMC, Cal Baptist</div></div>
+    </div>
+  </div>
+</section>
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800/40">
+  <div class="max-w-4xl mx-auto">
+    <div class="gradient-emerald rounded-lg p-12 text-center fade-in">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Let's Build Something Together.</h2>
+      <p class="text-emerald-50 text-lg mb-8 max-w-2xl mx-auto">If you represent a city, county, state agency, or foundation that wants to deploy capital and develop entrepreneurs with measurable outcomes &mdash; we'd love a 30-minute discovery conversation.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="bg-white text-emerald-600 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition flex items-center justify-center"><i class="fas fa-calendar mr-2"></i>Schedule a Discovery Call</a>
+        <a href="mailto:Bkennedyjr@ampac.com?subject=ED%20Partnership%20Inquiry" class="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white hover:text-emerald-600 transition flex items-center justify-center"><i class="fas fa-envelope mr-2"></i>Send a Note</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="bg-gray-800 border-t border-gray-700 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
+          <span class="font-bold text-lg text-white">AmPac Business Capital</span>
+        </div>
+        <p class="text-gray-400 text-sm">A 501(c)(3) mission-based lender, SBA Certified Development Company, and U.S. Treasury-authorized CDFI serving entrepreneurs across California, Arizona, and Nevada.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-4">Ecosystem</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="index.html" class="hover:text-emerald-500 transition">Home</a></li>
+          <li><a href="back-office.html" class="hover:text-emerald-500 transition">Back Office</a></li>
+          <li><a href="finance-ai.html" class="hover:text-emerald-500 transition">Eco Finance AI Agent</a></li>
+          <li><a href="tech-ai.html" class="hover:text-emerald-500 transition">Eco Technology AI Agent</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-4">Programs</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="leap-to-launch.html" class="hover:text-emerald-500 transition">LEAP 2 Launch Program</a></li>
+          <li><a href="executive-incubator.html" class="hover:text-emerald-500 transition">Executive Incubator</a></li>
+          <li><a href="economic-development.html" class="hover:text-emerald-500 transition">Economic Development</a></li>
+          <li><a href="back-office.html#marketplace" class="hover:text-emerald-500 transition">Marketplace</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold text-white mb-4">Connect</h3>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="https://www.ampac.com" class="hover:text-emerald-500 transition">AmPac.com</a></li>
+          <li><a href="mailto:Bkennedyjr@ampac.com" class="hover:text-emerald-500 transition">Bkennedyjr@ampac.com</a></li>
+          <li><span>3110-B Inland Empire Blvd.</span></li>
+          <li><span>Ontario, CA 91764</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 pt-8">
+      <div class="text-center text-gray-400 text-sm mb-2">&copy; 2025 Entrepreneur Ecosystem. All rights reserved.</div>
+      <div class="text-center text-gray-500 text-sm mb-2">Empowering Businesses from Cradle to Legacy</div>
+      <div class="text-center text-gray-600 text-xs">Powered by AmPac Business Capital</div>
+    </div>
+  </div>
+</footer>
+<script>
+document.getElementById("menuBtn").addEventListener("click", function() {
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+});
+</script>
+<script>
+// Marketplace category filter (only runs on back-office page)
+document.addEventListener("DOMContentLoaded", function() {
+  const filterBtns = document.querySelectorAll("[data-mp-filter]");
+  const cards = document.querySelectorAll("[data-mp-card]");
+  if (!filterBtns.length || !cards.length) return;
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cat = btn.dataset.mpFilter;
+      filterBtns.forEach(b => {
+        b.classList.remove("bg-emerald-500", "text-white");
+        b.classList.add("bg-gray-800", "text-gray-300");
+      });
+      btn.classList.remove("bg-gray-800", "text-gray-300");
+      btn.classList.add("bg-emerald-500", "text-white");
+      cards.forEach(c => {
+        const cats = (c.dataset.mpCard || "").split(",");
+        c.style.display = (cat === "all" || cats.includes(cat)) ? "" : "none";
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>
