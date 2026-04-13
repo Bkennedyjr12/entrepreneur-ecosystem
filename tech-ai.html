@@ -34,9 +34,8 @@
             background-color: rgba(26, 26, 46, 0.8);
         }
 
-        .fade-in {
-            opacity: 1;
-        }
+        .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         .card-hover {
             transition: all 0.3s ease;
@@ -169,7 +168,12 @@
                 font-size: 24px;
             }
         }
-    </style>
+    
+    .text-gradient { background: linear-gradient(135deg, #2563EB, #16A34A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .silver-border { border-color: rgba(148,163,184,0.2); }
+    .ecosystem-badge { background: linear-gradient(135deg, rgba(30,64,175,0.15), rgba(22,163,74,0.08)); border: 1px solid rgba(37,99,235,0.25); color: #93C5FD; }
+    .silver-divider { border-color: rgba(148,163,184,0.12); }
+  </style>
 </head>
 <body class="bg-slate-950 text-gray-100 overflow-x-hidden">
 
@@ -177,12 +181,7 @@
     <nav class="nav-blur sticky top-0 z-50 border-b border-purple-900/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition" onclick="window.location.href='index.html'">
-                    <div class="w-8 h-8 bg-gradient-violet rounded-lg flex items-center justify-center">
-                        <i class="fas fa-rocket text-white text-sm"></i>
-                    </div>
-                    <span class="font-bold text-white hidden sm:inline">AmPac Business Capital</span>
-                </div>
+                <a href="index.html" class="flex items-center gap-2"><div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center"><i class="fas fa-seedling text-white text-xs"></i></div><span class="text-lg font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span></a>
 
                 <div class="hidden md:flex gap-8">
                     <a href="index.html" class="text-gray-300 hover:text-white transition text-sm">Home</a>
@@ -197,7 +196,7 @@
                     <a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg gradient-violet text-white hover:shadow-lg transition text-sm font-medium">Get App</a>
                 </div>
 
-                <button class="md:hidden text-white" onclick="toggleMenu()">
+                <button id="hamburger" class="md:hidden text-white" onclick="toggleMenu()">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
