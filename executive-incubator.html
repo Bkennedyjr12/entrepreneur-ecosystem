@@ -87,10 +87,10 @@ table.data-blue th { background:rgba(59,130,246,.08); color:#93c5fd; border-bott
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <a href="index.html" class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg gradient-emerald flex items-center justify-center">
+        <div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center">
           <i class="fas fa-seedling text-white text-sm"></i>
         </div>
-        <span class="font-bold text-lg text-white">AmPac Business Capital</span>
+        <span class="text-lg font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
       </a>
       <div class="hidden lg:flex items-center gap-5">
         <a href="index.html" class="text-gray-300 hover:text-emerald-400 transition text-sm font-medium">Home</a>
@@ -782,7 +782,8 @@ table.data-blue th { background:rgba(59,130,246,.08); color:#93c5fd; border-bott
 <script>
 const sectionIds = ['program','tracks','framework','graduation','cohorts','executive','apply'];
 const navLinks = document.querySelectorAll('.section-nav a');
-const observer = new IntersectionObserver(entries => {
+setTimeout(() => { document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')); }, 200);
+      const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       navLinks.forEach(l => l.classList.remove('active'));
