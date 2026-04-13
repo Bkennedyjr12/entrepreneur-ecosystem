@@ -11,17 +11,18 @@
 <style>
 * { font-family: 'Plus Jakarta Sans', sans-serif; }
 .nav-blur { backdrop-filter: blur(10px); background-color: rgba(17, 24, 39, 0.7); }
-.fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 .card-hover { transition: all 0.3s ease; }
-.card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15); }
-.gradient-emerald { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(37,99,235,0.15); }
+.gradient-emerald { background: linear-gradient(135deg, #1E40AF 0%, #16A34A 100%); }
 .text-emerald { color: #10b981; }
-.badge { display: inline-block; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; color: #10b981; }
-.btn-primary { background: #10b981; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; }
-.btn-primary:hover { background: #059669; transform: translateY(-2px); }
-.btn-outline { border: 2px solid #10b981; color: #10b981; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; background: transparent; cursor: pointer; display: inline-flex; align-items: center; }
-.btn-outline:hover { background: #10b981; color: white; }
-.stat-number { font-size: 2.75rem; font-weight: 800; color: #10b981; line-height: 1; }
+.badge { display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(30,64,175,0.15), rgba(22,163,74,0.08)); border: 1px solid rgba(37,99,235,0.25); border-radius: 9999px; font-size: 0.875rem; font-weight: 600; color: #93C5FD; }
+.btn-primary { background: #2563EB; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-primary:hover { background: #1E40AF; transform: translateY(-2px); }
+.btn-outline { border: 2px solid #16A34A; color: #16A34A; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; background: transparent; cursor: pointer; display: inline-flex; align-items: center; }
+.btn-outline:hover { background: #16A34A; color: white; }
+.stat-number { font-size: 2.75rem; font-weight: 800; color: #2563EB; line-height: 1; }
 .stat-label { color: #d1d5db; font-size: 0.875rem; margin-top: 0.5rem; font-weight: 600; }
 .section-title { font-size: 2.5rem; font-weight: 800; color: white; line-height: 1.15; }
 @media (min-width: 768px) { .section-title { font-size: 3rem; } }
@@ -30,36 +31,45 @@ table.data th { text-align: left; padding: 0.75rem 1rem; background: rgba(16,185
 table.data td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(75,85,99,0.4); font-size: 0.95rem; }
 table.data tr:hover td { background: rgba(16,185,129,0.05); }
 .pillar { background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.02)); border: 1px solid rgba(16,185,129,0.2); }
-</style>
+
+    .text-gradient { background: linear-gradient(135deg, #2563EB, #16A34A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .silver-border { border-color: rgba(148,163,184,0.2); }
+    .ecosystem-badge { background: linear-gradient(135deg, rgba(30,64,175,0.15), rgba(22,163,74,0.08)); border: 1px solid rgba(37,99,235,0.25); color: #93C5FD; }
+    .silver-divider { border-color: rgba(148,163,184,0.12); }
+  </style>
 <script>
-tailwind.config = { theme: { extend: { colors: { emerald: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#145231' } } } } }
-</script>
+tailwind.config = {
+  theme: { extend: { fontFamily: { jakarta: ['Plus Jakarta Sans', 'sans-serif'] }, colors: { brand: { dark: '#0A0A0F', card: '#0F1117', silver: '#94A3B8' }, accent: { blue: '#2563EB', blueLight: '#3B82F6', blueDeep: '#1E40AF', green: '#16A34A', greenLight: '#22C55E', silver: '#94A3B8' } } } }
+}
+  </script>
 </head>
 <body class="bg-gray-900 text-gray-100">
 <nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-gray-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <a href="index.html" class="flex items-center space-x-2">
-        <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
-        <span class="font-bold text-xl text-white">AmPac Business Capital</span>
-      </a>
+      <a href="index.html" class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center">
+            <i class="fas fa-seedling text-white text-xs"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
+        </a>
       <div class="hidden lg:flex items-center space-x-6">
-          <a href="index.html" class="text-gray-300 hover:text-emerald-500 transition">Home</a>
-          <a href="back-office.html" class="text-gray-300 hover:text-emerald-500 transition">Back Office</a>
-          <a href="finance-ai.html" class="text-gray-300 hover:text-emerald-500 transition">Finance AI</a>
-          <a href="tech-ai.html" class="text-gray-300 hover:text-emerald-500 transition">Tech AI</a>
-          <a href="economic-development.html" class="text-emerald-500 font-semibold">Economic Development</a>
+          <a href="index.html" class="text-gray-300 hover:text-accent-blue transition">Home</a>
+          <a href="back-office.html" class="text-gray-300 hover:text-accent-blue transition">Back Office</a>
+          <a href="finance-ai.html" class="text-gray-300 hover:text-accent-blue transition">Finance AI</a>
+          <a href="tech-ai.html" class="text-gray-300 hover:text-accent-blue transition">Tech AI</a>
+          <a href="economic-development.html" class="text-accent-blue font-semibold">Economic Development</a>
           <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-primary text-sm">Book a Meeting</a>
       </div>
-      <button class="lg:hidden text-gray-300 hover:text-emerald-500" id="menuBtn">
+      <button class="lg:hidden text-gray-300 hover:text-accent-blue" id="hamburger">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
     <div id="mobileMenu" class="hidden lg:hidden pb-4 border-t border-gray-800">
-        <a href="index.html" class="block py-2 text-gray-300 hover:text-emerald-500">Home</a>
-        <a href="back-office.html" class="block py-2 text-gray-300 hover:text-emerald-500">Back Office</a>
-        <a href="finance-ai.html" class="block py-2 text-gray-300 hover:text-emerald-500">Finance AI</a>
-        <a href="tech-ai.html" class="block py-2 text-gray-300 hover:text-emerald-500">Tech AI</a>
+        <a href="index.html" class="block py-2 text-gray-300 hover:text-accent-blue">Home</a>
+        <a href="back-office.html" class="block py-2 text-gray-300 hover:text-accent-blue">Back Office</a>
+        <a href="finance-ai.html" class="block py-2 text-gray-300 hover:text-accent-blue">Finance AI</a>
+        <a href="tech-ai.html" class="block py-2 text-gray-300 hover:text-accent-blue">Tech AI</a>
         <a href="economic-development.html" class="block py-2 text-emerald-500 font-semibold">Economic Development</a>
         <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&amp;ep=signature" class="btn-primary w-full mt-4 justify-center">Book a Meeting</a>
     </div>
@@ -225,33 +235,33 @@ tailwind.config = { theme: { extend: { colors: { emerald: { 50: '#f0fdf4', 100: 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
       <div>
         <div class="flex items-center space-x-2 mb-4">
-          <i class="fas fa-leaf text-emerald-500 text-2xl"></i>
-          <span class="font-bold text-lg text-white">AmPac Business Capital</span>
+          <div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center"><i class="fas fa-seedling text-white text-xs"></i></div>
+            <span class="font-bold text-lg text-white">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
         </div>
         <p class="text-gray-400 text-sm">A 501(c)(3) mission-based lender, SBA Certified Development Company, and U.S. Treasury-authorized CDFI serving entrepreneurs across California, Arizona, and Nevada.</p>
       </div>
       <div>
         <h3 class="font-bold text-white mb-4">Ecosystem</h3>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="index.html" class="hover:text-emerald-500 transition">Home</a></li>
-          <li><a href="back-office.html" class="hover:text-emerald-500 transition">Back Office</a></li>
-          <li><a href="finance-ai.html" class="hover:text-emerald-500 transition">Eco Finance AI Agent</a></li>
-          <li><a href="tech-ai.html" class="hover:text-emerald-500 transition">Eco Technology AI Agent</a></li>
+          <li><a href="index.html" class="hover:text-accent-blue transition">Home</a></li>
+          <li><a href="back-office.html" class="hover:text-accent-blue transition">Back Office</a></li>
+          <li><a href="finance-ai.html" class="hover:text-accent-blue transition">Eco Finance AI Agent</a></li>
+          <li><a href="tech-ai.html" class="hover:text-accent-blue transition">Eco Technology AI Agent</a></li>
         </ul>
       </div>
       <div>
         <h3 class="font-bold text-white mb-4">Programs</h3>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="executive-incubator.html" class="hover:text-emerald-500 transition">Leap 2 Launch / Executive Incubator</a></li>
-          <li><a href="economic-development.html" class="hover:text-emerald-500 transition">Economic Development</a></li>
-          <li><a href="back-office.html#marketplace" class="hover:text-emerald-500 transition">Marketplace</a></li>
+          <li><a href="executive-incubator.html" class="hover:text-accent-blue transition">Leap 2 Launch / Executive Incubator</a></li>
+          <li><a href="economic-development.html" class="hover:text-accent-blue transition">Economic Development</a></li>
+          <li><a href="back-office.html#marketplace" class="hover:text-accent-blue transition">Marketplace</a></li>
         </ul>
       </div>
       <div>
         <h3 class="font-bold text-white mb-4">Connect</h3>
         <ul class="space-y-2 text-gray-400 text-sm">
-          <li><a href="https://www.ampac.com" class="hover:text-emerald-500 transition">AmPac.com</a></li>
-          <li><a href="mailto:Bkennedyjr@ampac.com" class="hover:text-emerald-500 transition">Bkennedyjr@ampac.com</a></li>
+          <li><a href="https://www.ampac.com" class="hover:text-accent-blue transition">AmPac.com</a></li>
+          <li><a href="mailto:Bkennedyjr@ampac.com" class="hover:text-accent-blue transition">Bkennedyjr@ampac.com</a></li>
           <li><span>3110-B Inland Empire Blvd.</span></li>
           <li><span>Ontario, CA 91764</span></li>
         </ul>
@@ -291,6 +301,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+</script>
+<script>
+  (function() {
+    function initFadeIn() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+    }
+    if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initFadeIn); } else { initFadeIn(); }
+    setTimeout(function() { document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); }); }, 2000);
+  })();
 </script>
 </body>
 </html>
