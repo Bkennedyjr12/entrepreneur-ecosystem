@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Entrepreneur Ecosystem | AmPac Business Capital</title>
+  <meta name="description" content="The Entrepreneur Ecosystem by AmPac Business Capital â co-working, capital, coaching, and community for small business owners in CA, AZ, and NV.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { jakarta: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            brand: {
+              dark: '#0A0A0F', darker: '#06060A', card: '#0F1117',
+              cardHover: '#131620', border: 'rgba(255,255,255,0.08)',
+              glass: 'rgba(255,255,255,0.03)', silver: '#94A3B8', silverDark: '#64748B'
+            },
+            accent: {
+              blue: '#2563EB', blueLight: '#3B82F6', blueDeep: '#1E40AF',
+              green: '#16A34A', greenLight: '#22C55E', greenMid: '#15803D',
+              silver: '#94A3B8', silverLight: '#CBD5E1'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #0A0A0F; }
+    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .nav-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(37,99,235,0.35); }
+    .card-hover-green:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(22,163,74,0.35); }
+    .text-gradient { background: linear-gradient(135deg, #2563EB, #16A34A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-glow { background: radial-gradient(ellipse at 40% 50%, rgba(30,64,175,0.14) 0%, rgba(22,163,74,0.06) 55%, transparent 80%); }
+    .silver-divider { border-color: rgba(148,163,184,0.12); }
+    .silver-border { border-color: rgba(148,163,184,0.18); }
+    .silver-border:hover { border-color: rgba(148,163,184,0.4); }
+    .card-white-accent { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(148,163,184,0.03)); }
+    .tier-card-blue { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,64,175,0.05)); border: 1px solid rgba(37,99,235,0.2); }
+    .tier-card-green { background: linear-gradient(135deg, rgba(22,163,74,0.08), rgba(21,128,61,0.05)); border: 1px solid rgba(22,163,74,0.2); }
+    .partner-chip { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); transition: all 0.25s; }
+    .partner-chip:hover { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.3); transform: translateY(-2px); }
+    .btn-glow:hover { box-shadow: 0 0 30px rgba(37,99,235,0.45); }
+    .space-card { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(37,99,235,0.03)); }
+    .mission-pill { background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(22,163,74,0.08)); border: 1px solid rgba(37,99,235,0.2); }
+    .grid-bg { background-image: linear-gradient(rgba(148,163,184,1) 1px,transparent 1px), linear-gradient(90deg,rgba(148,163,184,1) 1px,transparent 1px); background-size: 60px 60px; }
+  </style>
+</head>
+<body class="text-white overflow-x-hidden">
+
+  <!-- âââ NAV âââ -->
+  <nav class="fixed top-0 w-full z-50 nav-blur bg-brand-dark/85 border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center">
+            <i class="fas fa-seedling text-white text-xs"></i>
+          </div>
+          <span class="text-lg font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-5">
+          <a href="/" class="text-sm text-white/60 hover:text-white transition">Home</a>
+          <a href="/ecosystem.html" class="text-sm text-white font-semibold border-b-2 border-accent-green pb-0.5">The Ecosystem</a>
+          <a href="/back-office.html" class="text-sm text-white/60 hover:text-white transition">Back Office</a>
+          <a href="/executive-incubator.html" class="text-sm text-white/60 hover:text-white transition">Leap 2 Launch</a>
+          <a href="/finance-ai.html" class="text-sm text-white/60 hover:text-white transition">Finance AI</a>
+          <a href="/tech-ai.html" class="text-sm text-white/60 hover:text-white transition">Tech AI</a>
+          <a href="https://ampac.com" target="_blank" class="text-sm text-white/60 hover:text-white transition">AmPac.com</a>
+          <a href="https://entrepreneurecosystem.optixapp.com/signup" target="_blank"
+            class="px-4 py-2 bg-accent-blue hover:bg-accent-blueDeep rounded-lg text-sm font-semibold transition btn-glow text-white">
+            Join Now
+          </a>
+        </div>
+        <button id="hamburger" class="md:hidden text-white/80 hover:text-white focus:outline-none" aria-label="Open menu">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t silver-divider bg-brand-dark/95 nav-blur">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/" class="block text-sm text-white/60 hover:text-white transition py-1">Home</a>
+        <a href="/ecosystem.html" class="block text-sm text-white font-semibold py-1">The Ecosystem</a>
+        <a href="/back-office.html" class="block text-sm text-white/60 hover:text-white transition py-1">Back Office</a>
+        <a href="/executive-incubator.html" class="block text-sm text-white/60 hover:text-white transition py-1">Leap 2 Launch</a>
+        <a href="/finance-ai.html" class="block text-sm text-white/60 hover:text-white transition py-1">Finance AI</a>
+        <a href="/tech-ai.html" class="block text-sm text-white/60 hover:text-white transition py-1">Tech AI</a>
+        <a href="https://ampac.com" target="_blank" class="block text-sm text-white/60 hover:text-white transition py-1">AmPac.com</a>
+        <a href="https://entrepreneurecosystem.optixapp.com/signup" target="_blank"
+          class="inline-block mt-2 px-4 py-2 bg-accent-blue rounded-lg text-sm font-semibold text-white">Join Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- âââ HERO âââ -->
+  <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+    <div class="hero-glow absolute inset-0"></div>
+    <div class="absolute inset-0 opacity-[0.022]">
+      <div class="grid-bg w-full h-full"></div>
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <div class="fade-in mb-5">
+        <span class="mission-pill inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-blueLight font-medium">
+          <i class="fas fa-seedling text-accent-green text-xs"></i> Ontario, CA &nbsp;Â·&nbsp; Powered by AmPac Business Capital
+        </span>
+      </div>
+      <h1 class="fade-in text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.08] mb-6">
+        The Entrepreneur<br><span class="text-gradient">Ecosystem</span>
+      </h1>
+      <p class="fade-in text-xl sm:text-2xl font-semibold text-white/80 mb-4">
+        Uplift Communities. Strengthen Families.<br class="hidden sm:block"> Advance Entrepreneurial Dreams.
+      </p>
+      <p class="fade-in text-base sm:text-lg text-white/50 max-w-2xl mx-auto mb-10">
+        AmPac's Entrepreneur Ecosystem is a comprehensive growth resource hub â co-working space, business coaching, capital access, and a 3,000+ member community all under one roof.
+      </p>
+      <div class="fade-in flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://entrepreneurecosystem.optixapp.com/signup" target="_blank"
+          class="w-full sm:w-auto px-8 py-4 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-base font-semibold transition btn-glow text-white flex items-center justify-center gap-2">
+          <i class="fas fa-user-plus"></i> Join the Ecosystem
+        </a>
+        <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank"
+          class="w-full sm:w-auto px-8 py-4 border border-white/20 hover:bg-white/5 hover:border-white/40 rounded-xl text-base font-semibold transition flex items-center justify-center gap-2">
+          <i class="fab fa-apple"></i> Download the App
+        </a>
+      </div>
+      <div class="fade-in mt-14 flex flex-col items-center gap-2 text-white/20 text-xs">
+        <span>Scroll to explore</span>
+        <i class="fas fa-chevron-down text-accent-green animate-bounce"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ STATS BAR âââ -->
+  <section class="py-10 border-y silver-divider bg-brand-darker/70">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="fade-in grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl font-extrabold text-accent-blue mb-1">3,085+</div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">Members</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-accent-greenLight mb-1">$2B+</div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">Capital Deployed</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-white mb-1">20 Yrs</div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">In Operation</div>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-accent-silver mb-1">CA Â· AZ Â· NV</div>
+          <div class="text-xs text-white/40 uppercase tracking-widest">States Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ WHAT IS THE ECOSYSTEM âââ -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="fade-in text-accent-green text-sm font-semibold tracking-widest uppercase mb-3">About the Ecosystem</p>
+          <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-6">
+            Your All-in-One<br><span class="text-gradient">Business Resource Hub</span>
+          </h2>
+          <p class="fade-in text-white/60 leading-relaxed mb-6">
+            The Entrepreneur Ecosystem is AmPac Business Capital's flagship platform â a co-working space, growth resource training center, coaching program, and capital-access hub designed to walk with you on every step of your business journey, whether you're just starting out or scaling to the next level.
+          </p>
+          <p class="fade-in text-white/60 leading-relaxed mb-8">
+            Located in Ontario, California in the heart of the Inland Empire â conveniently close to the Ontario Airport and the I-10 and I-15 freeways â the Ecosystem is built for accessibility and impact.
+          </p>
+          <div class="fade-in grid grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-brand-card border border-brand-border">
+              <i class="fas fa-map-marker-alt text-accent-blue text-lg mb-2 block"></i>
+              <div class="text-sm font-semibold mb-1">Ontario, California</div>
+              <div class="text-xs text-white/40">Inland Empire Â· Near Ontario Airport</div>
+            </div>
+            <div class="p-4 rounded-xl bg-brand-card border border-brand-border">
+              <i class="fas fa-building text-accent-green text-lg mb-2 block"></i>
+              <div class="text-sm font-semibold mb-1">Lowenstein Center</div>
+              <div class="text-xs text-white/40">Collaboration Center for Entrepreneurs</div>
+            </div>
+            <div class="p-4 rounded-xl bg-brand-card border border-brand-border">
+              <i class="fas fa-mobile-screen text-accent-blueLight text-lg mb-2 block"></i>
+              <div class="text-sm font-semibold mb-1">App-Based Access</div>
+              <div class="text-xs text-white/40">iOS & Android Â· Book Spaces & More</div>
+            </div>
+            <div class="p-4 rounded-xl bg-brand-card border border-brand-border">
+              <i class="fas fa-users text-brand-silver text-lg mb-2 block"></i>
+              <div class="text-sm font-semibold mb-1">3,085+ Members</div>
+              <div class="text-xs text-white/40">Active Entrepreneurs & Business Owners</div>
+            </div>
+          </div>
+        </div>
+        <!-- Visual card -->
+        <div class="fade-in">
+          <div class="rounded-3xl border border-brand-border bg-brand-card p-10 space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-accent-blue/15 border border-accent-blue/25 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-handshake text-accent-blueLight"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Resource Partner Network</div>
+                <p class="text-sm text-white/50">Expert partners offer one-on-one consultations through office hours â directly inside the Ecosystem.</p>
+              </div>
+            </div>
+            <div class="border-t silver-divider"></div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-accent-green/15 border border-accent-green/25 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-chalkboard-teacher text-accent-greenLight"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">12â18 Month Programs</div>
+                <p class="text-sm text-white/50">From early-stage incubation to executive-level cohorts â structured programs with measurable outcomes.</p>
+              </div>
+            </div>
+            <div class="border-t silver-divider"></div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-silver/15 border border-brand-silver/25 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-robot text-brand-silver"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">AI-Powered Tools</div>
+                <p class="text-sm text-white/50">Virtual CFO and CTO agents available 24/7 to help streamline your approach to finance, tech, and SBA loans.</p>
+              </div>
+            </div>
+            <div class="border-t silver-divider"></div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-landmark text-white/70"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Capital Access</div>
+                <p class="text-sm text-white/50">SBA 504, 7(a), Community Advantage, microloans, CDFI, and Down Payment Assistance â all accessible through AmPac.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ THE PHYSICAL SPACE âââ -->
+  <section class="py-24 bg-brand-card border-y silver-divider">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <p class="fade-in text-accent-blue text-sm font-semibold tracking-widest uppercase mb-3">The Lowenstein Collaboration Center</p>
+        <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-4">A Space Built for <span class="text-gradient">Entrepreneurs</span></h2>
+        <p class="fade-in text-white/50 max-w-2xl mx-auto">
+          Named in honor of Bill Lowenstein for his valued mentorship and support, the Lowenstein Collaboration Center is the physical heart of the Entrepreneur Ecosystem â where founders, mentors, and resource partners come together.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div class="fade-in space-card card-hover rounded-2xl border border-brand-border p-7">
+          <div class="w-12 h-12 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center mb-5">
+            <i class="fas fa-laptop-house text-xl text-accent-blueLight"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Co-Working Space</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Open co-working areas with high-speed internet, power stations, and a collaborative atmosphere to keep you focused and productive.</p>
+        </div>
+        <div class="fade-in space-card card-hover rounded-2xl border border-brand-border p-7">
+          <div class="w-12 h-12 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center mb-5">
+            <i class="fas fa-door-open text-xl text-accent-greenLight"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Private Offices</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Reserve a private office for focused deep work or confidential client meetings. Monthly plans available with a flat-rate reservation.</p>
+        </div>
+        <div class="fade-in space-card card-hover rounded-2xl border border-brand-border p-7">
+          <div class="w-12 h-12 rounded-xl bg-brand-silver/10 border border-brand-silver/20 flex items-center justify-center mb-5">
+            <i class="fas fa-users-rectangle text-xl text-brand-silver"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Conference Rooms</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Fully-equipped conference rooms for client presentations, team meetings, and partner collaboration. Book through the Ecosystem app.</p>
+        </div>
+        <div class="fade-in space-card card-hover rounded-2xl border border-brand-border p-7">
+          <div class="w-12 h-12 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center mb-5">
+            <i class="fas fa-graduation-cap text-xl text-accent-blueLight"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Training Center</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Growth resource training rooms for workshops, cohort sessions, and curriculum delivery â the classroom of the Ecosystem.</p>
+        </div>
+        <div class="fade-in space-card card-hover rounded-2xl border border-brand-border p-7">
+          <div class="w-12 h-12 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center mb-5">
+            <i class="fas fa-comments text-xl text-accent-greenLight"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Office Hours</h3>
+          <p class="text-sm text-white/50 leading-relaxed">One-on-one consultations with Resource Partners â from SCORE mentors to SBA counselors â available through scheduled office hours.</p>
+        </div>
+        <div class="fade-in space-card card-hover rounded-2xl border border-brand-border p-7">
+          <div class="w-12 h-12 rounded-xl bg-brand-silver/10 border border-brand-silver/20 flex items-center justify-center mb-5">
+            <i class="fas fa-calendar-star text-xl text-brand-silver"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Events & Networking</h3>
+          <p class="text-sm text-white/50 leading-relaxed">Regular community events, pitch competitions, graduation ceremonies, and networking mixers connecting entrepreneurs across the Inland Empire.</p>
+        </div>
+      </div>
+      <!-- Membership tiers -->
+      <div class="border-t silver-divider pt-12">
+        <h3 class="fade-in text-center text-xl font-bold mb-8">Membership Options</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+          <div class="fade-in rounded-2xl bg-brand-dark border border-brand-border p-6 text-center card-hover silver-border">
+            <i class="fas fa-wifi text-accent-silver text-2xl mb-3 block"></i>
+            <div class="font-bold mb-1">Virtual</div>
+            <p class="text-xs text-white/40 leading-relaxed">Digital access to community, resources, events, and the Ecosystem app. No physical space required.</p>
+          </div>
+          <div class="fade-in rounded-2xl bg-brand-dark border border-brand-border p-6 text-center card-hover silver-border">
+            <i class="fas fa-ticket text-accent-blueLight text-2xl mb-3 block"></i>
+            <div class="font-bold mb-1">Day Pass</div>
+            <p class="text-xs text-white/40 leading-relaxed">Flexible 25-day punch card for entrepreneurs who need occasional in-person workspace access.</p>
+          </div>
+          <div class="fade-in rounded-2xl bg-brand-dark border border-accent-blue/25 p-6 text-center card-hover">
+            <i class="fas fa-desktop text-accent-blue text-2xl mb-3 block"></i>
+            <div class="font-bold mb-1 text-accent-blueLight">Dedicated Desk</div>
+            <p class="text-xs text-white/40 leading-relaxed">Reserve a dedicated desk monthly. Your own consistent workspace inside the Lowenstein Center.</p>
+          </div>
+          <div class="fade-in rounded-2xl bg-brand-dark border border-accent-green/25 p-6 text-center card-hover">
+            <i class="fas fa-briefcase text-accent-green text-2xl mb-3 block"></i>
+            <div class="font-bold mb-1 text-accent-greenLight">Private Office</div>
+            <p class="text-xs text-white/40 leading-relaxed">Monthly flat-rate private office â your own professional space inside the Entrepreneur Ecosystem.</p>
+          </div>
+        </div>
+        <div class="fade-in text-center mt-8">
+          <a href="https://entrepreneurecosystem.optixapp.com/signup" target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-sm font-semibold transition btn-glow text-white">
+            <i class="fas fa-user-plus"></i> View Membership Plans
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ THREE PILLARS âââ -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <p class="fade-in text-accent-silver text-sm font-semibold tracking-widest uppercase mb-3">The Framework</p>
+        <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-4">Built on Three <span class="text-gradient">Critical Pillars</span></h2>
+        <p class="fade-in text-white/50 max-w-2xl mx-auto">Everything inside the Entrepreneur Ecosystem is designed to deliver on Capital, Coaching, and Community â the three pillars that move businesses from idea to legacy.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Capital -->
+        <div class="fade-in card-hover card-white-accent rounded-2xl border border-brand-border bg-brand-card p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-dollar-sign text-3xl text-accent-blue"></i>
+          </div>
+          <div class="inline-block text-xs font-bold text-accent-blue tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-accent-blue/10">Capital</div>
+          <h3 class="text-xl font-bold mb-3">Access to Capital</h3>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">SBA 504, SBA 7(a), Community Advantage, microloans, CDFI lending, Down Payment Assistance, Veteran Advantage, and state guaranty programs. From $5K to $5M+ â we find the right funding path.</p>
+          <ul class="text-left space-y-2 text-sm text-white/40">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue text-xs"></i> SBA 504 & 7(a) Loans</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue text-xs"></i> CDFI Microloans ($5Kâ$250K)</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue text-xs"></i> Lines of Credit</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue text-xs"></i> Down Payment Assistance</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-blue text-xs"></i> Loan Readiness Coaching</li>
+          </ul>
+        </div>
+        <!-- Coaching -->
+        <div class="fade-in card-hover card-white-accent rounded-2xl border border-brand-border bg-brand-card p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-user-tie text-3xl text-accent-greenLight"></i>
+          </div>
+          <div class="inline-block text-xs font-bold text-accent-green tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-accent-green/10">Coaching</div>
+          <h3 class="text-xl font-bold mb-3">Business Coaching</h3>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">World-class coaching delivered by industry experts, Resource Partners, and AI-powered agents. Entrepreneurs spend 12â18 months using state-of-the-art tools to expand and grow.</p>
+          <ul class="text-left space-y-2 text-sm text-white/40">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-green text-xs"></i> AI Finance & Tech Agents</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-green text-xs"></i> Live Mentor Sessions</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-green text-xs"></i> BBO Workbook Curriculum</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-green text-xs"></i> Leap 2 Launch Cohort</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-accent-green text-xs"></i> Executive Incubator Program</li>
+          </ul>
+        </div>
+        <!-- Community -->
+        <div class="fade-in card-hover card-white-accent rounded-2xl border border-brand-border bg-brand-card p-8 text-center">
+          <div class="w-16 h-16 rounded-2xl bg-brand-silver/10 border border-brand-silver/25 flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-people-group text-3xl text-brand-silver"></i>
+          </div>
+          <div class="inline-block text-xs font-bold text-brand-silver tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-brand-silver/10">Community</div>
+          <h3 class="text-xl font-bold mb-3">Community</h3>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">A thriving network of 3,085+ founders, business owners, and industry leaders. Collaborate, share resources, and grow together â in person and through the Ecosystem app.</p>
+          <ul class="text-left space-y-2 text-sm text-white/40">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-silver text-xs"></i> Community Feed & Forums</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-silver text-xs"></i> Networking Events</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-silver text-xs"></i> Co-Working Space Access</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-silver text-xs"></i> Partner Office Hours</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-silver text-xs"></i> Peer Cohort Accountability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ PROGRAMS âââ -->
+  <section class="py-24 bg-brand-card border-y silver-divider">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <p class="fade-in text-accent-blue text-sm font-semibold tracking-widest uppercase mb-3">Programs</p>
+        <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-4">What Runs Inside the <span class="text-gradient">Ecosystem</span></h2>
+        <p class="fade-in text-white/50 max-w-2xl mx-auto">Four interconnected programs and platforms â all built on the Capital, Coaching, and Community framework.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Leap 2 Launch -->
+        <a href="/executive-incubator.html" class="fade-in group block card-hover rounded-2xl border border-brand-border bg-brand-dark p-8 silver-border">
+          <div class="flex items-start gap-5 mb-5">
+            <div class="w-14 h-14 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-rocket text-2xl text-accent-blue"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-1 group-hover:text-accent-blueLight transition">Leap 2 Launch</h3>
+              <p class="text-sm text-accent-blueLight font-medium">12-Month Entrepreneur Development Program</p>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">The Leap 2 Launch Entrepreneur Development Program (L2LEDP) is a mentoring, coaching, and training program for small and medium-sized businesses â providing a well-defined roadmap for building and growing to greater success. Two completed cohorts, $4.2M+ capital incubated.</p>
+          <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="text-center p-3 rounded-xl bg-brand-card border border-brand-border">
+              <div class="text-lg font-bold text-accent-blue">2</div>
+              <div class="text-xs text-white/40">Cohorts</div>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-brand-card border border-brand-border">
+              <div class="text-lg font-bold text-accent-greenLight">$4.2M+</div>
+              <div class="text-xs text-white/40">Capital</div>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-brand-card border border-brand-border">
+              <div class="text-lg font-bold text-white">20</div>
+              <div class="text-xs text-white/40">Graduates</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-accent-blueLight text-sm font-semibold group-hover:gap-3 transition-all">
+            Explore Program <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+        <!-- Executive Incubator -->
+        <a href="/executive-incubator.html#executive" class="fade-in group block card-hover rounded-2xl border border-brand-border bg-brand-dark p-8 silver-border">
+          <div class="flex items-start gap-5 mb-5">
+            <div class="w-14 h-14 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-city text-2xl text-accent-green"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-1 group-hover:text-accent-greenLight transition">Executive Incubator</h3>
+              <p class="text-sm text-accent-greenLight font-medium">Premium City & County Partnership Model</p>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">AmPac's premium, fully customized incubator model â deployed for municipalities, economic development agencies, and organizations that want to invest in their business community at a higher level. Proven with the City of Ontario.</p>
+          <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="text-center p-3 rounded-xl bg-brand-card border border-brand-border">
+              <div class="text-lg font-bold text-accent-green">2</div>
+              <div class="text-xs text-white/40">Cohorts</div>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-brand-card border border-brand-border">
+              <div class="text-lg font-bold text-accent-greenLight">$10K</div>
+              <div class="text-xs text-white/40">Grants</div>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-brand-card border border-brand-border">
+              <div class="text-lg font-bold text-white">â</div>
+              <div class="text-xs text-white/40">Repeatable</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-accent-greenLight text-sm font-semibold group-hover:gap-3 transition-all">
+            Explore Model <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+        <!-- Back Office -->
+        <a href="/back-office.html" class="fade-in group block card-hover rounded-2xl border border-brand-border bg-brand-dark p-8 silver-border">
+          <div class="flex items-start gap-5 mb-5">
+            <div class="w-14 h-14 rounded-xl bg-brand-silver/10 border border-brand-silver/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-building-columns text-2xl text-brand-silver"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-1 group-hover:text-brand-silver transition">Back Office</h3>
+              <p class="text-sm text-brand-silver font-medium">Member Operations Hub</p>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">The operational backbone of the Ecosystem â programs, lending, AI advisors, and resources all in one place. Access the Marketplace, track your capital journey, and manage your Ecosystem membership.</p>
+          <div class="flex items-center gap-2 text-brand-silver text-sm font-semibold group-hover:gap-3 transition-all">
+            Explore Back Office <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+        <!-- Economic Development -->
+        <a href="/economic-development.html" class="fade-in group block card-hover rounded-2xl border border-brand-border bg-brand-dark p-8 silver-border">
+          <div class="flex items-start gap-5 mb-5">
+            <div class="w-14 h-14 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-chart-line text-2xl text-accent-blueLight"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-1 group-hover:text-accent-blueLight transition">Economic Development</h3>
+              <p class="text-sm text-accent-blueLight font-medium">Regional Impact & Partnerships</p>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed mb-5">AmPac's regional economic development impact across CA, AZ, and NV. CDFI lending, SBA programs, revolving loan funds, and community partnerships â delivered through cities, counties, and chambers of commerce.</p>
+          <div class="flex items-center gap-2 text-accent-blueLight text-sm font-semibold group-hover:gap-3 transition-all">
+            Explore Impact <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ PARTNERSHIP TIERS âââ -->
+  <section id="partners" class="py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <p class="fade-in text-accent-green text-sm font-semibold tracking-widest uppercase mb-3">Partnerships</p>
+        <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-4">Built Together With <span class="text-gradient">Our Partners</span></h2>
+        <p class="fade-in text-white/50 max-w-2xl mx-auto">
+          The Entrepreneur Ecosystem exists because of the organizations that believe in our mission to uplift communities, strengthen families, and advance entrepreneurial dreams. Two partnership tiers drive our work.
+        </p>
+      </div>
+
+      <!-- Tier 1 -->
+      <div class="fade-in tier-card-green rounded-3xl p-10 mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-accent-green/20 border border-accent-green/30 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-heart text-2xl text-accent-greenLight"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-accent-green tracking-widest uppercase mb-1">Tier 1</div>
+            <h3 class="text-2xl font-bold">Uplifting Communities</h3>
+            <p class="text-white/50 text-sm mt-1">Philanthropy Partners â Philanthropic support that fuels the Ecosystem's mission to equip entrepreneurs with critical resources to create, launch, and grow businesses.</p>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-green/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-city text-accent-greenLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">City of Ontario</div>
+              <div class="text-xs text-white/40">Municipal Partner Â· Inland Empire, CA</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-green/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-globe text-accent-greenLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Inland Empire Regional Chamber</div>
+              <div class="text-xs text-white/40">Regional Chamber of Commerce</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-green/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-university text-accent-greenLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">UC Riverside</div>
+              <div class="text-xs text-white/40">InSoCal Accelerate Hub Partner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="fade-in tier-card-blue rounded-3xl p-10">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-accent-blue/20 border border-accent-blue/30 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-hands-holding-child text-2xl text-accent-blueLight"></i>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-accent-blue tracking-widest uppercase mb-1">Tier 2</div>
+            <h3 class="text-2xl font-bold">Strengthening Families</h3>
+            <p class="text-white/50 text-sm mt-1">Programming Partners â Aligned with one or more of the Ecosystem's signature entrepreneurial programs, providing funding, industry insights, and business expertise.</p>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-user-tie text-accent-blueLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">SCORE</div>
+              <div class="text-xs text-white/40">Service Corps of Retired Executives</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-female text-accent-blueLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">IE Women's Business Center</div>
+              <div class="text-xs text-white/40">Inland Empire WBC</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-briefcase text-accent-blueLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Black Chamber of Commerce</div>
+              <div class="text-xs text-white/40">Business Advocacy & Networking</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-store text-accent-blueLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Hispanic Chamber of Commerce</div>
+              <div class="text-xs text-white/40">IE Latino Business Community</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-lightbulb text-accent-blueLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Inland Empire SBDC</div>
+              <div class="text-xs text-white/40">Small Business Development Center</div>
+            </div>
+          </div>
+          <div class="partner-chip rounded-xl p-5 flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg bg-accent-blue/10 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-venus text-accent-blueLight text-sm"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">IE Latina Business Women Assoc.</div>
+              <div class="text-xs text-white/40">Inland Empire Latina Entrepreneurs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Become a Partner CTA -->
+      <div class="fade-in text-center mt-10">
+        <p class="text-white/40 text-sm mb-4">Interested in partnering with the Entrepreneur Ecosystem?</p>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature"
+          target="_blank"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-accent-green/40 hover:border-accent-green rounded-xl text-accent-greenLight hover:text-white transition text-sm font-semibold">
+          <i class="fas fa-handshake"></i> Become a Partner
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ THE APP âââ -->
+  <section class="py-24 bg-brand-card border-y silver-divider">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="fade-in text-accent-green text-sm font-semibold tracking-widest uppercase mb-3">Mobile App</p>
+          <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-6">
+            The Ecosystem in Your <span class="text-gradient">Pocket</span>
+          </h2>
+          <p class="fade-in text-white/50 mb-10 leading-relaxed">
+            The Entrepreneur Ecosystem app brings together co-working booking, community feed, AI agents, business coaching, and capital access â all in one place. Available on iOS and Android.
+          </p>
+          <div class="space-y-5">
+            <div class="fade-in flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-xl bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-comments text-accent-blue"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Community Feed</h4>
+                <p class="text-sm text-white/50">Post events, flyers, and announcements. Engage with 3,085+ entrepreneurs across the Inland Empire network.</p>
+              </div>
+            </div>
+            <div class="fade-in flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-calendar-check text-accent-greenLight"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Space Booking</h4>
+                <p class="text-sm text-white/50">Book co-working desks, private offices, and conference rooms at the Lowenstein Center directly from the app.</p>
+              </div>
+            </div>
+            <div class="fade-in flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-xl bg-brand-silver/10 border border-brand-silver/20 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-robot text-brand-silver"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">AI Business Agents</h4>
+                <p class="text-sm text-white/50">Get instant guidance from the Eco Finance AI and Eco Technology AI agents â 24/7 CFO- and CTO-level intelligence.</p>
+              </div>
+            </div>
+            <div class="fade-in flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-file-invoice-dollar text-white/60"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Capital Applications</h4>
+                <p class="text-sm text-white/50">Apply for SBA loans, track application status, and connect with AmPac lending staff â all in the app.</p>
+              </div>
+            </div>
+          </div>
+          <div class="fade-in flex flex-col sm:flex-row gap-4 mt-10">
+            <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank"
+              class="flex items-center gap-3 px-6 py-3 bg-white text-black rounded-xl font-semibold hover:bg-white/90 transition shadow-lg">
+              <i class="fab fa-apple text-2xl"></i>
+              <div class="text-left"><div class="text-xs opacity-60">Download on the</div><div class="text-sm font-bold">App Store</div></div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" target="_blank"
+              class="flex items-center gap-3 px-6 py-3 bg-white/10 border border-white/20 rounded-xl font-semibold hover:bg-white/15 transition">
+              <i class="fab fa-google-play text-2xl"></i>
+              <div class="text-left"><div class="text-xs opacity-60">Get it on</div><div class="text-sm font-bold">Google Play</div></div>
+            </a>
+          </div>
+        </div>
+        <!-- App visual -->
+        <div class="fade-in flex justify-center">
+          <div class="relative">
+            <div class="w-72 h-[520px] rounded-3xl bg-gradient-to-b from-brand-card via-brand-dark to-brand-darker border border-brand-border flex flex-col items-center justify-center shadow-2xl px-8 py-10">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue/30 to-accent-green/15 border border-accent-blue/25 flex items-center justify-center mb-5">
+                <i class="fas fa-seedling text-3xl text-accent-green"></i>
+              </div>
+              <p class="text-base font-bold mb-1 text-center">Entrepreneur Ecosystem</p>
+              <p class="text-xs text-white/40 mb-6 text-center">by AmPac Business Capital</p>
+              <div class="w-full space-y-3 mb-6">
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/08">
+                  <i class="fas fa-comments text-accent-blue text-sm w-4"></i>
+                  <span class="text-xs text-white/60">Community Feed</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/08">
+                  <i class="fas fa-calendar-check text-accent-greenLight text-sm w-4"></i>
+                  <span class="text-xs text-white/60">Book Spaces</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/08">
+                  <i class="fas fa-robot text-brand-silver text-sm w-4"></i>
+                  <span class="text-xs text-white/60">AI Agents</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/08">
+                  <i class="fas fa-dollar-sign text-accent-blue text-sm w-4"></i>
+                  <span class="text-xs text-white/60">Capital Access</span>
+                </div>
+              </div>
+              <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank"
+                class="w-full py-3 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-sm font-semibold transition text-center btn-glow">
+                Download Now
+              </a>
+            </div>
+            <div class="absolute -z-10 top-6 left-6 w-72 h-[520px] rounded-3xl bg-accent-blue/5 border border-accent-blue/10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ AMPAC TRUST âââ -->
+  <section class="py-24 border-b silver-divider">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <p class="fade-in text-brand-silver text-sm font-semibold tracking-widest uppercase mb-3">AmPac Business Capital</p>
+      <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-6">The Ecosystem Is Built on <span class="text-gradient">20 Years of Trust</span></h2>
+      <p class="fade-in text-white/50 max-w-2xl mx-auto mb-12">
+        AmPac Business Capital is a CDFI-certified, SBA-licensed lender and U.S. Treasury-authorized Community Development Financial Institution. Founded in 2005, AmPac has deployed over $2B in capital to thousands of small businesses across California, Arizona, and Nevada.
+      </p>
+      <div class="fade-in grid sm:grid-cols-4 gap-6 mb-10">
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border card-hover">
+          <div class="text-3xl font-extrabold text-accent-blue mb-2">$2B+</div>
+          <p class="text-sm text-white/50">Capital Deployed</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border card-hover">
+          <div class="text-3xl font-extrabold text-accent-greenLight mb-2">5,500+</div>
+          <p class="text-sm text-white/50">Jobs Created</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border card-hover">
+          <div class="text-3xl font-extrabold text-white mb-2">20 Yrs</div>
+          <p class="text-sm text-white/50">In Service</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border card-hover">
+          <div class="text-3xl font-extrabold text-brand-silver mb-2">BBB</div>
+          <p class="text-sm text-white/50">AERIS Rating</p>
+        </div>
+      </div>
+      <div class="fade-in flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://ampac.com" target="_blank"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-accent-blue/40 hover:border-accent-blue rounded-xl text-accent-blueLight hover:text-white transition text-sm font-semibold">
+          <i class="fas fa-external-link-alt"></i> Learn More at AmPac.com
+        </a>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature"
+          target="_blank"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-white transition text-sm font-semibold btn-glow">
+          <i class="fas fa-calendar-check"></i> Schedule a Meeting
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- âââ CTA âââ -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 30% 50%,rgba(30,64,175,0.13),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(22,163,74,0.08),transparent 60%);"></div>
+    <div class="absolute inset-0 opacity-[0.02]">
+      <div class="grid-bg w-full h-full"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4 text-center">
+      <div class="fade-in mb-4">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-green/10 border border-accent-green/20 text-accent-greenLight text-sm font-medium">
+          <i class="fas fa-seedling text-xs"></i> Ready to join?
+        </span>
+      </div>
+      <h2 class="fade-in text-3xl sm:text-4xl font-bold mb-6">
+        Join the Entrepreneur <span class="text-gradient">Ecosystem Today</span>
+      </h2>
+      <p class="fade-in text-white/50 mb-10 max-w-xl mx-auto">
+        Whether you're starting from scratch or scaling to new heights â the Ecosystem is built for where you are right now and where you're going next.
+      </p>
+      <div class="fade-in flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://entrepreneurecosystem.optixapp.com/signup" target="_blank"
+          class="w-full sm:w-auto px-8 py-4 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-base font-semibold transition btn-glow text-white flex items-center justify-center gap-2">
+          <i class="fas fa-user-plus"></i> Join the Ecosystem
+        </a>
+        <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank"
+          class="w-full sm:w-auto px-8 py-4 border border-white/20 hover:bg-white/5 hover:border-white/40 rounded-xl text-base font-semibold transition flex items-center justify-center gap-2">
+          <i class="fab fa-apple"></i> Download the App
+        </a>
+      </div>
+      <p class="fade-in mt-6 text-xs text-white/25">
+        A program of AmPac Business Capital Â· 3110-B Inland Empire Blvd. Ontario, CA 91764 Â· <a href="https://ampac.com" target="_blank" class="underline hover:text-white/50">ampac.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- âââ FOOTER âââ -->
+  <footer class="border-t silver-divider bg-brand-darker">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center">
+          <i class="fas fa-seedling text-white text-xs"></i>
+        </div>
+        <span class="text-base font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-8">
+        <a href="/" class="text-sm text-white/50 hover:text-white transition">Home</a>
+        <a href="/ecosystem.html" class="text-sm text-white/50 hover:text-white transition">The Ecosystem</a>
+        <a href="/back-office.html" class="text-sm text-white/50 hover:text-white transition">Back Office</a>
+        <a href="/executive-incubator.html" class="text-sm text-white/50 hover:text-white transition">Leap 2 Launch</a>
+        <a href="/finance-ai.html" class="text-sm text-white/50 hover:text-white transition">Finance AI</a>
+        <a href="/tech-ai.html" class="text-sm text-white/50 hover:text-white transition">Tech AI</a>
+        <a href="/economic-development.html" class="text-sm text-white/50 hover:text-white transition">Economic Development</a>
+        <a href="https://ampac.com" target="_blank" class="text-sm text-white/50 hover:text-white transition">AmPac Business Capital</a>
+        <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank"
+          class="text-sm text-accent-blueLight hover:text-white transition font-medium">Book a Meeting</a>
+      </div>
+      <div class="border-t silver-divider pt-8 text-center space-y-2">
+        <p class="text-sm text-white/40">&copy; 2025 Entrepreneur Ecosystem. All rights reserved.</p>
+        <p class="text-sm text-white/30">Uplift Communities Â· Strengthen Families Â· Advance Entrepreneurial Dreams</p>
+        <p class="text-xs text-white/20 mt-1">Powered by <span class="text-accent-blue font-medium">AmPac Business Capital</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('hamburger').addEventListener('click', function () {
+      var menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      var icon = this.querySelector('i');
+      icon.className = menu.classList.contains('hidden') ? 'fas fa-bars text-xl' : 'fas fa-times text-xl';
+    });
+    document.querySelectorAll('#mobileMenu a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('mobileMenu').classList.add('hidden');
+        document.querySelector('#hamburger i').className = 'fas fa-bars text-xl';
+      });
+    });
+    // Fade-in observer
+    setTimeout(function () {
+      document.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('visible'); });
+    }, 200);
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.fade-in').forEach(function (el) { observer.observe(el); });
+  </script>
+</body>
+</html>
