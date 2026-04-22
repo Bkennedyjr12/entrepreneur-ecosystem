@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco Technology AI Agent - Virtual CTO | Entrepreneur Ecosystem</title>
+    <link rel="icon" type="image/png" href="ee-logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -34,8 +35,9 @@
             background-color: rgba(26, 26, 46, 0.8);
         }
 
-        .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in {
+            opacity: 1;
+        }
 
         .card-hover {
             transition: all 0.3s ease;
@@ -47,7 +49,7 @@
         }
 
         .gradient-violet {
-            background: #2563EB;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
         }
 
         .text-gradient {
@@ -168,12 +170,7 @@
                 font-size: 24px;
             }
         }
-    
-    .text-gradient { background: linear-gradient(135deg, #2563EB, #16A34A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .silver-border { border-color: rgba(148,163,184,0.2); }
-    .ecosystem-badge { background: linear-gradient(135deg, rgba(30,64,175,0.15), rgba(22,163,74,0.08)); border: 1px solid rgba(37,99,235,0.25); color: #93C5FD; }
-    .silver-divider { border-color: rgba(148,163,184,0.12); }
-  </style>
+    </style>
 </head>
 <body class="bg-slate-950 text-gray-100 overflow-x-hidden">
 
@@ -181,23 +178,25 @@
     <nav class="nav-blur sticky top-0 z-50 border-b border-purple-900/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center gap-2"><div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center"><i class="fas fa-seedling text-white text-xs"></i></div><span class="text-lg font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span></a>
+                <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition" onclick="window.location.href='index.html'">
+                    <img src="ee-logo.png" alt="Entrepreneur Ecosystem" class="h-10 w-10">
+                    <span class="font-bold text-white hidden sm:inline">AmPac Business Capital</span>
+                </div>
 
                 <div class="hidden md:flex gap-8">
                     <a href="index.html" class="text-gray-300 hover:text-white transition text-sm">Home</a>
-                    <a href="/ecosystem.html" class="text-gray-300 hover:text-white transition text-sm">The Ecosystem</a>
-                    <a href="tech-ai.html" class="text-green-400 font-semibold text-sm border-b-2 border-green-400 pb-1">Eco Technology AI Agent</a>
+                    <a href="tech-ai.html" class="text-violet-400 font-semibold text-sm border-b-2 border-violet-400 pb-1">Eco Technology AI Agent</a>
                     <a href="index.html#features" class="text-gray-300 hover:text-white transition text-sm">Features</a>
                     <a href="index.html#pricing" class="text-gray-300 hover:text-white transition text-sm">Pricing</a>
                     <a href="index.html#contact" class="text-gray-300 hover:text-white transition text-sm">Contact</a>
                 </div>
 
                 <div class="hidden md:flex gap-3">
-                    <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg border border-blue-500/50 text-blue-400 hover:bg-blue-500/10 transition text-sm font-medium">App Store</a>
+                    <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg border border-purple-500/50 text-purple-400 hover:bg-purple-500/10 transition text-sm font-medium">App Store</a>
                     <a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg gradient-violet text-white hover:shadow-lg transition text-sm font-medium">Get App</a>
                 </div>
 
-                <button id="hamburger" class="md:hidden text-white" onclick="toggleMenu()">
+                <button class="md:hidden text-white" onclick="toggleMenu()">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -207,13 +206,12 @@
         <div id="mobileMenu" class="hidden md:hidden border-t border-purple-900/20 bg-slate-900/50">
             <div class="px-4 py-4 space-y-3">
                 <a href="index.html" class="block text-gray-300 hover:text-white transition py-2">Home</a>
-                <a href="/ecosystem.html" class="block text-gray-300 hover:text-white transition py-2">The Ecosystem</a>
-                <a href="tech-ai.html" class="block text-green-400 font-semibold py-2">Eco Technology AI Agent</a>
+                <a href="tech-ai.html" class="block text-violet-400 font-semibold py-2">Eco Technology AI Agent</a>
                 <a href="index.html#features" class="block text-gray-300 hover:text-white transition py-2">Features</a>
                 <a href="index.html#pricing" class="block text-gray-300 hover:text-white transition py-2">Pricing</a>
                 <a href="index.html#contact" class="block text-gray-300 hover:text-white transition py-2">Contact</a>
                 <div class="flex gap-2 pt-3">
-                    <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank" rel="noopener noreferrer" class="flex-1 px-4 py-2 rounded-lg border border-blue-500/50 text-blue-400 hover:bg-blue-500/10 transition text-sm font-medium text-center">App Store</a>
+                    <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank" rel="noopener noreferrer" class="flex-1 px-4 py-2 rounded-lg border border-purple-500/50 text-purple-400 hover:bg-purple-500/10 transition text-sm font-medium text-center">App Store</a>
                     <a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" target="_blank" rel="noopener noreferrer" class="flex-1 px-4 py-2 rounded-lg gradient-violet text-white hover:shadow-lg transition text-sm font-medium text-center">Get App</a>
                 </div>
             </div>
@@ -225,9 +223,12 @@
         <div class="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent pointer-events-none"></div>
         <div class="max-w-5xl mx-auto relative z-10">
             <div class="fade-in">
+                <div class="mb-6">
+                    <img src="ee-logo.png" alt="Entrepreneur Ecosystem" class="h-24 w-24 mx-auto drop-shadow-2xl">
+                </div>
                 <div class="hero-badge mb-6">
-                    <i class="fas fa-microchip text-green-400"></i>
-                    Eco Technology AI Agent â AI-Powered Technology Intelligence
+                    <i class="fas fa-microchip text-violet-400"></i>
+                    Eco Technology AI Agent — AI-Powered Technology Intelligence
                 </div>
 
                 <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
@@ -242,7 +243,7 @@
                     <a href="https://apps.apple.com/us/app/ampac-business-capital/id1581189648" target="_blank" rel="noopener noreferrer" onclick="redirectApp(event)" class="px-8 py-3 rounded-lg gradient-violet text-white font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition text-center">
                         Get the App
                     </a>
-                    <button onclick="document.getElementById('capabilities').scrollIntoView({behavior: 'smooth'})" class="px-8 py-3 rounded-lg border-2 border-blue-500 text-green-400 font-semibold hover:bg-blue-500/10 transition text-center">
+                    <button onclick="document.getElementById('capabilities').scrollIntoView({behavior: 'smooth'})" class="px-8 py-3 rounded-lg border-2 border-violet-500 text-violet-400 font-semibold hover:bg-violet-500/10 transition text-center">
                         Explore Capabilities
                     </button>
                 </div>
@@ -262,7 +263,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center">
-                            <i class="fas fa-brain text-blue-400"></i>
+                            <i class="fas fa-brain text-purple-400"></i>
                         </div>
                         <span class="text-sm text-gray-300">AI-Powered</span>
                     </div>
@@ -415,9 +416,9 @@
                 </div>
 
                 <!-- Growing Business Stack -->
-                <div class="card-hover p-8 rounded-xl border-2 border-blue-500 bg-gradient-to-br from-slate-800/80 to-slate-800/50 relative">
+                <div class="card-hover p-8 rounded-xl border-2 border-violet-500 bg-gradient-to-br from-slate-800/80 to-slate-800/50 relative">
                     <div class="absolute top-4 right-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-green-400 border border-blue-500/50">Popular</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-400 border border-violet-500/50">Popular</span>
                     </div>
                     <div class="mb-6">
                         <div class="w-12 h-12 rounded-lg gradient-violet flex items-center justify-center mb-3">
@@ -664,7 +665,7 @@
                         </div>
                         <div>
                             <p class="font-semibold text-white">Tech AI Agent</p>
-                            <p class="text-xs text-gray-400">Online â¢ Always available</p>
+                            <p class="text-xs text-gray-400">Online • Always available</p>
                         </div>
                     </div>
 
@@ -682,7 +683,7 @@
                         </div>
 
                         <div class="chat-message chat-agent">
-                            Manual onboarding is costing you ~8 hours per new customer. Here's the automation stack I'd build: <br><br>1. <strong>Trigger:</strong> New customer in Stripe webhook â <br>2. <strong>Zapier:</strong> Create contact in HubSpot + send welcome email <br>3. <strong>Automation:</strong> 3-email sequence over 7 days with personalization <br>4. <strong>Integration:</strong> Add to Slack #customer-onboarding channel <br>5. <strong>Handoff:</strong> Schedule 30-min call with success manager (calendar invite) <br><br>This saves ~6.5 hours per customer and improves satisfaction by 40-60%. Implementation time: 4-6 hours. Cost: $0 beyond what you're already paying.
+                            Manual onboarding is costing you ~8 hours per new customer. Here's the automation stack I'd build: <br><br>1. <strong>Trigger:</strong> New customer in Stripe webhook → <br>2. <strong>Zapier:</strong> Create contact in HubSpot + send welcome email <br>3. <strong>Automation:</strong> 3-email sequence over 7 days with personalization <br>4. <strong>Integration:</strong> Add to Slack #customer-onboarding channel <br>5. <strong>Handoff:</strong> Schedule 30-min call with success manager (calendar invite) <br><br>This saves ~6.5 hours per customer and improves satisfaction by 40-60%. Implementation time: 4-6 hours. Cost: $0 beyond what you're already paying.
                         </div>
 
                         <div class="chat-message chat-user">
@@ -695,7 +696,7 @@
                     </div>
 
                     <div class="flex gap-2">
-                        <input type="text" placeholder="Ask the Tech AI anything about your technology..." class="flex-1 px-4 py-3 rounded-lg bg-slate-700/50 border border-purple-900/30 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50">
+                        <input type="text" placeholder="Ask the Tech AI anything about your technology..." class="flex-1 px-4 py-3 rounded-lg bg-slate-700/50 border border-purple-900/30 text-white placeholder-gray-500 focus:outline-none focus:border-violet-500/50">
                         <button class="px-6 py-3 rounded-lg gradient-violet text-white font-semibold hover:shadow-lg transition">
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -726,25 +727,25 @@
                         <p class="text-gray-400 text-sm mt-2">with app download</p>
                     </div>
 
-                    <button class="w-full px-6 py-3 rounded-lg border-2 border-blue-500 text-green-400 font-semibold hover:bg-blue-500/10 transition mb-8">
+                    <button class="w-full px-6 py-3 rounded-lg border-2 border-violet-500 text-violet-400 font-semibold hover:bg-violet-500/10 transition mb-8">
                         Download App
                     </button>
 
                     <div class="space-y-4">
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">5 technology inquiries per month</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Basic tech recommendations</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Software comparison tools</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Community forum access</span>
                         </div>
                         <div class="flex items-start gap-3">
@@ -761,7 +762,7 @@
                 <!-- Professional Plan -->
                 <div class="pricing-card featured p-8 rounded-xl relative">
                     <div class="absolute top-4 right-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-green-400 border border-blue-500/50">Most Popular</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-400 border border-violet-500/50">Most Popular</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Professional</h3>
                     <p class="text-gray-400 mb-6">For growing businesses</p>
@@ -778,23 +779,23 @@
 
                     <div class="space-y-4">
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Unlimited technology inquiries</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Advanced AI recommendations</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Custom workflow templates</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Tech stack analyzer</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Email support (24h response)</span>
                         </div>
                         <div class="flex items-start gap-3">
@@ -814,33 +815,33 @@
                         <p class="text-gray-400 text-sm mt-2">based on requirements</p>
                     </div>
 
-                    <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="w-full block px-6 py-3 rounded-lg border-2 border-blue-500 text-green-400 font-semibold hover:bg-blue-500/10 transition mb-8 text-center">
+                    <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="w-full block px-6 py-3 rounded-lg border-2 border-violet-500 text-violet-400 font-semibold hover:bg-violet-500/10 transition mb-8 text-center">
                         Schedule Demo
                     </a>
 
                     <div class="space-y-4">
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Everything in Professional</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Dedicated account manager</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Custom integrations & APIs</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Priority phone & Slack support</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">On-site consulting & training</span>
                         </div>
                         <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-green-400 mt-1 flex-shrink-0"></i>
+                            <i class="fas fa-check-circle text-violet-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-300">Advanced security & compliance</span>
                         </div>
                     </div>
@@ -904,7 +905,7 @@
                     <a href="https://play.google.com/store/apps/details?id=sharedesk.net.optixapp.entrepreneurecosystem&pli=1" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-lg gradient-violet text-white font-bold hover:shadow-lg hover:shadow-purple-500/50 transition text-center">
                         <i class="fas fa-android mr-2"></i>Download for Android
                     </a>
-                    <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-lg border-2 border-blue-500 text-green-400 font-bold hover:bg-blue-500/10 transition text-center">
+                    <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-lg border-2 border-violet-500 text-violet-400 font-bold hover:bg-violet-500/10 transition text-center">
                         <i class="fas fa-calendar mr-2"></i>Schedule a Demo
                     </a>
                 </div>
@@ -912,7 +913,7 @@
                 <div class="mt-12 p-6 rounded-lg bg-slate-800/50 border border-purple-900/30">
                     <p class="text-sm text-gray-400">
                         <i class="fas fa-lock text-green-400 mr-2"></i>
-                        Enterprise-grade security â¢ No credit card required â¢ Start free today
+                        Enterprise-grade security • No credit card required • Start free today
                     </p>
                 </div>
             </div>
@@ -924,10 +925,8 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 bg-gradient-violet rounded-lg flex items-center justify-center">
-                            <i class="fas fa-rocket text-white text-sm"></i>
-                        </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="ee-logo.png" alt="Entrepreneur Ecosystem" class="h-10 w-10">
                         <span class="font-bold text-white">AmPac Business Capital</span>
                     </div>
                     <p class="text-sm text-gray-400">
@@ -967,9 +966,10 @@
             </div>
 
             <div class="border-t border-purple-900/20 pt-8">
+                <img src="ee-logo.png" alt="Entrepreneur Ecosystem" class="h-14 w-14 mx-auto mb-4 opacity-60">
                 <div class="text-center mb-4">
                     <p class="text-gray-400 text-sm">
-                        Â© 2025 Entrepreneur Ecosystem. All rights reserved.
+                        © 2025 Entrepreneur Ecosystem. All rights reserved.
                     </p>
                 </div>
                 <div class="text-center mb-4">
