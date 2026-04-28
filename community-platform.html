@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Platform | Entrepreneur Ecosystem</title>
+  <script src="https://cdn.tailwindcss.com/"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { jakarta: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            gold: '#c9a84c', 'gold-light': '#e8c96a', 'gold-dim': '#7a6030',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    :root {
+      --gold:#c9a84c; --gold-light:#e8c96a; --gold-dim:#7a6030;
+      --black:#0a0a0a; --slate:#1c1c1e; --mid:#2e2e30; --muted:#6b6b70;
+      --off-white:#f5f3ef; --border:rgba(201,168,76,0.18); --radius:10px;
+    }
+    * { box-sizing:border-box; }
+    .tab-page { display:none; }
+    .tab-page.active { display:block; animation:fadeUp 0.3s ease; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .tab-btn.active { background:rgba(201,168,76,0.12); color:var(--gold); border-color:rgba(201,168,76,0.4); }
+    input,select,textarea {
+      background:var(--mid); border:1px solid rgba(255,255,255,0.1); color:var(--off-white);
+      border-radius:8px; padding:10px 13px; font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:0.9rem; outline:none; transition:border-color 0.2s; width:100%;
+    }
+    input:focus,select:focus,textarea:focus { border-color:var(--gold); }
+    select option { background:var(--slate); }
+    textarea { resize:vertical; min-height:80px; }
+    label { font-size:0.73rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:5px; }
+    .card { background:var(--slate); border:1px solid var(--border); border-radius:var(--radius); }
+    .card:hover { border-color:rgba(201,168,76,0.4); }
+    .entry-card { background:var(--slate); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; transition:all 0.2s; }
+    .entry-card:hover { border-color:rgba(201,168,76,0.4); transform:translateY(-2px); }
+    .entry-card.need-card { border-top:3px solid #e05252; }
+    .entry-card.offer-card { border-top:3px solid #52a0e0; }
+    .entry-card.matched-card { border-top:3px solid var(--gold); }
+    .chip { display:inline-block; font-size:0.68rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:3px 9px; border-radius:99px; }
+    .chip-pastor   { background:rgba(180,120,255,0.15); color:#c49dff; }
+    .chip-nonprofit{ background:rgba(82,160,224,0.15);  color:#7abff0; }
+    .chip-business { background:rgba(82,200,120,0.15);  color:#7ad09a; }
+    .chip-community{ background:rgba(255,180,60,0.15);  color:#ffc84a; }
+    .chip-gov      { background:rgba(100,180,255,0.15); color:#80c8ff; }
+    .chip-need     { background:rgba(224,82,82,0.12);   color:#f08080; }
+    .chip-offer    { background:rgba(82,160,224,0.12);  color:#80b8f0; }
+    .chip-gold     { background:rgba(201,168,76,0.12);  color:var(--gold); border:1px solid rgba(201,168,76,0.25); }
+    .chip-ai       { background:rgba(124,58,237,0.15);  color:#c084fc; }
+    .chip-edu      { background:rgba(34,197,94,0.12);   color:#4ade80; }
+    .chip-active   { background:rgba(82,200,120,0.12);  color:#7ad09a; }
+    .chip-planning { background:rgba(82,160,224,0.12);  color:#7abff0; }
+    .edu-tip {
+      background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2);
+      border-radius:8px; padding:10px 14px;
+      font-size:0.8rem; color:#86efac; line-height:1.5;
+    }
+    .edu-tip::before { content:'📚 '; }
+    .progress-track { height:5px; background:rgba(255,255,255,0.08); border-radius:99px; overflow:hidden; }
+    .progress-fill  { height:100%; border-radius:99px; background:linear-gradient(90deg,var(--gold-dim),var(--gold)); transition:width 0.6s ease; }
+    .toggle-btn.active { background:rgba(201,168,76,0.12)!important; color:var(--gold)!important; border-color:rgba(201,168,76,0.4)!important; }
+    .filter-btn.active { background:rgba(201,168,76,0.12)!important; color:var(--gold)!important; border-color:rgba(201,168,76,0.4)!important; }
+    #toast {
+      position:fixed; bottom:24px; right:24px; z-index:9999;
+      background:var(--slate); border:1px solid var(--gold);
+      border-radius:10px; padding:13px 18px;
+      display:flex; align-items:center; gap:10px;
+      font-size:0.87rem; max-width:340px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.6);
+      transform:translateY(80px); opacity:0;
+      transition:all 0.3s ease; pointer-events:none;
+    }
+    #toast.show { transform:translateY(0); opacity:1; }
+    .resource-card { background:var(--slate); border:1px solid var(--border); border-radius:var(--radius); padding:20px; transition:all 0.2s; }
+    .resource-card:hover { border-color:rgba(34,197,94,0.4); transform:translateY(-2px); }
+    .policy-card { background:rgba(34,197,94,0.04); border:1px solid rgba(34,197,94,0.15); border-radius:var(--radius); padding:18px 20px; }
+    .ai-tab-page.hidden { display:none; }
+    .agent-card { background:var(--slate); border:1px solid var(--border); border-radius:var(--radius); padding:20px; transition:all 0.2s; }
+    .agent-card:hover { border-color:rgba(201,168,76,0.5); transform:translateY(-2px); }
+    .agent-card.featured { border-top:3px solid #7c3aed; }
+    #mobile-menu { display:none; }
+    #mobile-menu.open { display:block; }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white overflow-x-hidden">
+
+<!-- ═══ NAV ═══ -->
+<nav class="sticky top-0 z-50 bg-[#0a0a0a]/92 backdrop-blur-xl border-b border-[rgba(201,168,76,0.15)]">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-3">
+      <img src="ee-logo.png" alt="EE" class="h-8 w-auto" onerror="this.style.display='none'">
+      <span class="font-bold text-sm tracking-widest uppercase text-[#c9a84c]">Entrepreneur Ecosystem</span>
+    </a>
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition">Home</a>
+      <a href="/#ecosystem" class="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition">The Ecosystem</a>
+      <a href="/finance-ai.html" class="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition">Eco Finance AI</a>
+      <a href="/tech-ai.html" class="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition">Eco Tech AI</a>
+      <a href="/community-platform.html" class="px-4 py-2 text-sm text-[#c9a84c] bg-[rgba(201,168,76,0.1)] rounded-lg border border-[rgba(201,168,76,0.25)]">Community Platform</a>
+      <a href="https://ampac.com/" target="_blank" class="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition">AmPac</a>
+      <a href="#" class="ml-2 px-4 py-2 text-sm font-semibold bg-[#c9a84c] text-black rounded-lg hover:bg-[#e8c96a] transition">Get the App</a>
+    </div>
+    <button id="hamburger" class="md:hidden p-2 text-gray-400" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden border-t border-[rgba(201,168,76,0.1)] bg-[#0a0a0a]/95 px-5 py-4 flex flex-col gap-1">
+    <a href="/" class="px-3 py-2 text-sm text-gray-400 rounded-lg">Home</a>
+    <a href="/#ecosystem" class="px-3 py-2 text-sm text-gray-400 rounded-lg">The Ecosystem</a>
+    <a href="/finance-ai.html" class="px-3 py-2 text-sm text-gray-400 rounded-lg">Eco Finance AI</a>
+    <a href="/tech-ai.html" class="px-3 py-2 text-sm text-gray-400 rounded-lg">Eco Tech AI</a>
+    <a href="/community-platform.html" class="px-3 py-2 text-sm text-[#c9a84c] rounded-lg">Community Platform</a>
+    <a href="https://ampac.com/" target="_blank" class="px-3 py-2 text-sm text-gray-400 rounded-lg">AmPac</a>
+    <a href="#" class="px-3 py-2 text-sm font-semibold text-[#c9a84c]">Get the App</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="relative text-center py-20 px-5 overflow-hidden border-b border-[rgba(201,168,76,0.12)]">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(201,168,76,0.09)_0%,transparent_70%)] pointer-events-none"></div>
+  <div class="relative max-w-3xl mx-auto">
+    <div class="inline-block text-xs font-bold tracking-widest uppercase text-[#c9a84c] bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.2)] px-4 py-1.5 rounded-full mb-5">✦ Finance · Education · Technology</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+      Learn. Connect.<br><span class="text-[#c9a84c]">Build Together.</span>
+    </h1>
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
+      A <strong class="text-white">finance education technology platform</strong> that bridges communities and amplifies impact. Every connection comes with context. Every project comes with learning.
+    </p>
+    <p class="text-green-400/70 text-sm max-w-xl mx-auto mb-10">📚 Education is embedded in everything here — every form, every match, every project, every policy. Knowledge is the foundation of lasting change.</p>
+    <div class="flex flex-wrap justify-center gap-8">
+      <div class="text-center"><div class="text-3xl font-extrabold text-[#c9a84c]" id="s-members">0</div><div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Members</div></div>
+      <div class="text-center"><div class="text-3xl font-extrabold text-[#c9a84c]" id="s-matches">0</div><div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Matches Made</div></div>
+      <div class="text-center"><div class="text-3xl font-extrabold text-[#c9a84c]" id="s-projects">0</div><div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Projects Active</div></div>
+      <div class="text-center"><div class="text-3xl font-extrabold text-[#c9a84c]" id="s-educated">0</div><div class="text-xs text-gray-500 uppercase tracking-widest mt-1">People Educated</div></div>
+      <div class="text-center"><div class="text-3xl font-extrabold text-[#c9a84c]" id="s-agents">0</div><div class="text-xs text-gray-500 uppercase tracking-widest mt-1">AI Agents</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TAB BAR ═══ -->
+<div class="sticky top-16 z-40 bg-[#0a0a0a]/95 backdrop-blur border-b border-[rgba(201,168,76,0.1)]">
+  <div class="max-w-6xl mx-auto px-5 flex gap-1 overflow-x-auto py-2 scrollbar-hide">
+    <button class="tab-btn active flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('intake',this)">📥 Intake</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('matching',this)">🔗 Matches <span id="match-badge" class="hidden ml-1 text-xs font-bold bg-[#c9a84c] text-black px-1.5 py-0.5 rounded-full"></span></button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('hub',this)">📋 Projects</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('education',this)">📚 Education Hub</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('reporting',this)">📊 Impact</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('aiagents',this)">🤖 AI Agents</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     INTAKE TAB
+═══════════════════════════════════ -->
+<div class="tab-page active" id="tab-intake">
+  <div class="max-w-5xl mx-auto px-5 py-12">
+
+    <!-- Education framing banner -->
+    <div class="edu-tip mb-8">
+      <strong>Why your entry matters:</strong> Every submission builds a shared knowledge base for the community. When you describe your need or offer clearly — including <em>why</em> it matters and what people should know — you help others understand the full picture. The more context you add, the stronger the ecosystem becomes.
+    </div>
+
+    <div class="flex items-end justify-between mb-6 flex-wrap gap-4">
+      <div><h2 class="text-2xl font-bold">Submit Your Entry</h2><p class="text-gray-500 text-sm mt-1">Share what you need, what you offer, or what you know.</p></div>
+    </div>
+
+    <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-7">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div><label>Your Name</label><input type="text" id="f-name" placeholder="Full name"/></div>
+        <div><label>Organization / Business</label><input type="text" id="f-org" placeholder="Church, nonprofit, company…"/></div>
+        <div><label>Email</label><input type="email" id="f-email" placeholder="you@example.com"/></div>
+        <div><label>Phone (optional)</label><input type="tel" id="f-phone" placeholder="(555) 000-0000"/></div>
+        <div class="md:col-span-2">
+          <label>I am a…</label>
+          <div class="flex flex-wrap gap-2 mt-1" id="role-toggle">
+            <button class="toggle-btn active px-4 py-2 rounded-full text-sm border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c] transition" data-val="Pastor / Faith Leader">⛪ Pastor / Faith Leader</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Nonprofit Leader">🤝 Nonprofit Leader</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Business Owner">💼 Business Owner</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Community Member">🏘️ Community Member</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Government / Funder">🏛️ Government / Funder</button>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <label>I am submitting a…</label>
+          <div class="flex flex-wrap gap-2 mt-1" id="type-toggle">
+            <button class="toggle-btn active px-4 py-2 rounded-full text-sm border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c] transition" data-val="Need">🔴 Need — I'm looking for something</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Offer">🔵 Offer — I can provide something</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Policy">🏛️ Policy — I'm sharing information or a policy</button>
+            <button class="toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition" data-val="Resource">📚 Resource — I'm sharing educational content</button>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <label>Category</label>
+          <select id="f-category">
+            <option value="">Select a category…</option>
+            <option>Job Training & Workforce Development</option>
+            <option>Hiring & Employment</option>
+            <option>Business Mentorship & Coaching</option>
+            <option>Access to Capital / Funding</option>
+            <option>SBA Loans & Lending Education</option>
+            <option>Financial Literacy & Planning</option>
+            <option>Space / Facilities</option>
+            <option>Technology & Digital Tools</option>
+            <option>Youth Programs</option>
+            <option>Health & Wellness</option>
+            <option>Food Security</option>
+            <option>Housing & Real Estate</option>
+            <option>Legal Services</option>
+            <option>Policy & Advocacy</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="md:col-span-2">
+          <label>Description</label>
+          <textarea id="f-desc" placeholder="Describe what you need, offer, or are sharing — who it serves, the scale, timeline, and what a great partnership or outcome looks like…"></textarea>
+        </div>
+
+        <!-- EDUCATION FIELD - core pillar -->
+        <div class="md:col-span-2">
+          <div class="edu-tip mb-2">Adding educational context makes your entry 3x more actionable. Help people understand the <em>why</em> behind this need or offer.</div>
+          <label>📚 Educational Context <span class="text-green-500">— What should people know?</span></label>
+          <textarea id="f-edu" placeholder="Share background knowledge, explain key terms, link to resources, or describe what people should understand about this topic. For policy submissions: provide a plain-language explanation of what this means for the community."></textarea>
+        </div>
+
+        <!-- POLICY-SPECIFIC -->
+        <div class="md:col-span-2" id="policy-section" style="display:none;">
+          <label>Plain-Language Policy Summary</label>
+          <textarea id="f-policy" placeholder="Explain this policy in plain language — what it means for everyday people, who it affects, how to take action, and where to learn more…"></textarea>
+        </div>
+
+        <div class="md:col-span-2">
+          <label>City / Area Served</label>
+          <input type="text" id="f-city" placeholder="e.g. Los Angeles, Inland Empire, Statewide, All of California"/>
+        </div>
+        <div class="md:col-span-2">
+          <label>Resource Link (optional)</label>
+          <input type="url" id="f-link" placeholder="https:// — link to a program, tool, article, or document"/>
+        </div>
+        <div class="md:col-span-2 flex justify-end gap-3 mt-2">
+          <button onclick="clearForm()" class="px-5 py-2 rounded-lg text-sm border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">Clear</button>
+          <button onclick="submitEntry()" class="px-6 py-2 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">✦ Submit Entry</button>
+        </div>
+      </div>
+      <div id="intake-success" class="hidden mt-5 flex items-center gap-3 bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.3)] text-[#c9a84c] rounded-lg px-4 py-3 text-sm">
+        <span>✦</span><span>Entry submitted! Check the <strong>Matches</strong> and <strong>Education Hub</strong> tabs.</span>
+      </div>
+    </div>
+
+    <!-- Recent Feed -->
+    <div class="mt-10">
+      <h3 class="text-lg font-bold mb-5">Recent Submissions <span class="text-gray-500 text-sm font-normal ml-2">Live community feed</span></h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="recent-feed"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     MATCHING TAB
+═══════════════════════════════════ -->
+<div class="tab-page" id="tab-matching">
+  <div class="max-w-6xl mx-auto px-5 py-12">
+    <div class="edu-tip mb-8">
+      <strong>How matching works:</strong> The platform automatically pairs community needs with offers based on category alignment. Each matched pair also surfaces relevant educational resources so both parties have shared context before collaborating. Knowledge first, then connection.
+    </div>
+    <div class="flex items-end justify-between mb-6 flex-wrap gap-4">
+      <div><h2 class="text-2xl font-bold">Smart Matches</h2><p class="text-gray-500 text-sm mt-1">Needs paired with offerings — with educational context for every connection.</p></div>
+      <button onclick="runMatching()" class="px-5 py-2 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">⚡ Re-Run Matching</button>
+    </div>
+    <div class="flex flex-wrap gap-2 mb-7">
+      <button class="filter-btn active px-4 py-1.5 rounded-full text-sm border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c]" data-f="all" onclick="setFilter(this,'all')">All</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400" data-f="matched" onclick="setFilter(this,'matched')">✦ Matched Pairs</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400" data-f="need" onclick="setFilter(this,'need')">Needs</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400" data-f="offer" onclick="setFilter(this,'offer')">Offers</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400" data-f="policy" onclick="setFilter(this,'policy')">🏛️ Policy</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400" data-f="resource" onclick="setFilter(this,'resource')">📚 Resources</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="matches-grid">
+      <div class="col-span-full text-center py-16 text-gray-500"><div class="text-5xl mb-4 opacity-30">🔗</div><p>Submit entries on the Intake tab to see matches here.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     PROJECT HUB TAB
+═══════════════════════════════════ -->
+<div class="tab-page" id="tab-hub">
+  <div class="max-w-5xl mx-auto px-5 py-12">
+    <div class="edu-tip mb-8">
+      <strong>Projects are learning journeys:</strong> Every project in this hub tracks not just tasks and outcomes — but the <em>knowledge gained</em> along the way. Learning objectives and educational milestones are as important as deliverables. What you build and what you learn both create lasting value.
+    </div>
+    <div class="flex items-end justify-between mb-6 flex-wrap gap-4">
+      <div><h2 class="text-2xl font-bold">Project Hub</h2><p class="text-gray-500 text-sm mt-1">Active initiatives with learning objectives and outcomes.</p></div>
+      <button onclick="showToast('Use Matching → \"Start Project\" to create projects from matched pairs.','ℹ️')" class="px-5 py-2 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">+ New Project</button>
+    </div>
+    <div class="flex flex-col gap-4" id="project-list"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     EDUCATION HUB TAB
+═══════════════════════════════════ -->
+<div class="tab-page" id="tab-education">
+  <div class="max-w-6xl mx-auto px-5 py-12">
+
+    <div class="mb-8">
+      <div class="inline-block text-xs font-bold tracking-widest uppercase text-green-400 bg-green-400/10 border border-green-400/20 px-3 py-1 rounded-full mb-3">📚 Education Hub</div>
+      <h2 class="text-3xl font-extrabold mb-2">Knowledge is the Foundation</h2>
+      <p class="text-gray-400 max-w-2xl leading-relaxed">Entrepreneur Ecosystem is a finance education technology platform. This hub houses the educational infrastructure that powers every connection, project, and policy in the ecosystem — from SBA loan basics to policy explainers to entrepreneurship fundamentals.</p>
+    </div>
+
+    <!-- Education stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <div class="bg-[#1c1c1e] border border-green-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-green-400">127</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Resources</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-green-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-green-400">842</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">People Educated</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-green-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-green-400">18</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Learning Modules</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-green-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-green-400">34</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Policy Explainers</div>
+      </div>
+    </div>
+
+    <!-- Sub-tabs -->
+    <div class="flex flex-wrap gap-2 mb-8 border-b border-white/5 pb-4">
+      <button class="edu-tab active px-4 py-2 rounded-lg text-sm font-medium text-green-400 bg-green-400/10 border border-green-400/25" onclick="switchEduTab('finance',this)">💰 Finance Education</button>
+      <button class="edu-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchEduTab('policy',this)">🏛️ Policy Explainers</button>
+      <button class="edu-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchEduTab('entrepreneurship',this)">🚀 Entrepreneurship</button>
+      <button class="edu-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchEduTab('community',this)">🏘️ Community Resources</button>
+      <button class="edu-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchEduTab('contribute',this)">+ Contribute a Resource</button>
+    </div>
+
+    <!-- Finance Education -->
+    <div class="edu-tab-page" id="edu-tab-finance">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">🏦</span><span class="chip chip-edu">SBA Loans</span></div>
+          <h3 class="font-bold text-sm mb-2">SBA 504 Loan: What It Is & Who It's For</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">The SBA 504 loan provides long-term, fixed-rate financing for major fixed assets — real estate and equipment. Designed for job creation and community growth. Typical structure: 50% bank, 40% CDC (AmPac), 10% borrower.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">AmPac Business Capital</span><button onclick="showToast('Resource saved to your profile!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">💵</span><span class="chip chip-edu">SBA Loans</span></div>
+          <h3 class="font-bold text-sm mb-2">SBA 7(a) Loan: Flexible Capital for Growing Businesses</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">The SBA 7(a) is the most common SBA loan — up to $5M for working capital, acquisitions, and refinancing. More flexible than 504. Good for businesses that need operational cash flow alongside growth capital.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">AmPac Business Capital</span><button onclick="showToast('Resource saved to your profile!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">📊</span><span class="chip chip-edu">Financial Literacy</span></div>
+          <h3 class="font-bold text-sm mb-2">Reading a Business Financial Statement</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Understanding your P&L, balance sheet, and cash flow statement is foundational to accessing capital. This guide breaks down each statement with plain-language explanations and what lenders actually look for.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">Finance Education · EE</span><button onclick="showToast('Resource saved to your profile!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">🎯</span><span class="chip chip-edu">Loan Readiness</span></div>
+          <h3 class="font-bold text-sm mb-2">The 5 C's of Credit — Explained Simply</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Character, Capacity, Capital, Collateral, Conditions — these are what every lender evaluates. Understanding each one helps you prepare before you apply and strengthens your application significantly.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">AmPac · Loan Readiness</span><button onclick="showToast('Resource saved to your profile!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">🏗️</span><span class="chip chip-edu">CDFI</span></div>
+          <h3 class="font-bold text-sm mb-2">What is a CDFI and Why It Matters for Your Community</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Community Development Financial Institutions (CDFIs) like AmPac exist to finance businesses in underserved markets. They can offer more flexible terms than traditional banks — here's how to leverage them.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">Community Finance · EE</span><button onclick="showToast('Resource saved to your profile!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">📈</span><span class="chip chip-edu">Planning</span></div>
+          <h3 class="font-bold text-sm mb-2">Building a Business Plan Lenders Actually Approve</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">A lender-ready business plan covers market analysis, financial projections, management team, and use-of-proceeds. This module walks you through each section with templates and real examples.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">EE Business Education</span><button onclick="showToast('Resource saved to your profile!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Policy Explainers -->
+    <div class="edu-tab-page hidden" id="edu-tab-policy">
+      <div class="edu-tip mb-6">Policy without context is just noise. Every policy shared in this ecosystem comes with a plain-language explanation — what it means, who it affects, and what action you can take.</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="policy-card">
+          <div class="flex items-center gap-2 mb-3"><span class="text-xl">🏛️</span><span class="chip chip-edu">SBA Policy</span></div>
+          <h3 class="font-bold text-sm mb-2">SBA SOP 50 10 8 — What Changed and Why It Matters</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-white">Plain language:</strong> The SBA's Standard Operating Procedure governs how all SBA loans are processed. Recent updates expanded eligibility for businesses in underserved communities and simplified the application process for loans under $500K.</p>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-green-400">What this means for you:</strong> If you were previously told you didn't qualify for SBA financing, it's worth re-applying under the updated rules. Community-focused businesses have broader access than before.</p>
+          <button onclick="showToast('Policy saved!','🏛️')" class="text-xs font-semibold text-green-400 hover:underline">Save Explainer →</button>
+        </div>
+        <div class="policy-card">
+          <div class="flex items-center gap-2 mb-3"><span class="text-xl">🌆</span><span class="chip chip-edu">Local Policy</span></div>
+          <h3 class="font-bold text-sm mb-2">California AB 1557 — Small Business Support Act</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-white">Plain language:</strong> This bill expands access to state-backed loan guarantees for businesses in low-income census tracts. It works alongside federal SBA programs to reduce collateral requirements.</p>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-green-400">What this means for you:</strong> Business owners in qualifying areas may be able to secure financing with less collateral. Contact AmPac to see if your business location qualifies.</p>
+          <button onclick="showToast('Policy saved!','🏛️')" class="text-xs font-semibold text-green-400 hover:underline">Save Explainer →</button>
+        </div>
+        <div class="policy-card">
+          <div class="flex items-center gap-2 mb-3"><span class="text-xl">👷</span><span class="chip chip-edu">Workforce Policy</span></div>
+          <h3 class="font-bold text-sm mb-2">WIOA — Workforce Innovation & Opportunity Act Explained</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-white">Plain language:</strong> WIOA is the federal law that funds job training programs in your community. It's why organizations like Uplift Workforce Alliance can offer free training — it's federally subsidized through this act.</p>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-green-400">What this means for you:</strong> If you're a nonprofit offering workforce services, you may be eligible for WIOA funding. If you need job training, WIOA-funded programs are free to eligible participants.</p>
+          <button onclick="showToast('Policy saved!','🏛️')" class="text-xs font-semibold text-green-400 hover:underline">Save Explainer →</button>
+        </div>
+        <div class="policy-card">
+          <div class="flex items-center gap-2 mb-3"><span class="text-xl">🏘️</span><span class="chip chip-edu">Community Dev</span></div>
+          <h3 class="font-bold text-sm mb-2">New Markets Tax Credit (NMTC) Program — Plain Language Guide</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-white">Plain language:</strong> NMTC allows investors to receive a 39% federal tax credit over 7 years for investing in low-income community businesses. This makes financing in underserved areas more attractive to private capital.</p>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3"><strong class="text-green-400">What this means for you:</strong> If you're developing a commercial project in a qualifying area, NMTC-backed financing could significantly reduce your cost of capital.</p>
+          <button onclick="showToast('Policy saved!','🏛️')" class="text-xs font-semibold text-green-400 hover:underline">Save Explainer →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entrepreneurship -->
+    <div class="edu-tab-page hidden" id="edu-tab-entrepreneurship">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">🏪</span><span class="chip chip-gold">Startup</span></div>
+          <h3 class="font-bold text-sm mb-2">Starting a Business in California: Step-by-Step</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Entity selection, DBA filing, EIN registration, business banking, licensing, and insurance — in the right order. Most new entrepreneurs skip steps that cost them later. This guide prevents that.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">EE Incubator Module</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">🤝</span><span class="chip chip-gold">Mentorship</span></div>
+          <h3 class="font-bold text-sm mb-2">How to Find and Use a Business Mentor Effectively</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">A mentor can compress years of learning into months. This guide covers how to identify the right mentor, set productive meeting agendas, and build a relationship that creates real accountability and growth.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">EE Coaching Track</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">📢</span><span class="chip chip-gold">Marketing</span></div>
+          <h3 class="font-bold text-sm mb-2">Community-Based Marketing for Small Businesses</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Marketing doesn't require a big budget when you build from community trust. This module covers grassroots strategies, partnerships with churches and nonprofits, and digital tools for neighborhood-level reach.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">EE Marketing Module</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">⚖️</span><span class="chip chip-gold">Legal</span></div>
+          <h3 class="font-bold text-sm mb-2">Business Structures Explained: LLC vs. S-Corp vs. Sole Prop</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Choosing the wrong entity structure can cost you thousands in taxes and expose you to personal liability. This explainer breaks down each option with real scenarios so you can make an informed choice.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">EE Legal Education</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">💡</span><span class="chip chip-gold">Innovation</span></div>
+          <h3 class="font-bold text-sm mb-2">Using Technology to Scale Without Hiring</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Automation, AI tools, and digital workflows can multiply your capacity without adding headcount. This module covers the highest-leverage tools for small business owners in 2025 — with honest cost-benefit analysis.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">Eco Tech AI · EE</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center justify-between mb-3"><span class="text-2xl">🌱</span><span class="chip chip-gold">Youth</span></div>
+          <h3 class="font-bold text-sm mb-2">Youth Entrepreneurship: Starting Young, Building Right</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">A guide designed for young entrepreneurs ages 14–24 — covering idea validation, micro-business launch, digital presence, and connecting to the Entrepreneur Ecosystem's youth programs and mentors.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">EE Youth Programs</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community Resources -->
+    <div class="edu-tab-page hidden" id="edu-tab-community">
+      <div class="edu-tip mb-6">These resources are contributed by community members — pastors, nonprofits, organizations — who believe that sharing knowledge is an act of service.</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="community-resources">
+        <div class="resource-card">
+          <div class="flex items-center gap-2 mb-3"><span class="chip chip-pastor">Pastor / Faith Leader</span><span class="chip chip-edu">Workforce</span></div>
+          <h3 class="font-bold text-sm mb-2">Pastoral Guide: Supporting Congregation Members in Job Transitions</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">Practical guidance for faith leaders helping congregation members navigate job loss, career transitions, and workforce training. Includes referral pathways to community organizations and SBA resources.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">Submitted by New Life Community Church</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+        <div class="resource-card">
+          <div class="flex items-center gap-2 mb-3"><span class="chip chip-nonprofit">Nonprofit Leader</span><span class="chip chip-edu">Training</span></div>
+          <h3 class="font-bold text-sm mb-2">What to Expect in a 6-Week Workforce Training Cohort</h3>
+          <p class="text-gray-400 text-xs leading-relaxed mb-3">A participant-facing guide explaining the cohort structure, what's covered, what's expected, and how to set yourself up for success. Includes the direct-hire pathways available to graduates.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-600">Submitted by Uplift Workforce Alliance</span><button onclick="showToast('Resource saved!','📚')" class="text-xs font-semibold text-green-400 hover:underline">Save →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contribute a Resource -->
+    <div class="edu-tab-page hidden" id="edu-tab-contribute">
+      <div class="max-w-2xl">
+        <div class="edu-tip mb-6">Every organization in the ecosystem has knowledge worth sharing. By contributing a resource, you strengthen the whole community's foundation. Education shared here reaches everyone — across every organization, every project, every connection.</div>
+        <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-6 space-y-4">
+          <div><label>Resource Title</label><input type="text" id="res-title" placeholder="e.g. How to Apply for an SBA 504 Loan"/></div>
+          <div>
+            <label>Category</label>
+            <select id="res-category">
+              <option>Finance Education</option>
+              <option>Policy Explainer</option>
+              <option>Entrepreneurship</option>
+              <option>Workforce Development</option>
+              <option>Youth Programs</option>
+              <option>Legal & Compliance</option>
+              <option>Community Development</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div><label>Description / Educational Content</label><textarea id="res-desc" placeholder="Share the knowledge. Plain language is best — explain key terms, what people should know, what action they can take…"></textarea></div>
+          <div><label>Your Organization</label><input type="text" id="res-org" placeholder="Who is contributing this resource?"/></div>
+          <div><label>External Link (optional)</label><input type="url" id="res-link" placeholder="https:// — link to full resource, document, or tool"/></div>
+          <div class="flex justify-end pt-2">
+            <button onclick="submitResource()" class="px-6 py-2 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">📚 Submit Resource</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     IMPACT TAB
+═══════════════════════════════════ -->
+<div class="tab-page" id="tab-reporting">
+  <div class="max-w-5xl mx-auto px-5 py-12">
+    <div class="edu-tip mb-8">
+      <strong>Impact includes education:</strong> This dashboard tracks economic outcomes AND knowledge outcomes. People educated, resources shared, and policy clarity achieved are tracked alongside jobs, matches, and capital deployed — because lasting impact requires informed communities.
+    </div>
+    <div class="flex items-end justify-between mb-6 flex-wrap gap-4">
+      <div><h2 class="text-2xl font-bold">Impact Dashboard</h2><p class="text-gray-500 text-sm mt-1">Real-time metrics for funders, government RFPs, and community accountability.</p></div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8" id="metrics-grid"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+      <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-6">
+        <div class="font-bold text-base mb-4">Recent Outcomes</div>
+        <ul id="outcomes-list" class="space-y-3"></ul>
+      </div>
+      <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-6">
+        <div class="font-bold text-base mb-4">Activity by Category</div>
+        <div id="bar-chart"></div>
+      </div>
+    </div>
+    <!-- Education impact section -->
+    <div class="bg-[rgba(34,197,94,0.04)] border border-green-500/15 rounded-xl p-6 mb-8">
+      <div class="flex items-center gap-2 mb-4"><span class="text-xl">📚</span><span class="font-bold">Education Impact</span></div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-center"><div class="text-2xl font-extrabold text-green-400">842</div><div class="text-xs text-gray-500 mt-1">People Reached by Education Resources</div></div>
+        <div class="text-center"><div class="text-2xl font-extrabold text-green-400">34</div><div class="text-xs text-gray-500 mt-1">Policy Explainers Published</div></div>
+        <div class="text-center"><div class="text-2xl font-extrabold text-green-400">127</div><div class="text-xs text-gray-500 mt-1">Resources in Education Hub</div></div>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <button onclick="exportReport()" class="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">📄 Export Impact Report</button>
+      <button onclick="showToast('RFP Summary copied to clipboard!','📋')" class="px-6 py-2.5 rounded-lg text-sm border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">📋 Copy RFP Summary</button>
+      <button onclick="switchTab('education', document.querySelectorAll('.tab-btn')[3])" class="px-6 py-2.5 rounded-lg text-sm border border-green-500/30 bg-green-500/5 text-green-400 hover:bg-green-500/10 transition">📚 View Education Impact</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     AI AGENTS TAB
+═══════════════════════════════════ -->
+<div class="tab-page" id="tab-aiagents">
+  <div class="max-w-6xl mx-auto px-5 py-12">
+    <div class="edu-tip mb-8">
+      <strong>AI Agents are educators too:</strong> Every agent in this ecosystem is designed to explain, not just execute. When an agent runs a financial analysis or matches community members, it surfaces the educational context behind every result — so people understand what happened and why.
+    </div>
+    <div class="mb-8">
+      <div class="inline-block text-xs font-bold tracking-widest uppercase text-purple-400 bg-purple-400/10 border border-purple-400/20 px-3 py-1 rounded-full mb-3">🤖 AI Agent Ecosystem</div>
+      <h2 class="text-3xl font-extrabold mb-2">The Agent Commons</h2>
+      <p class="text-gray-400 max-w-2xl leading-relaxed">A collaborative environment where business, education, and community-focused AI agents operate together across organizations — sharing knowledge, automating workflows, and teaching as they work.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <div class="bg-[#1c1c1e] border border-purple-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-purple-400">12</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Active Agents</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-purple-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-purple-400">47</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Skills Published</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-purple-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-purple-400">1,240</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Tasks Completed</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-purple-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-purple-400">842</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">People Educated</div>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-2 mb-8 border-b border-white/5 pb-4">
+      <button class="ai-tab active px-4 py-2 rounded-lg text-sm font-medium text-purple-400 bg-purple-400/10 border border-purple-400/25" onclick="switchAiTab('directory',this)">🤖 Agent Directory</button>
+      <button class="ai-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchAiTab('skills',this)">⚡ Skills Library</button>
+      <button class="ai-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchAiTab('collab',this)">🔄 Collaboration Feed</button>
+      <button class="ai-tab px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent hover:border-white/10 hover:bg-white/5 transition" onclick="switchAiTab('submit',this)">+ Submit Agent / Skill</button>
+    </div>
+    <div class="ai-tab-page" id="ai-tab-directory">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="agent-card featured">
+          <div class="flex items-start justify-between mb-3"><div class="text-2xl">💰</div><span class="chip chip-ai">Finance + Education</span></div>
+          <h3 class="font-bold text-base mb-1">Eco Finance AI Agent</h3>
+          <p class="text-gray-400 text-sm mb-2 leading-relaxed">Virtual CFO + Financial Educator. Runs SBA loan readiness assessments, cash flow analysis, and projections — and explains every result in plain language so business owners actually understand their finances.</p>
+          <div class="edu-tip text-xs mb-3">This agent teaches as it analyzes — every output includes a plain-language explanation of what the numbers mean.</div>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">AmPac Business Capital</span><a href="/finance-ai.html" class="text-xs font-semibold text-[#c9a84c] hover:underline">Launch →</a></div>
+        </div>
+        <div class="agent-card featured">
+          <div class="flex items-start justify-between mb-3"><div class="text-2xl">💻</div><span class="chip chip-ai">Technology + Education</span></div>
+          <h3 class="font-bold text-base mb-1">Eco Technology AI Agent</h3>
+          <p class="text-gray-400 text-sm mb-2 leading-relaxed">Tech stack advisor and digital infrastructure planner — explains every recommendation so entrepreneurs understand the "why" behind every technology decision, not just the "what."</p>
+          <div class="edu-tip text-xs mb-3">Includes a digital literacy module — teaches foundational tech concepts alongside every recommendation.</div>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">Entrepreneur Ecosystem</span><a href="/tech-ai.html" class="text-xs font-semibold text-[#c9a84c] hover:underline">Launch →</a></div>
+        </div>
+        <div class="agent-card">
+          <div class="flex items-start justify-between mb-3"><div class="text-2xl">📚</div><span class="chip chip-edu">Education Agent</span></div>
+          <h3 class="font-bold text-base mb-1">Education & Policy Guide Agent</h3>
+          <p class="text-gray-400 text-sm mb-2 leading-relaxed">Dedicated education agent — surfaces relevant learning resources for any topic, translates policy into plain language, and guides community members through complex financial and legal concepts.</p>
+          <div class="edu-tip text-xs mb-3">Core to the ecosystem — this agent runs in the background of every other agent to add educational context.</div>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">EE Education Core</span><button onclick="switchTab('education', document.querySelectorAll('.tab-btn')[3])" class="text-xs font-semibold text-[#c9a84c] hover:underline">Explore Hub →</button></div>
+        </div>
+        <div class="agent-card">
+          <div class="flex items-start justify-between mb-3"><div class="text-2xl">🤝</div><span class="chip chip-ai">Community</span></div>
+          <h3 class="font-bold text-base mb-1">Community Matchmaker Agent</h3>
+          <p class="text-gray-400 text-sm mb-2 leading-relaxed">Pairs needs with offers and automatically surfaces educational resources relevant to each match — so both parties start their collaboration with shared context and knowledge.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">Platform Engine</span><button onclick="switchTab('matching', document.querySelectorAll('.tab-btn')[1])" class="text-xs font-semibold text-[#c9a84c] hover:underline">Use Agent →</button></div>
+        </div>
+        <div class="agent-card">
+          <div class="flex items-start justify-between mb-3"><div class="text-2xl">🏛️</div><span class="chip chip-ai">Economic Dev</span></div>
+          <h3 class="font-bold text-base mb-1">Economic Development Agent</h3>
+          <p class="text-gray-400 text-sm mb-2 leading-relaxed">Monitors RFPs, grants, and policy changes — and automatically creates plain-language explainers for every policy update so the community stays informed and ready to act.</p>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">Gov / Funder Tier</span><a href="/economic-development.html" class="text-xs font-semibold text-[#c9a84c] hover:underline">Launch →</a></div>
+        </div>
+        <div class="agent-card border-dashed border-[rgba(201,168,76,0.25)] flex flex-col items-center justify-center text-center min-h-[200px] cursor-pointer hover:border-[rgba(201,168,76,0.5)] transition" onclick="switchAiTab('submit', document.querySelectorAll('.ai-tab')[3])">
+          <div class="text-4xl mb-3 opacity-40">+</div>
+          <div class="font-semibold text-gray-400 text-sm">Submit Your Agent</div>
+          <div class="text-gray-600 text-xs mt-1">Contribute to the ecosystem</div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-tab-page hidden" id="ai-tab-skills">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-5"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-3"><div class="text-xl">📊</div><div class="font-semibold text-sm">SBA Loan Readiness Scorer</div></div><span class="chip chip-gold">Finance</span></div><p class="text-gray-400 text-xs leading-relaxed mb-2">Evaluates financials and outputs a loan readiness score with plain-language improvement steps aligned to SBA 504/7(a) criteria.</p><div class="edu-tip text-xs mb-3">Includes a 5 C's of Credit explainer with every output.</div><div class="flex items-center justify-between"><div class="text-xs text-gray-600">AmPac · 234 uses</div><button onclick="showToast('Skill deployed!','⚡')" class="text-xs font-semibold text-[#c9a84c] hover:underline">Deploy →</button></div></div>
+        <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-5"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-3"><div class="text-xl">📝</div><div class="font-semibold text-sm">RFP Response Generator</div></div><span class="chip chip-gold">Gov</span></div><p class="text-gray-400 text-xs leading-relaxed mb-2">Drafts structured government RFP responses pre-loaded with ecosystem impact metrics and educational outcome data.</p><div class="edu-tip text-xs mb-3">Includes a guide on what makes a winning RFP narrative.</div><div class="flex items-center justify-between"><div class="text-xs text-gray-600">EE Ops · 189 uses</div><button onclick="showToast('Skill deployed!','⚡')" class="text-xs font-semibold text-[#c9a84c] hover:underline">Deploy →</button></div></div>
+        <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-5"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-3"><div class="text-xl">🔗</div><div class="font-semibold text-sm">Partnership Outreach Drafter</div></div><span class="chip chip-gold">Community</span></div><p class="text-gray-400 text-xs leading-relaxed mb-2">Drafts personalized outreach emails when a match is made — warm, professional, and includes relevant educational context for the partnership topic.</p><div class="flex items-center justify-between"><div class="text-xs text-gray-600">Platform · 312 uses</div><button onclick="showToast('Skill deployed!','⚡')" class="text-xs font-semibold text-[#c9a84c] hover:underline">Deploy →</button></div></div>
+        <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-5"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-3"><div class="text-xl">📚</div><div class="font-semibold text-sm">Policy-to-Plain-Language Translator</div></div><span class="chip chip-edu">Education</span></div><p class="text-gray-400 text-xs leading-relaxed mb-2">Takes any policy document or government announcement and outputs a plain-language summary with community action steps. Core to the Education Hub.</p><div class="edu-tip text-xs mb-3">This is the most-used skill in the Education Agent.</div><div class="flex items-center justify-between"><div class="text-xs text-gray-600">Education Core · 567 uses</div><button onclick="showToast('Skill deployed!','⚡')" class="text-xs font-semibold text-[#c9a84c] hover:underline">Deploy →</button></div></div>
+      </div>
+    </div>
+    <div class="ai-tab-page hidden" id="ai-tab-collab">
+      <div class="max-w-2xl"><p class="text-gray-400 text-sm mb-6">Live feed of agent-to-agent collaboration and educational activity across the ecosystem.</p><div class="space-y-3" id="collab-feed"></div></div>
+    </div>
+    <div class="ai-tab-page hidden" id="ai-tab-submit">
+      <div class="max-w-2xl">
+        <h3 class="text-xl font-bold mb-2">Submit an Agent or Skill</h3>
+        <div class="edu-tip mb-5">Agents and skills that teach as they work are prioritized. Include a description of what your agent helps people <em>understand</em>, not just what it does.</div>
+        <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-6 space-y-4">
+          <div><label>Agent / Skill Name</label><input type="text" id="ai-name" placeholder="e.g. Cash Flow Forecaster Agent"/></div>
+          <div><label>Type</label><select id="ai-type"><option>AI Agent (standalone)</option><option>Skill (modular tool)</option><option>Workflow (multi-step automation)</option><option>Education Module</option><option>Data Connector</option></select></div>
+          <div><label>Category</label><select id="ai-category"><option>Finance & Capital</option><option>Education & Policy</option><option>Workforce & Employment</option><option>Community & Partnerships</option><option>Operations & Compliance</option><option>Government & Grants</option><option>Marketing & Outreach</option><option>Analytics & Reporting</option><option>Other</option></select></div>
+          <div><label>What does it do?</label><textarea id="ai-desc" placeholder="Describe the agent — what it does, who it serves, what problems it solves…"></textarea></div>
+          <div><label>📚 What does it help people learn or understand?</label><textarea id="ai-edu" placeholder="Describe the educational value — what knowledge does this agent surface or explain? How does it teach as it works?"></textarea></div>
+          <div><label>Your Organization</label><input type="text" id="ai-org" placeholder="Organization or individual contributor"/></div>
+          <div><label>Link (optional)</label><input type="url" id="ai-link" placeholder="https://github.com/… or documentation URL"/></div>
+          <div class="flex justify-end pt-2"><button onclick="submitAgent()" class="px-6 py-2 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">Submit for Review →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="border-t border-[rgba(201,168,76,0.1)] mt-16 py-10 px-5">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6">
+    <div>
+      <div class="flex items-center gap-3 mb-2">
+        <img src="ee-logo.png" alt="EE" class="h-7 w-auto" onerror="this.style.display='none'">
+        <span class="text-xs font-bold tracking-widest uppercase text-[#c9a84c]">Entrepreneur Ecosystem</span>
+      </div>
+      <div class="text-xs text-gray-600">Finance · Education · Technology</div>
+    </div>
+    <div class="flex flex-wrap gap-6 text-xs text-gray-500">
+      <a href="/" class="hover:text-white transition">Home</a>
+      <a href="/finance-ai.html" class="hover:text-white transition">Finance AI</a>
+      <a href="/tech-ai.html" class="hover:text-white transition">Tech AI</a>
+      <a href="/community-platform.html" class="hover:text-white transition">Community Platform</a>
+      <a href="https://ampac.com/" class="hover:text-white transition" target="_blank">AmPac Business Capital</a>
+    </div>
+    <div class="text-xs text-gray-600">Powered by AmPac Business Capital · © 2025 Entrepreneur Ecosystem</div>
+  </div>
+</footer>
+
+<div id="toast" class="flex items-center gap-3"><span id="t-icon">✦</span><span id="t-msg"></span></div>
+
+<script>
+// ══════════════════════════
+//  DATA
+// ══════════════════════════
+let entries = [
+  {id:1,name:"Pastor Marcus Williams",org:"New Life Community Church",email:"m.williams@newlifechurch.org",role:"Pastor / Faith Leader",type:"Need",category:"Job Training & Workforce Development",desc:"We have 45 congregation members who need job skills training — especially tech, customer service, and construction trades.",edu:"Many congregation members lack awareness of the free training programs available in the Inland Empire. There's also a misconception that job training is only for young people — most of our members are 30-55.",city:"Inland Empire",ts:Date.now()-86400000*3},
+  {id:2,name:"Diana Reyes",org:"Uplift Workforce Alliance",email:"d.reyes@upliftwa.org",role:"Nonprofit Leader",type:"Offer",category:"Job Training & Workforce Development",desc:"We offer free 6-week workforce training cohorts: customer service, construction basics, and intro to tech. Looking for partner churches and referral pipelines.",edu:"Our training is funded through WIOA (Workforce Innovation & Opportunity Act) — which means it's free for qualifying participants. Many people don't know this funding exists or that they qualify.",city:"Inland Empire",ts:Date.now()-86400000*2},
+  {id:3,name:"Carlos Mendez",org:"Mendez Building Group",email:"carlos@mendezbuilding.com",role:"Business Owner",type:"Offer",category:"Hiring & Employment",desc:"We're hiring 12 entry-level construction laborers over the next 90 days. Will hire directly from training programs — no experience required.",edu:"Many applicants don't realize that construction jobs often pay $22-35/hr starting. There's a massive skills gap in the trades — trained workers have strong career pathways and upward mobility.",city:"Riverside / San Bernardino",ts:Date.now()-86400000},
+  {id:4,name:"Aisha Thompson",org:"Eastside Youth Network",email:"a.thompson@eyn.org",role:"Nonprofit Leader",type:"Need",category:"Space / Facilities",desc:"We need a meeting space for 40-50 youth on Saturday mornings — chairs, projector, and basic AV. Free or low-cost preferred.",edu:"Access to safe, consistent space is one of the biggest barriers to youth program continuity. Without a permanent home, programs can't build the consistency young people need to develop trust and commitment.",city:"Los Angeles",ts:Date.now()-3600000*5}
+];
+
+let projects = [
+  {id:1,title:"Inland Empire Workforce Pipeline",desc:"Connecting New Life Church members to Uplift Workforce training cohorts, with direct-hire pathway to Mendez Building Group.",partners:["New Life Community Church","Uplift Workforce Alliance","Mendez Building Group"],status:"active",progress:62,goal:"Place 20 trained workers in employment",metric:"8 of 20 placed",learningGoal:"Participants complete financial literacy module before job placement"},
+  {id:2,title:"LA Youth Saturday Hub",desc:"Securing recurring Saturday space for Eastside Youth Network programming — active partner search underway.",partners:["Eastside Youth Network"],status:"planning",progress:25,goal:"Secure venue, launch 8-week cohort",metric:"Venue search active",learningGoal:"8-week youth entrepreneurship curriculum developed"},
+  {id:3,title:"Micro-Business Coaching Circle",desc:"Monthly peer coaching sessions for early-stage entrepreneurs across faith communities. AmPac provides SBA lending guidance.",partners:["AmPac Business Capital","Faith Community Partners"],status:"active",progress:80,goal:"Support 30 entrepreneurs with coaching + capital access",metric:"24 of 30 enrolled",learningGoal:"All participants complete SBA loan readiness education track"}
+];
+
+let matchedPairs = [];
+let activeFilter = 'all';
+let selectedRole = "Pastor / Faith Leader";
+let selectedType = "Need";
+
+const collabEvents = [
+  {icon:"📚",agent:"Education Agent",action:"published plain-language explainer for",target:"SBA SOP update",org:"EE Education Core",time:"3m ago"},
+  {icon:"💰",agent:"Eco Finance AI",action:"ran loan readiness assessment + education brief for",target:"Mendez Building Group",org:"AmPac Business Capital",time:"8m ago"},
+  {icon:"🔗",agent:"Community Matchmaker",action:"identified 3 matches + surfaced 2 education resources for",target:"Job Training category",org:"Platform Engine",time:"15m ago"},
+  {icon:"🏛️",agent:"Economic Dev Agent",action:"translated 4 new RFP policies into plain language for",target:"Workforce Development",org:"CA Economic Dev",time:"1h ago"},
+  {icon:"📋",agent:"Back Office Agent",action:"generated education impact summary for",target:"Inland Empire Workforce Pipeline",org:"AmPac Operations",time:"2h ago"},
+  {icon:"🤝",agent:"Community Matchmaker",action:"drafted context-rich outreach email for",target:"New Life Church × Uplift Alliance match",org:"Platform Engine",time:"3h ago"},
+];
+
+// ══════════════════════════
+//  NAVIGATION
+// ══════════════════════════
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(id==='matching') renderMatches();
+  if(id==='hub') renderProjects();
+  if(id==='reporting') renderReporting();
+  if(id==='aiagents') renderCollab();
+  if(id==='intake') renderFeed();
+}
+
+function switchEduTab(id,btn) {
+  document.querySelectorAll('.edu-tab-page').forEach(p=>{p.classList.add('hidden');});
+  document.querySelectorAll('.edu-tab').forEach(b=>{
+    b.classList.remove('active','text-green-400','bg-green-400/10','border-green-400/25');
+    b.classList.add('text-gray-400','border-transparent');
+  });
+  document.getElementById('edu-tab-'+id).classList.remove('hidden');
+  if(btn){btn.classList.add('active','text-green-400','bg-green-400/10','border-green-400/25');btn.classList.remove('text-gray-400','border-transparent');}
+}
+
+function switchAiTab(id,btn) {
+  document.querySelectorAll('.ai-tab-page').forEach(p=>{p.classList.add('hidden');});
+  document.querySelectorAll('.ai-tab').forEach(b=>{
+    b.classList.remove('active','text-purple-400','bg-purple-400/10','border-purple-400/25');
+    b.classList.add('text-gray-400','border-transparent');
+  });
+  document.getElementById('ai-tab-'+id).classList.remove('hidden');
+  if(btn){btn.classList.add('active','text-purple-400','bg-purple-400/10','border-purple-400/25');btn.classList.remove('text-gray-400','border-transparent');}
+}
+
+// ══════════════════════════
+//  TOGGLE BUTTONS
+// ══════════════════════════
+function initToggle(groupId, callback) {
+  document.querySelectorAll(`#${groupId} .toggle-btn`).forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll(`#${groupId} .toggle-btn`).forEach(b=>{
+        b.className='toggle-btn px-4 py-2 rounded-full text-sm border border-white/10 bg-[#2e2e30] text-gray-400 transition';
+      });
+      btn.className='toggle-btn active px-4 py-2 rounded-full text-sm border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c] transition';
+      callback(btn.dataset.val);
+    };
+  });
+}
+initToggle('role-toggle', v=>{selectedRole=v;});
+initToggle('type-toggle', v=>{
+  selectedType=v;
+  document.getElementById('policy-section').style.display = (v==='Policy') ? 'block' : 'none';
+});
+
+// ══════════════════════════
+//  INTAKE
+// ══════════════════════════
+function submitEntry() {
+  const name=document.getElementById('f-name').value.trim();
+  const org=document.getElementById('f-org').value.trim();
+  const cat=document.getElementById('f-category').value;
+  const desc=document.getElementById('f-desc').value.trim();
+  if(!name||!org||!cat||!desc){showToast('Please fill in Name, Org, Category & Description.','⚠️');return;}
+  entries.unshift({
+    id:Date.now(),name,org,
+    email:document.getElementById('f-email').value.trim(),
+    role:selectedRole,type:selectedType,category:cat,desc,
+    edu:document.getElementById('f-edu').value.trim(),
+    link:document.getElementById('f-link').value.trim(),
+    city:document.getElementById('f-city').value.trim(),
+    ts:Date.now()
+  });
+  document.getElementById('intake-success').classList.remove('hidden');
+  setTimeout(()=>document.getElementById('intake-success').classList.add('hidden'),4500);
+  renderFeed(); runMatchingQuiet(); updateStats();
+  showToast('Entry submitted with educational context!','✦');
+  clearForm();
+}
+
+function clearForm() {
+  ['f-name','f-org','f-email','f-phone','f-desc','f-city','f-edu','f-link','f-policy'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('f-category').value='';
+}
+
+function renderFeed() {
+  const el=document.getElementById('recent-feed');
+  el.innerHTML=entries.slice(0,6).map(e=>entryCardHTML(e)).join('')||'<div class="col-span-full text-center py-10 text-gray-500">No submissions yet — be first!</div>';
+}
+
+function entryCardHTML(e) {
+  const roleClass={'Pastor / Faith Leader':'chip-pastor','Nonprofit Leader':'chip-nonprofit','Business Owner':'chip-business','Community Member':'chip-community','Government / Funder':'chip-gov'}[e.role]||'chip-community';
+  const typeColor={'Need':'need-card','Offer':'offer-card','Policy':'matched-card','Resource':'matched-card'}[e.type]||'need-card';
+  return `<div class="entry-card ${typeColor}">
+    <div class="flex items-center gap-2 mb-2 flex-wrap"><span class="chip ${roleClass}">${e.role}</span><span class="chip chip-${e.type==='Need'?'need':e.type==='Offer'?'offer':'gold'}">${e.type}</span></div>
+    <h3 class="font-bold text-sm mb-1">${e.category}</h3>
+    <p class="text-gray-400 text-xs leading-relaxed mb-2">${e.desc.substring(0,110)}${e.desc.length>110?'…':''}</p>
+    ${e.edu?`<div class="edu-tip text-xs mb-2">${e.edu.substring(0,100)}${e.edu.length>100?'…':''}</div>`:''}
+    <div class="flex items-center justify-between border-t border-white/5 pt-2 mt-1">
+      <span class="text-xs text-gray-500">${e.name} · ${e.org}</span>
+      <span class="text-xs text-gray-600">${timeAgo(e.ts)}</span>
+    </div>
+  </div>`;
+}
+
+// ══════════════════════════
+//  MATCHING
+// ══════════════════════════
+function runMatchingQuiet() {
+  const needs=entries.filter(e=>e.type==='Need');
+  const offers=entries.filter(e=>e.type==='Offer');
+  matchedPairs=[];
+  needs.forEach(n=>offers.forEach(o=>{
+    if(n.category===o.category&&!matchedPairs.find(p=>p.need.id===n.id&&p.offer.id===o.id))
+      matchedPairs.push({need:n,offer:o,id:`${n.id}-${o.id}`});
+  }));
+  const badge=document.getElementById('match-badge');
+  matchedPairs.length>0?(badge.textContent=matchedPairs.length,badge.classList.remove('hidden')):badge.classList.add('hidden');
+}
+
+function runMatching(){runMatchingQuiet();renderMatches();showToast(`${matchedPairs.length} matches found.`,'⚡');}
+
+function renderMatches() {
+  const grid=document.getElementById('matches-grid');
+  runMatchingQuiet();
+  let html='';
+  if(matchedPairs.length&&(activeFilter==='all'||activeFilter==='matched')) {
+    matchedPairs.forEach(p=>{
+      const eduContext = p.need.edu||p.offer.edu ? `<div class="edu-tip text-xs mt-3">${(p.need.edu||p.offer.edu).substring(0,120)}…</div>` : '';
+      html+=`<div class="entry-card matched-card">
+        <div class="inline-flex items-center gap-1.5 chip chip-gold mb-3">✦ Matched Pair</div>
+        <h3 class="font-bold text-sm mb-3">${p.need.category}</h3>
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div class="bg-red-500/5 border border-red-500/15 rounded-lg p-2.5"><div class="text-xs text-red-400 font-bold uppercase tracking-wider mb-1">🔴 Need</div><div class="text-xs font-semibold">${p.need.org}</div><div class="text-xs text-gray-500 mt-1">${p.need.desc.substring(0,65)}…</div></div>
+          <div class="bg-blue-500/5 border border-blue-500/15 rounded-lg p-2.5"><div class="text-xs text-blue-400 font-bold uppercase tracking-wider mb-1">🔵 Offer</div><div class="text-xs font-semibold">${p.offer.org}</div><div class="text-xs text-gray-500 mt-1">${p.offer.desc.substring(0,65)}…</div></div>
+        </div>
+        ${eduContext}
+        <div class="flex items-center justify-between border-t border-white/5 pt-3 mt-2">
+          <span class="text-xs text-gray-500">${p.need.city||'Community'}</span>
+          <button onclick="convertToProject(${p.need.id},${p.offer.id})" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">→ Start Project</button>
+        </div>
+      </div>`;
+    });
+  }
+  const filtered=entries.filter(e=>{
+    if(activeFilter==='all') return true;
+    if(activeFilter==='matched') return false;
+    return e.type.toLowerCase()===activeFilter;
+  });
+  filtered.forEach(e=>{html+=entryCardHTML(e);});
+  grid.innerHTML=html||'<div class="col-span-full text-center py-14 text-gray-500"><div class="text-5xl mb-4 opacity-30">🔗</div><p>No entries match this filter.</p></div>';
+}
+
+function setFilter(btn,f) {
+  activeFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>{b.classList.remove('active');b.className=b.className.replace(/bg-\[rgba\(201.*?\)\]|text-\[#c9a84c\]|border-\[rgba\(201.*?\)\]/g,'').trim()+'';b.style.cssText='';});
+  btn.classList.add('active');
+  renderMatches();
+}
+
+function convertToProject(needId,offerId) {
+  const n=entries.find(e=>e.id===needId),o=entries.find(e=>e.id===offerId);
+  if(!n||!o) return;
+  if(projects.find(p=>p.partners.includes(n.org))){showToast('Project already exists!','✦');return;}
+  projects.unshift({id:Date.now(),title:`${n.category} — ${n.city||'Community'}`,desc:`${n.org} and ${o.org} partnering on ${n.category.toLowerCase()}.`,partners:[n.org,o.org],status:'planning',progress:10,goal:`Fulfill: ${n.desc.substring(0,55)}…`,metric:'Just launched',learningGoal:n.edu||'Educational goals to be defined'});
+  showToast('Project created with learning objectives!','🚀');
+  updateStats();
+}
+
+// ══════════════════════════
+//  PROJECTS
+// ══════════════════════════
+function renderProjects() {
+  const el=document.getElementById('project-list');
+  if(!projects.length){el.innerHTML='<div class="text-center py-14 text-gray-500">No projects yet. Convert a match to get started.</div>';return;}
+  el.innerHTML=projects.map(p=>`
+    <div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-6 hover:border-[rgba(201,168,76,0.4)] transition">
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
+        <div>
+          <h3 class="font-bold text-base mb-1">${p.title}</h3>
+          <p class="text-gray-400 text-sm mb-3 leading-relaxed">${p.desc}</p>
+          <div class="flex flex-wrap gap-2 mb-3">${p.partners.map(pt=>`<span class="text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10">${pt}</span>`).join('')}</div>
+          ${p.learningGoal?`<div class="edu-tip text-xs mb-3">📚 Learning Objective: ${p.learningGoal}</div>`:''}
+          <div class="flex items-center justify-between text-xs text-gray-500 mb-2"><span>${p.goal}</span><span>${p.metric}</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:${p.progress}%"></div></div>
+        </div>
+        <span class="chip chip-${p.status}">${p.status}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════
+//  REPORTING
+// ══════════════════════════
+function renderReporting() {
+  runMatchingQuiet();
+  document.getElementById('metrics-grid').innerHTML=[
+    {val:entries.length,label:'Submissions'},
+    {val:matchedPairs.length,label:'Matches'},
+    {val:projects.length,label:'Projects'},
+    {val:20,label:'Jobs Connected'},
+    {val:842,label:'People Educated'},
+    {val:127,label:'Resources'},
+    {val:34,label:'Policy Explainers'},
+    {val:entries.filter(e=>e.type==='Need').length,label:'Open Needs'},
+  ].map(m=>`<div class="bg-[#1c1c1e] border border-[rgba(201,168,76,0.15)] rounded-xl p-4 text-center"><div class="text-2xl font-extrabold text-[#c9a84c]">${m.val}</div><div class="text-xs text-gray-500 uppercase tracking-widest mt-1">${m.label}</div></div>`).join('');
+  document.getElementById('outcomes-list').innerHTML=[
+    {t:'Pastor Marcus → Workforce Pipeline',s:'8 congregation members enrolled in job training + financial literacy module'},
+    {t:'Mendez Building Group hired 3 graduates',s:'All 3 completed the trades education track from Uplift Alliance'},
+    {t:'Micro-Business Coaching — 24 enrolled',s:'SBA loan readiness education track — 18 of 24 completed'},
+    {t:'Youth Network — space match in progress',s:'Youth entrepreneurship curriculum in development'},
+    {t:'842 people reached by education resources',s:'Finance, policy, and entrepreneurship modules across all programs'},
+  ].map(o=>`<li class="flex items-start gap-3 py-2.5 border-b border-white/5 last:border-0"><div class="w-2 h-2 rounded-full bg-[#c9a84c] mt-1.5 flex-shrink-0"></div><div><div class="text-sm font-semibold">${o.t}</div><div class="text-xs text-gray-500 mt-0.5">${o.s}</div></div></li>`).join('');
+  const cats={};
+  entries.forEach(e=>{cats[e.category]=(cats[e.category]||0)+1;});
+  const sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const max=sorted[0]?.[1]||1;
+  document.getElementById('bar-chart').innerHTML=sorted.map(([cat,val])=>`<div class="flex items-center gap-3 mb-2.5"><div class="text-xs text-gray-500 w-20 flex-shrink-0">${cat.split(' ')[0]}</div><div class="flex-1 h-2.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-[#7a6030] to-[#c9a84c]" style="width:${Math.round((val/max)*100)}%"></div></div><div class="text-xs font-semibold text-[#c9a84c] w-4 text-right">${val}</div></div>`).join('');
+}
+
+function exportReport() {
+  const lines=['=== ENTREPRENEUR ECOSYSTEM — COMMUNITY IMPACT REPORT ===',`Generated: ${new Date().toLocaleDateString()}`,`Platform: Finance · Education · Technology`,'',`Total Submissions: ${entries.length}`,`Matches Made: ${matchedPairs.length}`,`Active Projects: ${projects.length}`,`Jobs Connected: 20`,`People Educated: 842`,`Education Resources: 127`,`Policy Explainers Published: 34`,'','--- ACTIVE PROJECTS & LEARNING OUTCOMES ---',...projects.map(p=>`• ${p.title} [${p.status.toUpperCase()}] — ${p.metric}\n  📚 Learning Objective: ${p.learningGoal||'TBD'}`),'','--- RECENT OUTCOMES ---','• 8 congregation members enrolled in workforce training + financial literacy','• 3 training graduates hired by Mendez Building Group (all completed education track)','• 24 entrepreneurs in SBA coaching track — 18 completed loan readiness education','• 842 people reached by ecosystem education resources','','Entrepreneur Ecosystem — Finance · Education · Technology','Powered by AmPac Business Capital | entrepreneur-ecosystem.com'].join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([lines],{type:'text/plain'}));
+  a.download=`EE-Impact-Report-${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+  showToast('Impact report exported!','📄');
+}
+
+// ══════════════════════════
+//  COLLAB FEED
+// ══════════════════════════
+function renderCollab() {
+  document.getElementById('collab-feed').innerHTML=collabEvents.map(e=>`
+    <div class="bg-[#1c1c1e] border border-[rgba(124,58,237,0.15)] rounded-xl p-4 flex items-start gap-4">
+      <div class="text-xl flex-shrink-0">${e.icon}</div>
+      <div><div class="text-sm"><span class="font-semibold text-purple-300">${e.agent}</span> <span class="text-gray-400">${e.action}</span> <span class="font-semibold">${e.target}</span></div><div class="flex items-center gap-2 mt-1"><span class="text-xs text-gray-600">${e.org}</span><span class="text-gray-700">·</span><span class="text-xs text-gray-600">${e.time}</span></div></div>
+    </div>`).join('');
+}
+
+function submitAgent(){
+  const name=document.getElementById('ai-name').value.trim();
+  const desc=document.getElementById('ai-desc').value.trim();
+  if(!name||!desc){showToast('Please fill in name and description.','⚠️');return;}
+  showToast('Submitted for review! We\'ll be in touch.','🤖');
+  ['ai-name','ai-desc','ai-edu','ai-org','ai-link'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+function submitResource(){
+  const title=document.getElementById('res-title').value.trim();
+  const desc=document.getElementById('res-desc').value.trim();
+  if(!title||!desc){showToast('Please fill in title and description.','⚠️');return;}
+  showToast('Resource submitted to the Education Hub!','📚');
+  ['res-title','res-desc','res-org','res-link'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+// ══════════════════════════
+//  STATS & UTILS
+// ══════════════════════════
+function updateStats() {
+  runMatchingQuiet();
+  animCount('s-members',entries.length);
+  animCount('s-matches',matchedPairs.length);
+  animCount('s-projects',projects.length);
+  animCount('s-educated',842);
+  animCount('s-agents',12);
+}
+
+function animCount(id,target) {
+  const el=document.getElementById(id);
+  if(!el) return;
+  let cur=0,step=Math.ceil(target/20);
+  const iv=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=cur.toLocaleString();if(cur>=target)clearInterval(iv);},40);
+}
+
+function timeAgo(ts) {
+  const m=Math.floor((Date.now()-ts)/60000);
+  if(m<1) return 'just now';
+  if(m<60) return `${m}m ago`;
+  const h=Math.floor(m/60);
+  if(h<24) return `${h}h ago`;
+  return `${Math.floor(h/24)}d ago`;
+}
+
+function showToast(msg,icon='✦') {
+  document.getElementById('t-msg').textContent=msg;
+  document.getElementById('t-icon').textContent=icon;
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ══════════════════════════
+//  INIT
+// ══════════════════════════
+renderFeed();
+updateStats();
+runMatchingQuiet();
+</script>
+</body>
+</html>
