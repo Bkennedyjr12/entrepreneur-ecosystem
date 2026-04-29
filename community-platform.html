@@ -19,6 +19,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     :root {
@@ -156,8 +158,10 @@
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('matching',this)">🔗 Matches <span id="match-badge" class="hidden ml-1 text-xs font-bold bg-[#c9a84c] text-black px-1.5 py-0.5 rounded-full"></span></button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('hub',this)">📋 Projects</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('grants',this)">💰 Grants & Contracts</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('grantmatch',this)">🎯 Opportunity Match</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('education',this)">📚 Education Hub</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('reporting',this)">📊 Impact</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('ecomap',this)">🗺️ Ecosystem Map</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('aiagents',this)">🤖 AI Agents</button>
   </div>
 </div>
@@ -740,6 +744,75 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     ECOSYSTEM MAP TAB
+═══════════════════════════════════════ -->
+<div class="tab-page" id="tab-ecomap">
+  <div class="max-w-7xl mx-auto px-5 py-10">
+
+    <!-- Header -->
+    <div class="mb-6">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 class="text-3xl font-extrabold mb-1">Ecosystem Map</h2>
+          <p class="text-gray-400 max-w-2xl text-sm leading-relaxed">Live geographic view of every project, partner organization, grant hub, and AmPac capital access point across the ecosystem. Each pin represents a node of impact.</p>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="mapZoomRegion('socal')" class="px-4 py-2 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">📍 SoCal</button>
+          <button onclick="mapZoomRegion('norcal')" class="px-4 py-2 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">📍 NorCal</button>
+          <button onclick="mapZoomRegion('az')" class="px-4 py-2 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">📍 Arizona</button>
+          <button onclick="mapZoomRegion('nv')" class="px-4 py-2 rounded-lg text-xs font-semibold border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">📍 Nevada</button>
+          <button onclick="mapZoomRegion('all')" class="px-4 py-2 rounded-lg text-xs font-semibold bg-[rgba(201,168,76,0.12)] border border-[rgba(201,168,76,0.4)] text-[#c9a84c] hover:bg-[rgba(201,168,76,0.2)] transition">🗺️ Full View</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat pills -->
+    <div class="flex flex-wrap gap-3 mb-5" id="map-stats-row"></div>
+
+    <!-- Filter bar -->
+    <div class="flex flex-wrap gap-2 mb-4" id="map-filter-bar">
+      <span class="text-xs text-gray-500 self-center mr-1">Filter:</span>
+      <button onclick="setMapFilter('all',this)" class="map-filter-btn active-mf px-3 py-1.5 rounded-full text-xs border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c]">All Nodes</button>
+      <button onclick="setMapFilter('project',this)" class="map-filter-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400">📋 Projects</button>
+      <button onclick="setMapFilter('need',this)" class="map-filter-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400">🔵 Needs</button>
+      <button onclick="setMapFilter('offer',this)" class="map-filter-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400">🟢 Offers</button>
+      <button onclick="setMapFilter('capital',this)" class="map-filter-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400">💰 Capital Hubs</button>
+      <button onclick="setMapFilter('grant',this)" class="map-filter-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400">🏛️ Grant Hubs</button>
+    </div>
+
+    <!-- Map + Sidebar wrapper -->
+    <div class="flex gap-4" style="height:560px;">
+
+      <!-- Map -->
+      <div id="ecosystem-map" class="flex-1 rounded-xl overflow-hidden border border-[rgba(201,168,76,0.15)]" style="min-height:560px;"></div>
+
+      <!-- Active node panel -->
+      <div id="map-node-panel" class="w-72 flex-shrink-0 rounded-xl border border-[rgba(201,168,76,0.15)] bg-[#111] overflow-y-auto p-4 flex flex-col gap-3">
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-1">Active Node</div>
+        <div id="map-node-content" class="text-gray-400 text-sm">Click any pin on the map to see details here.</div>
+        <div class="mt-auto pt-4 border-t border-white/5">
+          <div class="text-xs text-gray-600 leading-relaxed">📚 <strong class="text-gray-400">Education tip:</strong> Each node represents a real community connection. Projects shown in gold are actively administering impact.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap gap-4 mt-4 text-xs text-gray-400">
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full bg-[#c9a84c]"></span> Active Project</span>
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full bg-[#6fa8dc]"></span> Need</span>
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full bg-[#6fbf8a]"></span> Offer</span>
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full bg-[#9b72cf]"></span> Capital Hub (AmPac/SBA)</span>
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full bg-[#e06c75]"></span> Grant Hub</span>
+      <span class="flex items-center gap-1.5"><span class="inline-block w-3 h-3 rounded-full" style="background:#e8a94c;"></span> Planning Stage</span>
+    </div>
+
+    <div class="edu-tip mt-6">
+      📚 <strong>Why map the ecosystem?</strong> Geographic visualization reveals where capital access gaps exist, where clusters of need and offer are forming, and where new P3 partnerships can be seeded. Use this map to identify underserved corridors and present compelling impact narratives to funders and RFP reviewers.
+    </div>
+  </div>
+</div>
+
 <!-- ═══ FOOTER ═══ -->
 <footer class="border-t border-[rgba(201,168,76,0.1)] mt-16 py-10 px-5">
   <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-6">
@@ -768,16 +841,16 @@
 //  DATA
 // ══════════════════════════
 let entries = [
-  {id:1,name:"Pastor Marcus Williams",org:"New Life Community Church",email:"m.williams@newlifechurch.org",role:"Pastor / Faith Leader",type:"Need",category:"Job Training & Workforce Development",desc:"We have 45 congregation members who need job skills training — especially tech, customer service, and construction trades.",edu:"Many congregation members lack awareness of the free training programs available in the Inland Empire. There's also a misconception that job training is only for young people — most of our members are 30-55.",city:"Inland Empire",ts:Date.now()-86400000*3},
-  {id:2,name:"Diana Reyes",org:"Uplift Workforce Alliance",email:"d.reyes@upliftwa.org",role:"Nonprofit Leader",type:"Offer",category:"Job Training & Workforce Development",desc:"We offer free 6-week workforce training cohorts: customer service, construction basics, and intro to tech. Looking for partner churches and referral pipelines.",edu:"Our training is funded through WIOA (Workforce Innovation & Opportunity Act) — which means it's free for qualifying participants. Many people don't know this funding exists or that they qualify.",city:"Inland Empire",ts:Date.now()-86400000*2},
-  {id:3,name:"Carlos Mendez",org:"Mendez Building Group",email:"carlos@mendezbuilding.com",role:"Business Owner",type:"Offer",category:"Hiring & Employment",desc:"We're hiring 12 entry-level construction laborers over the next 90 days. Will hire directly from training programs — no experience required.",edu:"Many applicants don't realize that construction jobs often pay $22-35/hr starting. There's a massive skills gap in the trades — trained workers have strong career pathways and upward mobility.",city:"Riverside / San Bernardino",ts:Date.now()-86400000},
-  {id:4,name:"Aisha Thompson",org:"Eastside Youth Network",email:"a.thompson@eyn.org",role:"Nonprofit Leader",type:"Need",category:"Space / Facilities",desc:"We need a meeting space for 40-50 youth on Saturday mornings — chairs, projector, and basic AV. Free or low-cost preferred.",edu:"Access to safe, consistent space is one of the biggest barriers to youth program continuity. Without a permanent home, programs can't build the consistency young people need to develop trust and commitment.",city:"Los Angeles",ts:Date.now()-3600000*5}
+  {id:1,name:"Pastor Marcus Williams",org:"New Life Community Church",email:"m.williams@newlifechurch.org",role:"Pastor / Faith Leader",type:"Need",category:"Job Training & Workforce Development",desc:"We have 45 congregation members who need job skills training — especially tech, customer service, and construction trades.",edu:"Many congregation members lack awareness of the free training programs available in the Inland Empire. There's also a misconception that job training is only for young people — most of our members are 30-55.",city:"Inland Empire",lat:33.9806,lng:-117.3755,ts:Date.now()-86400000*3},
+  {id:2,name:"Diana Reyes",org:"Uplift Workforce Alliance",email:"d.reyes@upliftwa.org",role:"Nonprofit Leader",type:"Offer",category:"Job Training & Workforce Development",desc:"We offer free 6-week workforce training cohorts: customer service, construction basics, and intro to tech. Looking for partner churches and referral pipelines.",edu:"Our training is funded through WIOA (Workforce Innovation & Opportunity Act) — which means it's free for qualifying participants. Many people don't know this funding exists or that they qualify.",city:"Inland Empire",lat:34.1083,lng:-117.2898,ts:Date.now()-86400000*2},
+  {id:3,name:"Carlos Mendez",org:"Mendez Building Group",email:"carlos@mendezbuilding.com",role:"Business Owner",type:"Offer",category:"Hiring & Employment",desc:"We're hiring 12 entry-level construction laborers over the next 90 days. Will hire directly from training programs — no experience required.",edu:"Many applicants don't realize that construction jobs often pay $22-35/hr starting. There's a massive skills gap in the trades — trained workers have strong career pathways and upward mobility.",city:"Riverside / San Bernardino",lat:34.0633,lng:-117.6509,ts:Date.now()-86400000},
+  {id:4,name:"Aisha Thompson",org:"Eastside Youth Network",email:"a.thompson@eyn.org",role:"Nonprofit Leader",type:"Need",category:"Space / Facilities",desc:"We need a meeting space for 40-50 youth on Saturday mornings — chairs, projector, and basic AV. Free or low-cost preferred.",edu:"Access to safe, consistent space is one of the biggest barriers to youth program continuity. Without a permanent home, programs can't build the consistency young people need to develop trust and commitment.",city:"Los Angeles",lat:34.0224,lng:-118.1714,ts:Date.now()-3600000*5}
 ];
 
 let projects = [
-  {id:1,title:"Inland Empire Workforce Pipeline",desc:"Connecting New Life Church members to Uplift Workforce training cohorts, with direct-hire pathway to Mendez Building Group.",partners:["New Life Community Church","Uplift Workforce Alliance","Mendez Building Group"],status:"active",progress:62,goal:"Place 20 trained workers in employment",metric:"8 of 20 placed",learningGoal:"Participants complete financial literacy module before job placement"},
-  {id:2,title:"LA Youth Saturday Hub",desc:"Securing recurring Saturday space for Eastside Youth Network programming — active partner search underway.",partners:["Eastside Youth Network"],status:"planning",progress:25,goal:"Secure venue, launch 8-week cohort",metric:"Venue search active",learningGoal:"8-week youth entrepreneurship curriculum developed"},
-  {id:3,title:"Micro-Business Coaching Circle",desc:"Monthly peer coaching sessions for early-stage entrepreneurs across faith communities. AmPac provides SBA lending guidance.",partners:["AmPac Business Capital","Faith Community Partners"],status:"active",progress:80,goal:"Support 30 entrepreneurs with coaching + capital access",metric:"24 of 30 enrolled",learningGoal:"All participants complete SBA loan readiness education track"}
+  {id:1,title:"Inland Empire Workforce Pipeline",desc:"Connecting New Life Church members to Uplift Workforce training cohorts, with direct-hire pathway to Mendez Building Group.",partners:["New Life Community Church","Uplift Workforce Alliance","Mendez Building Group"],status:"active",progress:62,goal:"Place 20 trained workers in employment",metric:"8 of 20 placed",learningGoal:"Participants complete financial literacy module before job placement",city:"Rancho Cucamonga, CA",lat:34.1064,lng:-117.5931},
+  {id:2,title:"LA Youth Saturday Hub",desc:"Securing recurring Saturday space for Eastside Youth Network programming — active partner search underway.",partners:["Eastside Youth Network"],status:"planning",progress:25,goal:"Secure venue, launch 8-week cohort",metric:"Venue search active",learningGoal:"8-week youth entrepreneurship curriculum developed",city:"Los Angeles, CA",lat:34.0522,lng:-118.2437},
+  {id:3,title:"Micro-Business Coaching Circle",desc:"Monthly peer coaching sessions for early-stage entrepreneurs across faith communities. AmPac provides SBA lending guidance.",partners:["AmPac Business Capital","Faith Community Partners"],status:"active",progress:80,goal:"Support 30 entrepreneurs with coaching + capital access",metric:"24 of 30 enrolled",learningGoal:"All participants complete SBA loan readiness education track",city:"Ontario, CA",lat:34.0633,lng:-117.6509}
 ];
 
 let matchedPairs = [];
@@ -806,6 +879,7 @@ function switchTab(id, btn) {
   if(id==='hub') renderProjects();
   if(id==='grants') renderGrants();
   if(id==='reporting') renderReporting();
+  if(id==='ecomap') renderEcoMap();
   if(id==='aiagents') renderCollab();
   if(id==='intake') renderFeed();
 }
@@ -1231,6 +1305,197 @@ function filterGrants(btn, type, val) {
     btn.className = 'g-cat-btn active px-3 py-1.5 rounded-full text-xs border border-yellow-400/40 bg-yellow-400/10 text-yellow-400';
   }
   renderGrants();
+}
+
+// ══════════════════════════
+//  ECOSYSTEM MAP
+// ══════════════════════════
+let _ecoMap = null;
+let _mapFilter = 'all';
+let _mapLayers = {};
+
+const ecosystemNodes = [
+  // Capital Hubs — AmPac offices
+  {type:'capital',title:'AmPac Business Capital — HQ',org:'AmPac Business Capital',desc:'SBA 504 & 7(a) lender. CDFI-certified CDC serving CA, AZ, NV. Capital access anchor for the ecosystem.',city:'Ontario, CA',lat:34.0500,lng:-117.6509,tag:'SBA CDC · CDFI'},
+  {type:'capital',title:'AmPac — Los Angeles Office',org:'AmPac Business Capital',desc:'SBA loan origination and business capital services for Los Angeles County small businesses and nonprofits.',city:'Los Angeles, CA',lat:34.0522,lng:-118.2680,tag:'SBA 504 · 7(a)'},
+  {type:'capital',title:'AmPac — Phoenix Office',org:'AmPac Business Capital',desc:'SBA 504 & 7(a) lending for Arizona small businesses. Capital access for the Phoenix metro ecosystem.',city:'Phoenix, AZ',lat:33.4484,lng:-112.0740,tag:'SBA CDC · Arizona'},
+  {type:'capital',title:'AmPac — Las Vegas Office',org:'AmPac Business Capital',desc:'SBA lending and capital access services for Nevada small business owners and community organizations.',city:'Las Vegas, NV',lat:36.1699,lng:-115.1398,tag:'SBA CDC · Nevada'},
+  // Grant Hubs
+  {type:'grant',title:'LA County CDBG Hub',org:'LA County Community Development',desc:'Community Development Block Grant administration. Housing, business development, and public services funding.',city:'Downtown LA',lat:34.0537,lng:-118.2427,tag:'Federal · CDBG'},
+  {type:'grant',title:'EDA Regional Hub — IE',org:'U.S. Economic Development Administration',desc:'Federal EDA funding for Inland Empire economic development projects, infrastructure, and job creation.',city:'San Bernardino, CA',lat:34.1083,lng:-117.2898,tag:'Federal · EDA'},
+  {type:'grant',title:'IBank Small Business Hub',org:'California IBank',desc:'State small business loan guarantee program. Bridge capital for businesses that need a credit boost to access bank financing.',city:'Sacramento, CA',lat:38.5816,lng:-121.4944,tag:'State · California'},
+  {type:'grant',title:'SBA District Office — LA',org:'U.S. Small Business Administration',desc:'SBA Los Angeles District — 8(a), HUBZone, SBIR/STTR programs and federal contracting support for small businesses.',city:'Glendale, CA',lat:34.1425,lng:-118.2551,tag:'Federal · SBA'},
+  {type:'grant',title:'WIOA Workforce Hub — IE',org:'Inland Empire One-Stop',desc:'WIOA-funded workforce development services. Free job training, placement, and upskilling programs.',city:'Riverside, CA',lat:33.9533,lng:-117.3961,tag:'Federal · WIOA'},
+  // Ecosystem Partners
+  {type:'partner',title:'IE CEEM',org:'Inland Empire Center for Economic Empowerment & Mobility',desc:'Regional economic mobility hub. Partner in the E3P3 ecosystem connecting small businesses to capital and contracts.',city:'Inland Empire, CA',lat:34.1200,lng:-117.4500,tag:'Ecosystem Partner'},
+  {type:'partner',title:'SCAG — Southern CA Association of Govts',org:'SCAG',desc:'Regional planning agency. Partner in coordinating workforce, housing, and economic development across 6 counties.',city:'Los Angeles, CA',lat:34.0500,lng:-118.2500,tag:'Regional Planning'},
+  {type:'partner',title:'Ecclesia Christian Fellowship',org:'Ecclesia Christian Fellowship',desc:'Faith-based community anchor. Dr. Joshua Beckley leads CDC programs bridging faith community to capital access.',city:'San Bernardino, CA',lat:34.1008,lng:-117.3000,tag:'Faith · CDC'},
+  {type:'partner',title:'E3P3 Grant Fund Hub — Phoenix',org:'Source Global Imagined',desc:'Local E3P3 Grant Fund Hub node. Federally-funded storehouse connecting AZ small businesses and nonprofits to resources.',city:'Phoenix, AZ',lat:33.4255,lng:-112.0400,tag:'E3P3 Fund Hub'},
+  {type:'partner',title:'E3P3 Grant Fund Hub — Las Vegas',org:'Source Global Imagined',desc:'Local E3P3 Grant Fund Hub node. P3 partnership connecting NV businesses, faith communities, and government resources.',city:'Las Vegas, NV',lat:36.1800,lng:-115.1200,tag:'E3P3 Fund Hub'},
+];
+
+const markerColors = {
+  project: '#c9a84c',
+  need:    '#6fa8dc',
+  offer:   '#6fbf8a',
+  capital: '#9b72cf',
+  grant:   '#e06c75',
+  partner: '#e8a94c',
+};
+
+function makeIcon(type, size=14) {
+  const c = markerColors[type] || '#888';
+  const pulse = (type==='project') ? `<circle cx="10" cy="10" r="9" fill="${c}" opacity="0.2"><animate attributeName="r" values="9;13;9" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0;0.2" dur="2.4s" repeatCount="indefinite"/></circle>` : '';
+  return L.divIcon({
+    className: '',
+    html: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">${pulse}<circle cx="10" cy="10" r="7" fill="${c}" stroke="#0a0a0a" stroke-width="2"/></svg>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+    popupAnchor: [0, -12],
+  });
+}
+
+function buildNodeHTML(node, type) {
+  const typeLabel = {project:'Project',need:'Need',offer:'Offer',capital:'Capital Hub',grant:'Grant Hub',partner:'Ecosystem Partner'};
+  const color = markerColors[type] || '#888';
+  const progress = node.progress != null ? `<div class="mt-2"><div class="text-xs text-gray-500 mb-1">Progress: ${node.progress}%</div><div style="height:4px;background:#333;border-radius:4px;"><div style="width:${node.progress}%;height:4px;background:${color};border-radius:4px;"></div></div></div>` : '';
+  const tagBit = node.tag ? `<span style="font-size:10px;padding:2px 7px;border-radius:20px;background:rgba(255,255,255,0.06);color:#aaa;border:1px solid rgba(255,255,255,0.1);">${node.tag}</span>` : '';
+  const partnerBit = node.partners ? `<div style="font-size:11px;color:#888;margin-top:6px;">Partners: ${node.partners.join(', ')}</div>` : '';
+  return `
+    <div style="font-family:'Plus Jakarta Sans',sans-serif;padding:4px 0;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+        <span style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0;display:inline-block;"></span>
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:${color};">${typeLabel[type]||type}</span>
+        ${tagBit}
+      </div>
+      <div style="font-weight:700;font-size:13px;color:#f0ece4;margin-bottom:4px;line-height:1.3;">${node.title||node.org}</div>
+      <div style="font-size:11px;color:#888;margin-bottom:6px;">📍 ${node.city||''}</div>
+      <div style="font-size:12px;color:#bbb;line-height:1.5;">${node.desc||''}</div>
+      ${partnerBit}
+      ${progress}
+    </div>`;
+}
+
+function showNodePanel(node, type) {
+  document.getElementById('map-node-content').innerHTML = buildNodeHTML(node, type);
+}
+
+function setMapFilter(filter, btn) {
+  _mapFilter = filter;
+  document.querySelectorAll('.map-filter-btn').forEach(b => {
+    b.className = 'map-filter-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400';
+  });
+  btn.className = 'map-filter-btn active-mf px-3 py-1.5 rounded-full text-xs border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c]';
+  applyMapFilter();
+}
+
+function applyMapFilter() {
+  if (!_ecoMap) return;
+  Object.entries(_mapLayers).forEach(([type, layer]) => {
+    if (_mapFilter === 'all' || _mapFilter === type) {
+      if (!_ecoMap.hasLayer(layer)) _ecoMap.addLayer(layer);
+    } else {
+      if (_ecoMap.hasLayer(layer)) _ecoMap.removeLayer(layer);
+    }
+  });
+}
+
+function mapZoomRegion(region) {
+  if (!_ecoMap) return;
+  const regions = {
+    socal: [[32.5,-120.5],[34.8,-116.5]],
+    norcal:[[36.5,-122.8],[40.0,-119.5]],
+    az:    [[31.3,-114.8],[37.0,-109.0]],
+    nv:    [[35.0,-120.0],[42.0,-114.0]],
+    all:   [[31.0,-122.0],[42.0,-109.0]],
+  };
+  if (regions[region]) _ecoMap.fitBounds(regions[region]);
+}
+
+function renderEcoMap() {
+  // Update stats row
+  const allPoints = [
+    ...projects.map(p=>({...p,_type:'project'})),
+    ...entries.filter(e=>e.type==='Need').map(e=>({...e,_type:'need'})),
+    ...entries.filter(e=>e.type==='Offer').map(e=>({...e,_type:'offer'})),
+    ...ecosystemNodes,
+  ];
+  const statsRow = document.getElementById('map-stats-row');
+  if (statsRow) {
+    const stats = [
+      {label:'Active Projects', val: projects.filter(p=>p.status==='active').length, color:'#c9a84c'},
+      {label:'Needs', val: entries.filter(e=>e.type==='Need').length, color:'#6fa8dc'},
+      {label:'Offers', val: entries.filter(e=>e.type==='Offer').length, color:'#6fbf8a'},
+      {label:'Capital Hubs', val: ecosystemNodes.filter(n=>n.type==='capital').length, color:'#9b72cf'},
+      {label:'Grant Hubs', val: ecosystemNodes.filter(n=>n.type==='grant').length, color:'#e06c75'},
+      {label:'Ecosystem Partners', val: ecosystemNodes.filter(n=>n.type==='partner').length, color:'#e8a94c'},
+    ];
+    statsRow.innerHTML = stats.map(s=>
+      `<div class="flex items-center gap-2 px-4 py-2 rounded-full text-xs border border-white/10 bg-[#1c1c1e]">
+        <span style="width:8px;height:8px;border-radius:50%;background:${s.color};flex-shrink:0;display:inline-block;"></span>
+        <span class="font-bold text-white">${s.val}</span>
+        <span class="text-gray-500">${s.label}</span>
+      </div>`
+    ).join('');
+  }
+
+  if (_ecoMap) {
+    setTimeout(()=>_ecoMap.invalidateSize(), 200);
+    return;
+  }
+
+  const map = L.map('ecosystem-map', {
+    center: [35.5, -116.5],
+    zoom: 6,
+    zoomControl: true,
+    attributionControl: true,
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://openstreetmap.org/copyright" style="color:#c9a84c">OpenStreetMap</a> · © <a href="https://carto.com/attributions" style="color:#c9a84c">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
+
+  // Layer groups
+  const layerGroups = {};
+  ['project','need','offer','capital','grant','partner'].forEach(t => {
+    layerGroups[t] = L.layerGroup().addTo(map);
+  });
+  _mapLayers = layerGroups;
+
+  function addPin(node, type) {
+    if (!node.lat || !node.lng) return;
+    const marker = L.marker([node.lat, node.lng], {icon: makeIcon(type)});
+    const popupHTML = `<div style="background:#111;border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:12px;min-width:220px;max-width:260px;">${buildNodeHTML(node, type)}</div>`;
+    marker.bindPopup(popupHTML, {
+      className: 'eco-popup',
+      closeButton: false,
+      maxWidth: 280,
+    });
+    marker.on('click', () => showNodePanel(node, type));
+    marker.addTo(layerGroups[type]);
+  }
+
+  // Add projects
+  projects.forEach(p => addPin({...p, title: p.title}, 'project'));
+
+  // Add entries (needs + offers)
+  entries.forEach(e => {
+    const type = e.type === 'Need' ? 'need' : 'offer';
+    addPin({...e, title: e.org, desc: e.desc}, type);
+  });
+
+  // Add ecosystem nodes
+  ecosystemNodes.forEach(n => addPin(n, n.type));
+
+  // Popup style override
+  const style = document.createElement('style');
+  style.textContent = `.eco-popup .leaflet-popup-content-wrapper{background:transparent;box-shadow:0 8px 32px rgba(0,0,0,0.7);padding:0;border:none;} .eco-popup .leaflet-popup-content{margin:0;} .eco-popup .leaflet-popup-tip{background:#1a1a1a;}`;
+  document.head.appendChild(style);
+
+  _ecoMap = map;
+  setTimeout(()=>map.invalidateSize(), 300);
 }
 
 // ══════════════════════════
