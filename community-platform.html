@@ -745,6 +745,260 @@
 </div>
 
 <!-- ═══════════════════════════════════════
+     OPPORTUNITY MATCH TAB
+═══════════════════════════════════════ -->
+<div class="tab-page" id="tab-grantmatch">
+
+  <!-- ── PROFILE SETUP VIEW ── -->
+  <div id="gm-setup" class="max-w-3xl mx-auto px-5 py-12">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#c9a84c] bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.2)] px-4 py-1.5 rounded-full mb-4">🎯 Smart Opportunity Matching</div>
+      <h2 class="text-3xl font-extrabold mb-3">Find Your Best-Fit Grants &amp; Contracts</h2>
+      <p class="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed">Answer 5 quick questions and we'll score every available grant and contract against your profile — ranked by fit, filtered for your region, matched to your certifications.</p>
+    </div>
+
+    <div class="bg-[#111214] border border-white/8 rounded-2xl p-7 space-y-8">
+
+      <!-- Q1: Org Type -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-3">01 — Organization Type</div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2" id="gm-orgtype-grid">
+          <button class="gm-pill gm-pill-orgtype text-left px-4 py-3 rounded-xl border border-white/10 bg-[#1c1c1e] text-sm text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Nonprofit">🏛️ Nonprofit / 501(c)3</button>
+          <button class="gm-pill gm-pill-orgtype text-left px-4 py-3 rounded-xl border border-white/10 bg-[#1c1c1e] text-sm text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Small Business">💼 Small Business</button>
+          <button class="gm-pill gm-pill-orgtype text-left px-4 py-3 rounded-xl border border-white/10 bg-[#1c1c1e] text-sm text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Faith-based">✝️ Faith-Based Org</button>
+          <button class="gm-pill gm-pill-orgtype text-left px-4 py-3 rounded-xl border border-white/10 bg-[#1c1c1e] text-sm text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Community Org">🤝 Community Org / CBO</button>
+          <button class="gm-pill gm-pill-orgtype text-left px-4 py-3 rounded-xl border border-white/10 bg-[#1c1c1e] text-sm text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Government">🏗️ Gov / Public Entity</button>
+          <button class="gm-pill gm-pill-orgtype text-left px-4 py-3 rounded-xl border border-white/10 bg-[#1c1c1e] text-sm text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Individual">👤 Individual / Sole Prop</button>
+        </div>
+      </div>
+
+      <!-- Q2: Focus Areas -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-1">02 — Primary Focus Areas <span class="text-gray-600 normal-case font-normal">(select all that apply)</span></div>
+        <div class="flex flex-wrap gap-2 mt-3" id="gm-focus-grid">
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Job Training & Workforce Development">Workforce Development</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Access to Capital / Funding">Capital Access</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Youth Programs">Youth Programs</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Housing & Real Estate">Housing & Real Estate</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Technology & Digital Tools">Technology</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Health & Wellness">Health & Wellness</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Hiring & Employment">Hiring & Employment</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Business Mentorship & Coaching">Business Coaching</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Food Security">Food Security</button>
+          <button class="gm-pill gm-pill-focus px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="Space / Facilities">Facilities / Space</button>
+        </div>
+      </div>
+
+      <!-- Q3: Location -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-3">03 — State &amp; Region</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">State</label>
+            <select id="gm-state" class="w-full">
+              <option value="">Select state…</option>
+              <option value="CA">California</option>
+              <option value="AZ">Arizona</option>
+              <option value="NV">Nevada</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">Region (optional)</label>
+            <select id="gm-region">
+              <option value="">Any region</option>
+              <option value="Inland Empire">Inland Empire (SB/Riverside)</option>
+              <option value="Los Angeles">Los Angeles County</option>
+              <option value="Bay Area">Bay Area / NorCal</option>
+              <option value="San Diego">San Diego</option>
+              <option value="Phoenix">Phoenix Metro</option>
+              <option value="Las Vegas">Las Vegas Metro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4: Size -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-3">04 — Organization Size</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">Employees</label>
+            <select id="gm-employees">
+              <option value="">Select range…</option>
+              <option value="1-5">1–5 (Solo/Micro)</option>
+              <option value="6-25">6–25 (Small)</option>
+              <option value="26-100">26–100 (Growing)</option>
+              <option value="100+">100+ (Mid-size)</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">Annual Revenue / Budget</label>
+            <select id="gm-revenue">
+              <option value="">Select range…</option>
+              <option value="under250k">Under $250K</option>
+              <option value="250k-1m">$250K – $1M</option>
+              <option value="1m-5m">$1M – $5M</option>
+              <option value="5m+">$5M+</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5: Certifications -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-1">05 — Certifications &amp; Designations <span class="text-gray-600 normal-case font-normal">(check all you have)</span></div>
+        <div class="flex flex-wrap gap-2 mt-3" id="gm-certs-grid">
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="501c3">501(c)3 Nonprofit</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="8a">SBA 8(a) Certified</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="hubzone">HUBZone Certified</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="wosb">WOSB (Women-Owned)</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="dvbe">DVBE (Disabled Veteran)</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="cdfi">CDFI Certified</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="sam">SAM.gov Registered</button>
+          <button class="gm-pill gm-pill-cert px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="none">None Yet</button>
+        </div>
+      </div>
+
+      <!-- Q6: Business Details -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-3">06 — Business / Organization Details</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">Organization Name (optional)</label>
+            <input type="text" id="gm-orgname" placeholder="e.g. Uplift Community Partners"/>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">NAICS Code (optional)</label>
+            <input type="text" id="gm-naics" placeholder="e.g. 611430 — Professional Training"/>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">Years in Operation</label>
+            <select id="gm-years">
+              <option value="">Select…</option>
+              <option value="under1">Under 1 year</option>
+              <option value="1-2">1–2 years</option>
+              <option value="3-5">3–5 years</option>
+              <option value="6-10">6–10 years</option>
+              <option value="10+">10+ years</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-gray-500 mb-1 block">Bonding Capacity</label>
+            <select id="gm-bonding">
+              <option value="">Not sure / N/A</option>
+              <option value="none">No bonding</option>
+              <option value="under250k">Up to $250K</option>
+              <option value="250k-1m">$250K – $1M</option>
+              <option value="1m+">$1M+</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7: Business Readiness Indicators -->
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-1">07 — Business Readiness <span class="text-gray-600 normal-case font-normal">(check all that apply)</span></div>
+        <div class="flex flex-wrap gap-2 mt-3" id="gm-readiness-grid">
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="past_performance">📋 Past Grant / Contract Won</button>
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="tax_compliant">✅ Tax Compliant (no liens)</button>
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="financial_statements">📊 Financial Statements Ready</button>
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="strategic_plan">📄 Strategic Plan / Business Plan</button>
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="impact_data">📈 Track Impact / Outcomes Data</button>
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="partnership_loi">🤝 Partner LOIs / MOU Available</button>
+          <button class="gm-pill gm-pill-ready px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-300 hover:border-[rgba(201,168,76,0.4)] transition" data-val="dedicated_staff">👥 Dedicated Grant Staff / Writer</button>
+        </div>
+      </div>
+
+      <button onclick="saveGrantProfile()" class="w-full py-3.5 rounded-xl text-sm font-bold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition mt-2">🎯 Analyze My Fit & Find Matches →</button>
+    </div>
+
+    <div class="edu-tip mt-6 text-sm">
+      📚 <strong>Education tip:</strong> Many community organizations qualify for grants they don't know exist. Certifications like 8(a), HUBZone, and WOSB can unlock sole-source federal contracts — meaning no competitive bidding. AmPac can help you understand your eligibility and access capital in parallel with grant pursuit.
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD VIEW ── -->
+  <div id="gm-dashboard" class="hidden max-w-7xl mx-auto px-5 py-8">
+
+    <!-- Profile Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6 bg-[#111214] border border-white/8 rounded-xl px-5 py-4">
+      <div>
+        <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-1">Your Profile</div>
+        <div id="gm-profile-summary" class="text-sm text-gray-300 flex flex-wrap gap-3"></div>
+      </div>
+      <button onclick="resetGrantProfile()" class="px-4 py-2 rounded-lg text-xs border border-white/10 bg-white/5 text-gray-400 hover:bg-white/10 transition">✏️ Edit Profile</button>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div class="bg-[#111214] border border-white/8 rounded-xl p-5">
+        <div class="text-xs uppercase tracking-widest text-gray-500 mb-2">Matched Opportunities</div>
+        <div class="text-3xl font-extrabold text-white" id="gm-stat-total">0</div>
+        <div class="text-xs text-gray-600 mt-1">across all programs</div>
+      </div>
+      <div class="bg-[#111214] border border-white/8 rounded-xl p-5">
+        <div class="text-xs uppercase tracking-widest text-gray-500 mb-2">High Match (70%+)</div>
+        <div class="text-3xl font-extrabold text-[#22c55e]" id="gm-stat-high">0</div>
+        <div class="text-xs text-gray-600 mt-1">strong fit</div>
+      </div>
+      <div class="bg-[#111214] border border-white/8 rounded-xl p-5">
+        <div class="text-xs uppercase tracking-widest text-gray-500 mb-2">In Your Pipeline</div>
+        <div class="text-3xl font-extrabold text-[#c9a84c]" id="gm-stat-pipeline">0</div>
+        <div class="text-xs text-gray-600 mt-1">being tracked</div>
+      </div>
+      <div class="bg-[#111214] border border-white/8 rounded-xl p-5">
+        <div class="text-xs uppercase tracking-widest text-gray-500 mb-2">Est. Potential Value</div>
+        <div class="text-2xl font-extrabold text-white" id="gm-stat-value">$0</div>
+        <div class="text-xs text-gray-600 mt-1">from top matches</div>
+      </div>
+    </div>
+
+    <!-- Business Readiness Assessment Card -->
+    <div id="gm-readiness-card" class="bg-[#111214] border border-white/8 rounded-xl p-5 mb-6">
+      <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-widest text-[#c9a84c] mb-1">Business Readiness Assessment</div>
+          <div class="text-xs text-gray-500">How prepared your organization is to apply and win across funding types</div>
+        </div>
+        <div id="gm-readiness-overall" class="flex-shrink-0"></div>
+      </div>
+      <div id="gm-readiness-bars" class="grid md:grid-cols-2 gap-x-8 gap-y-3"></div>
+      <div id="gm-readiness-gaps" class="mt-4"></div>
+    </div>
+
+    <!-- View Toggle + Filter -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <div class="flex gap-2">
+        <button onclick="setGmView('matches',this)" id="gm-view-matches-btn" class="gm-view-btn active-gmv px-4 py-2 rounded-lg text-sm font-semibold bg-[rgba(201,168,76,0.12)] border border-[rgba(201,168,76,0.4)] text-[#c9a84c]">🎯 Matched Grants</button>
+        <button onclick="setGmView('pipeline',this)" id="gm-view-pipeline-btn" class="gm-view-btn px-4 py-2 rounded-lg text-sm font-semibold border border-white/10 bg-white/5 text-gray-400 hover:bg-white/10 transition">📋 My Pipeline</button>
+      </div>
+      <div class="flex gap-2 flex-wrap" id="gm-score-filters">
+        <span class="text-xs text-gray-500 self-center">Show:</span>
+        <button onclick="setGmFilter('all',this)" class="gm-sf active-gmf px-3 py-1.5 rounded-full text-xs border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c]">All</button>
+        <button onclick="setGmFilter('high',this)" class="gm-sf px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-400">🟢 High Match</button>
+        <button onclick="setGmFilter('federal',this)" class="gm-sf px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-400">Federal</button>
+        <button onclick="setGmFilter('state',this)" class="gm-sf px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-400">State</button>
+        <button onclick="setGmFilter('contract',this)" class="gm-sf px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-400">Contracts</button>
+      </div>
+    </div>
+
+    <!-- Matched Grants Grid -->
+    <div id="gm-matches-view">
+      <div id="gm-cards-grid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+    </div>
+
+    <!-- Pipeline Kanban View -->
+    <div id="gm-pipeline-view" class="hidden">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="gm-pipeline-board"></div>
+    </div>
+
+    <div class="edu-tip mt-8">
+      📚 <strong>Capital Access tip:</strong> Grants and SBA loans work best <em>together</em>. Grants cover operational costs; SBA 504/7(a) loans fund fixed assets and growth capital. AmPac can help you build a financing stack that maximizes both. <a href="https://ampac.com" target="_blank" class="text-green-400 hover:underline font-semibold">Connect with AmPac →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
      ECOSYSTEM MAP TAB
 ═══════════════════════════════════════ -->
 <div class="tab-page" id="tab-ecomap">
@@ -878,6 +1132,7 @@ function switchTab(id, btn) {
   if(id==='matching') renderMatches();
   if(id==='hub') renderProjects();
   if(id==='grants') renderGrants();
+  if(id==='grantmatch') renderGrantMatch();
   if(id==='reporting') renderReporting();
   if(id==='ecomap') renderEcoMap();
   if(id==='aiagents') renderCollab();
@@ -1198,6 +1453,22 @@ const grants = [
 let grantLevelFilter = 'all';
 let grantCatFilter = 'all';
 
+// ── PARTNER PROFILES ─────────────────────────────────────────────────────────
+const partnerProfiles = [
+  { id:'pp1', org:'New Life Community Church', type:'Faith-based Anchor', focus:['Job Training & Workforce Development','Youth Programs','Community'], city:'Inland Empire, CA', contact:'m.williams@newlifechurch.org', bio:'Faith-based anchor with 45+ congregation members seeking workforce opportunities. Deep community trust, consistent attendance base, and physical venue capacity.', brings:'Community mobilization, venue access, trusted referral pipeline', tags:['Faith Anchor','Workforce Pipeline','Community Reach'] },
+  { id:'pp2', org:'Uplift Workforce Alliance', type:'Nonprofit', focus:['Job Training & Workforce Development','Hiring & Employment'], city:'San Bernardino, CA', contact:'d.reyes@upliftwa.org', bio:'WIOA-funded workforce training provider. 6-week cohorts in customer service, construction basics, and intro to tech. Documented employment placement track record.', brings:'Training delivery, WIOA compliance documentation, past performance', tags:['WIOA Partner','Past Performance','Job Training'] },
+  { id:'pp3', org:'Mendez Building Group', type:'For-Profit / Employer', focus:['Hiring & Employment','Job Training & Workforce Development'], city:'Ontario, CA', contact:'carlos@mendezbuilding.com', bio:'Licensed GC hiring 12+ entry-level construction workers. Provides direct-hire pathways from training programs. Strong safety and compliance track record.', brings:'Direct hire commitment, employer match, construction sector credibility', tags:['Employer Partner','Hire Pipeline','Construction'] },
+  { id:'pp4', org:'Eastside Youth Network', type:'Nonprofit', focus:['Youth Programs','Education','Community'], city:'Los Angeles, CA', contact:'a.thompson@eyn.org', bio:'Youth-serving org running Saturday programming for 40–50 youth ages 14–24. Focused on entrepreneurship, digital literacy, and career readiness in East LA.', brings:'Youth population served, program model, East LA community relationships', tags:['Youth Serving','East LA','Program Delivery'] },
+  { id:'pp5', org:'AmPac Business Capital', type:'CDFI / SBA CDC', focus:['Access to Capital / Funding','Business Mentorship & Coaching'], city:'Ontario, CA', contact:'info@ampac.com', bio:'SBA-certified CDC and CDFI. Originates SBA 504 & 7(a) loans across CA, AZ, and NV. Strong capital access track record for underserved small businesses and nonprofits.', brings:'Capital access expertise, CDFI certification, SBA compliance, financial credibility', tags:['SBA Lender','CDFI Certified','Capital Access'] },
+  { id:'pp6', org:'IE CEEM', type:'Nonprofit / Economic Dev', focus:['Job Training & Workforce Development','Access to Capital / Funding','Business Mentorship & Coaching'], city:'Inland Empire, CA', contact:'info@ieceem.org', bio:'Regional economic empowerment hub focused on closing the racial wealth gap through business development, coaching, and workforce training in San Bernardino and Riverside counties.', brings:'Regional credibility, business coaching capacity, economic development track record', tags:['Economic Dev','Regional Anchor','IE Network'] },
+  { id:'pp7', org:'Ecclesia CDC — Dr. Joshua Beckley', type:'Faith-based CDC', focus:['Housing & Real Estate','Job Training & Workforce Development','Community'], city:'San Bernardino, CA', contact:'info@ecclesiacdc.org', bio:'Faith-based community development corporation with deep roots in San Bernardino. Long track record in affordable housing, workforce development, and economic empowerment.', brings:'CDC certification, housing development experience, faith community network, past performance', tags:['CDC Track Record','Faith Community','Housing'] },
+  { id:'pp8', org:'SCAG', type:'Regional Government', focus:['Job Training & Workforce Development','Housing & Real Estate','Technology & Digital Tools'], city:'Los Angeles, CA', contact:'info@scag.ca.gov', bio:'Southern California Association of Governments — regional planning authority for 6 counties, 19M people. Administers federal planning funds and regional economic data.', brings:'Government credibility, regional data infrastructure, federal planning relationships', tags:['Gov Credibility','Regional Planning','Policy Leverage'] },
+  { id:'pp9', org:'LA County WDACS', type:'County Government', focus:['Job Training & Workforce Development','Youth Programs','Hiring & Employment'], city:'Los Angeles, CA', contact:'workforce@lacounty.gov', bio:'LA County Workforce Development, Aging & Community Services. Administers federal WIOA allocations, youth employment programs, and one-stop workforce centers county-wide.', brings:'County partnership, WIOA funding administration, youth employment infrastructure', tags:['WIOA Administration','County Partner','Youth Employment'] },
+  { id:'pp10', org:'Verizon Business', type:'Corporate Partner', focus:['Technology & Digital Tools','Job Training & Workforce Development'], city:'National', contact:'verizonbusiness.com', bio:'National telecom and technology solutions provider. Active partner in digital inclusion, small business tech adoption, and workforce digitization across underserved communities.', brings:'Technology resources, digital inclusion expertise, corporate matching funds potential', tags:['Tech Partner','Digital Inclusion','Corporate Credibility'] },
+  { id:'pp11', org:'NMSDC / SCMSDC', type:'MBE Certifier / Nonprofit', focus:['Access to Capital / Funding','Business Mentorship & Coaching','Hiring & Employment'], city:'Los Angeles, CA', contact:'scmsdc.org', bio:'Southern California Minority Supplier Development Council. Certifies and connects MBEs to corporate and government contracting. Massive network of supplier relationships.', brings:'MBE certification pathway, supply chain network, corporate partner introductions', tags:['MBE Certification','Supply Chain','Contracting Network'] },
+  { id:'pp12', org:'CA State Treasurer — IBank', type:'State Government', focus:['Access to Capital / Funding','Business Mentorship & Coaching'], city:'Sacramento, CA', contact:'treasurer.ca.gov', bio:'California State Treasurer\'s Office administers IBank, CDFI Bond Programs, and CalCAP. Primary state capital access infrastructure for underserved small businesses.', brings:'State capital programs, loan guarantee access, policy credibility, IBank relationship', tags:['State Finance','IBank','Loan Guarantees'] },
+];
+
 // ══════════════════════════
 //  GRANTS FUNCTIONS
 // ══════════════════════════
@@ -1306,6 +1577,617 @@ function filterGrants(btn, type, val) {
   }
   renderGrants();
 }
+
+// ══════════════════════════════════════════
+//  OPPORTUNITY MATCH ENGINE
+// ══════════════════════════════════════════
+let grantProfile = { orgType:'', categories:[], state:'', region:'', employees:'', revenue:'', certs:[], orgName:'', naics:'', yearsOp:'', bonding:'', readiness:[], hasProfile:false };
+let oppPipeline = {}; // grantId -> 'saved'|'qualifying'|'applying'|'submitted'|'awarded'
+let gmScoreFilter = 'all';
+let gmView = 'matches';
+
+const CIRCUMFERENCE = 2 * Math.PI * 22; // r=22
+
+function scoreGrant(g) {
+  if (!grantProfile.hasProfile) return 0;
+  let score = 0;
+
+  // Category match — 40 pts
+  const catMatches = (g.matchCats||[]).filter(mc =>
+    (grantProfile.categories||[]).some(pc => mc.toLowerCase().includes(pc.toLowerCase().split(' ')[0]) || pc.toLowerCase().includes(mc.toLowerCase().split(' ')[0]))
+  );
+  score += Math.min(40, catMatches.length * 15 + (catMatches.length > 0 ? 10 : 0));
+
+  // Org type / eligibility — 30 pts
+  const elig = (g.eligibility||'').toLowerCase();
+  const ot = (grantProfile.orgType||'').toLowerCase();
+  if (ot === 'nonprofit' && (elig.includes('nonprofit') || elig.includes('cbo') || elig.includes('organization'))) score += 30;
+  else if (ot === 'small business' && (elig.includes('small business') || elig.includes('for-profit') || elig.includes('business'))) score += 30;
+  else if (ot === 'faith-based' && (elig.includes('faith') || elig.includes('church') || elig.includes('nonprofit'))) score += 25;
+  else if (ot === 'community org' && (elig.includes('cbo') || elig.includes('community') || elig.includes('nonprofit'))) score += 28;
+  else if (ot === 'government' && (elig.includes('government') || elig.includes('city') || elig.includes('county') || elig.includes('states'))) score += 30;
+  else score += 12; // partial eligibility
+
+  // Location / level — 15 pts
+  if (g.level === 'Federal' || g.level === 'Contract') score += 15;
+  else if (g.level === 'State' && grantProfile.state === 'CA') score += 15;
+  else if (g.level === 'State' && (grantProfile.state === 'AZ' || grantProfile.state === 'NV')) score += 5;
+  else if (g.level === 'Local' && grantProfile.state === 'CA') score += 12;
+
+  // Certification bonus — 10 pts
+  const certKeywords = { '501c3':['nonprofit','501','cbo'], '8a':['8(a)','8a','disadvantaged'], 'hubzone':['hubzone','historically underutilized'], 'wosb':['women-owned','wosb'], 'dvbe':['veteran','dvbe'], 'cdfi':['cdfi','community development entity'], 'sam':['registered','sam.gov'] };
+  let certPts = 0;
+  (grantProfile.certs||[]).forEach(c => {
+    const kws = certKeywords[c]||[];
+    const grantText = ((g.eligibility||'') + ' ' + (g.name||'')).toLowerCase();
+    if (kws.some(k => grantText.includes(k))) certPts += 5;
+  });
+  score += Math.min(10, certPts);
+
+  // Business readiness bonus — 10 pts
+  const ready = grantProfile.readiness || [];
+  const readyPts = Math.min(10, ready.length * 2);
+  score += readyPts;
+
+  // Years in operation context (for certain programs)
+  const years = grantProfile.yearsOp;
+  if (years === '10+' || years === '6-10') score = Math.min(99, score + 3);
+  if (years === 'under1') score = Math.max(0, score - 8);
+
+  return Math.min(99, Math.round(score));
+}
+
+// ── PARTNER TEAMING ENGINE ───────────────────────────────────────────────────
+let teamingRequests = {}; // { grantId: [partnerId, ...] }
+
+function findTeamingPartners(grant) {
+  return partnerProfiles.map(p => {
+    let score = 0;
+    // Focus area overlap with grant categories
+    const overlap = p.focus.filter(f =>
+      (grant.matchCats||[]).some(mc => mc.toLowerCase().includes(f.toLowerCase().split(' ')[0]) || f.toLowerCase().includes(mc.toLowerCase().split(' ')[0]))
+    );
+    score += Math.min(55, overlap.length * 20);
+    // Org type fit with grant eligibility
+    const elig = (grant.eligibility||'').toLowerCase();
+    const pt = p.type.toLowerCase();
+    if (pt.includes('nonprofit') && elig.includes('nonprofit')) score += 20;
+    if (pt.includes('cdfi') && (grant.matchCats||[]).includes('Access to Capital / Funding')) score += 25;
+    if (pt.includes('government') && grant.level === 'Federal') score += 15;
+    if (pt.includes('for-profit') && (grantProfile.orgType||'')!=='Small Business') score += 8;
+    if (pt.includes('faith') && elig.includes('faith')) score += 18;
+    if (pt.includes('cdc') && elig.includes('organization')) score += 15;
+    // Location match
+    if (p.city.includes('CA') && grantProfile.state === 'CA') score += 8;
+    if (p.city === 'National') score += 6;
+    // Tag resonance
+    score += (p.tags.filter(t => (grant.matchCats||[]).some(mc => mc.toLowerCase().includes(t.toLowerCase().split(' ')[0]))).length) * 4;
+    return { ...p, teamScore: Math.min(97, Math.round(score)) };
+  }).filter(p => p.teamScore > 12).sort((a,b) => b.teamScore - a.teamScore);
+}
+
+function toggleTeam(grantId, partnerId, evt) {
+  if (evt) evt.stopPropagation();
+  if (!teamingRequests[grantId]) teamingRequests[grantId] = [];
+  const idx = teamingRequests[grantId].indexOf(partnerId);
+  if (idx > -1) teamingRequests[grantId].splice(idx, 1);
+  else teamingRequests[grantId].push(partnerId);
+  // Re-render just that button
+  const btn = document.getElementById('team-btn-'+grantId+'-'+partnerId);
+  if (btn) {
+    const selected = teamingRequests[grantId].includes(partnerId);
+    btn.textContent = selected ? '✓ Added to Team' : '+ Request Partner';
+    btn.style.background = selected ? 'rgba(34,197,94,0.15)' : 'rgba(201,168,76,0.1)';
+    btn.style.borderColor = selected ? 'rgba(34,197,94,0.4)' : 'rgba(201,168,76,0.3)';
+    btn.style.color = selected ? '#22c55e' : '#c9a84c';
+  }
+  // Update pipeline count in stats
+  const el = document.getElementById('gm-stat-pipeline');
+  if (el) el.textContent = Object.keys(oppPipeline).length + Object.values(teamingRequests).flat().length;
+}
+
+function toggleTeamPanel(panelId, btn) {
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const isOpen = !panel.classList.contains('hidden');
+  panel.classList.toggle('hidden');
+  btn.querySelector('.team-arrow').textContent = isOpen ? '▼' : '▲';
+}
+
+function buildTeamPanel(g) {
+  const partners = findTeamingPartners(g);
+  if (!partners.length) return '<div class="text-xs text-gray-600 py-3 text-center">No partner matches found in the current ecosystem.</div>';
+  const scoreC = s => s>=70?'#22c55e':s>=45?'#c9a84c':'#6b7280';
+  const typeColor = t => {
+    if (t.includes('CDFI')||t.includes('SBA')) return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+    if (t.includes('Nonprofit')||t.includes('CDC')) return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+    if (t.includes('Government')||t.includes('County')) return 'bg-green-500/10 text-green-400 border-green-500/20';
+    if (t.includes('Faith')) return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
+    if (t.includes('Corporate')) return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
+    return 'bg-gray-500/10 text-gray-400 border-gray-500/20';
+  };
+  const initials = s => s.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+  const avatarColor = ['#c9a84c','#6fa8dc','#6fbf8a','#9b72cf','#e06c75','#f97316'];
+  return `
+    <div class="text-[10px] font-bold uppercase tracking-widest text-[#c9a84c] mb-3">
+      Recommended Teaming Partners — ${partners.length} found · ${(teamingRequests[g.id]||[]).length} selected
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+      ${partners.slice(0,8).map((p,i) => {
+        const selected = (teamingRequests[g.id]||[]).includes(p.id);
+        const ac = avatarColor[i % avatarColor.length];
+        return `
+        <div class="bg-[#18191c] rounded-xl border ${selected?'border-green-500/30':'border-white/5'} p-3 flex flex-col gap-2" style="${selected?'background:rgba(34,197,94,0.04)':''}">
+          <div class="flex items-start gap-2.5">
+            <div class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-extrabold text-black" style="background:${ac}">${initials(p.org)}</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap mb-0.5">
+                <span class="text-xs font-bold text-white leading-tight">${p.org}</span>
+                <span class="text-[10px] font-bold ml-auto flex-shrink-0" style="color:${scoreC(p.teamScore)}">${p.teamScore}% fit</span>
+              </div>
+              <span class="text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full border ${typeColor(p.type)}">${p.type}</span>
+            </div>
+          </div>
+          <div class="text-[10px] text-gray-500 leading-relaxed line-clamp-2">${p.bio}</div>
+          <div class="text-[9px] text-[#c9a84c] font-semibold">💡 Brings: <span class="text-gray-400 font-normal">${p.brings}</span></div>
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            ${p.tags.slice(0,3).map(t=>`<span class="text-[9px] px-1.5 py-0.5 rounded bg-white/5 text-gray-500 border border-white/8">${t}</span>`).join('')}
+            <span class="text-[9px] text-gray-600 self-center ml-auto">📍 ${p.city}</span>
+          </div>
+          <button id="team-btn-${g.id}-${p.id}" onclick="toggleTeam('${g.id}','${p.id}',event)"
+            class="w-full py-1.5 rounded-lg text-[10px] font-bold border transition"
+            style="color:${selected?'#22c55e':'#c9a84c'};border-color:${selected?'rgba(34,197,94,0.4)':'rgba(201,168,76,0.3)'};background:${selected?'rgba(34,197,94,0.15)':'rgba(201,168,76,0.1)'}">
+            ${selected?'✓ Added to Team':'+ Request Partner'}
+          </button>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="mt-3 text-[10px] text-gray-600">Partners selected will be added to your proposal team. Contact info visible after connecting on the platform.</div>`;
+}
+
+// ── FIT ANALYSIS ENGINE ──────────────────────────────────────────────────────
+function analyzeFit(g) {
+  const profile = grantProfile;
+  const elig = (g.eligibility||'').toLowerCase();
+  const grantText = (g.name + ' ' + g.eligibility + ' ' + g.description).toLowerCase();
+  const ready = profile.readiness || [];
+  const certs = profile.certs || [];
+
+  // ── Factor 1: Category Alignment
+  const catMatches = (g.matchCats||[]).filter(mc =>
+    (profile.categories||[]).some(pc => mc.toLowerCase().includes(pc.toLowerCase().split(' ')[0]) || pc.toLowerCase().includes(mc.toLowerCase().split(' ')[0]))
+  );
+  const catScore = Math.min(100, catMatches.length * 30 + (catMatches.length > 0 ? 10 : 0));
+  const catGaps = catMatches.length === 0 ? ['Your focus areas don\'t directly align with this grant\'s categories — you may still qualify, but the fit is indirect'] : [];
+  const catActions = catMatches.length === 0 ? ['Broaden your focus areas in your profile', 'Review the grant\'s eligible categories carefully before applying'] : [];
+
+  // ── Factor 2: Eligibility / Org Type
+  const ot = (profile.orgType||'').toLowerCase();
+  let eligScore = 0, eligStatus = 'warn', eligDetail = '', eligActions = [];
+  if (ot === 'nonprofit' && (elig.includes('nonprofit') || elig.includes('cbo') || elig.includes('organization'))) { eligScore=100; eligStatus='pass'; eligDetail='Nonprofits are explicitly eligible for this program.'; }
+  else if (ot === 'small business' && (elig.includes('small business') || elig.includes('for-profit') || elig.includes('business'))) { eligScore=100; eligStatus='pass'; eligDetail='Small businesses qualify for this opportunity.'; }
+  else if (ot === 'faith-based' && (elig.includes('faith') || elig.includes('church') || elig.includes('nonprofit'))) { eligScore=85; eligStatus='pass'; eligDetail='Faith-based organizations may qualify — verify with the funder.'; }
+  else if (ot === 'community org' && (elig.includes('cbo') || elig.includes('community') || elig.includes('nonprofit'))) { eligScore=90; eligStatus='pass'; eligDetail='Community-based organizations are eligible.'; }
+  else if (ot === 'government' && (elig.includes('government') || elig.includes('city') || elig.includes('county'))) { eligScore=95; eligStatus='pass'; eligDetail='Government entities are eligible.'; }
+  else { eligScore=40; eligStatus='warn'; eligDetail='Your org type isn\'t explicitly named in eligibility — review the full requirements.'; eligActions=['Read the full eligibility section before applying','Contact the funder to confirm eligibility for your org type']; }
+
+  // ── Factor 3: Location / Geographic Fit
+  let locScore = 0, locStatus = 'warn', locDetail = '', locActions = [];
+  if (g.level === 'Federal' || g.level === 'Contract') { locScore=100; locStatus='pass'; locDetail='Federal programs are open to all states — your location qualifies.'; }
+  else if (g.level === 'State' && profile.state === 'CA') { locScore=100; locStatus='pass'; locDetail='California-based program — your location is a direct match.'; }
+  else if (g.level === 'State' && (profile.state === 'AZ' || profile.state === 'NV')) { locScore=20; locStatus='fail'; locDetail='This is a California state program — '+profile.state+'-based orgs generally don\'t qualify.'; locActions=['Look for equivalent programs in your state','Contact your state\'s economic development office']; }
+  else if (g.level === 'Local') { locScore=75; locStatus='warn'; locDetail='Local program — verify your city/county is in the service area before applying.'; locActions=['Confirm your address falls within the eligible service area','Contact the administering agency for geographic eligibility']; }
+
+  // ── Factor 4: Certifications
+  const certKeywords2 = { '501c3':['nonprofit','501'], '8a':['8(a)','8a'], 'hubzone':['hubzone'], 'wosb':['women-owned','wosb'], 'dvbe':['veteran'], 'cdfi':['cdfi'], 'sam':['sam.gov','registered'] };
+  let certMatches = 0, certActions2 = [], certDetail2 = '';
+  certs.forEach(c => { if (c==='none') return; const kws = certKeywords2[c]||[]; if (kws.some(k => grantText.includes(k))) certMatches++; });
+  const certScore = certs.filter(c=>c!=='none').length === 0 ? 35 : Math.min(100, 35 + certMatches * 30);
+  const certStatus = certMatches > 0 ? 'pass' : (certs.filter(c=>c!=='none').length > 0 ? 'warn' : 'warn');
+  if (certMatches > 0) { certDetail2 = `Your certification(s) directly strengthen your eligibility for this opportunity.`; }
+  else if (g.level === 'Contract' && !certs.includes('sam')) { certDetail2 = 'SAM.gov registration is required for federal contracts.'; certActions2.push('Register on SAM.gov — free, takes 1–2 weeks'); }
+  else if ((g.id==='c2'||grantText.includes('8(a)')) && !certs.includes('8a')) { certDetail2 = '8(a) certification would unlock sole-source access to this program.'; certActions2.push('Apply for SBA 8(a) certification at certify.sba.gov'); }
+  else { certDetail2 = 'No certifications directly boost your fit here — but you may still qualify without them.'; }
+
+  // ── Factor 5: Business Readiness
+  const readyMap = { past_performance:'Past performance documentation strengthens credibility', tax_compliant:'Tax compliance clears a key eligibility gate', financial_statements:'Financial statements may be required at application', strategic_plan:'A strategic plan demonstrates organizational capacity', impact_data:'Impact/outcomes data is highly persuasive to funders', partnership_loi:'Partner LOIs demonstrate collaborative capacity', dedicated_staff:'Dedicated grant staff improves application quality' };
+  const grantReadyNeeds = [];
+  if (g.level === 'Federal' || g.level === 'Contract') grantReadyNeeds.push('past_performance','tax_compliant','financial_statements');
+  if (g.level === 'State') grantReadyNeeds.push('tax_compliant','financial_statements','strategic_plan');
+  if (g.level === 'Local') grantReadyNeeds.push('impact_data','partnership_loi');
+  const readyMet = grantReadyNeeds.filter(r => ready.includes(r));
+  const readyMissing = grantReadyNeeds.filter(r => !ready.includes(r));
+  const readyScore = grantReadyNeeds.length === 0 ? 80 : Math.round((readyMet.length / grantReadyNeeds.length) * 100);
+  const readyStatus = readyScore >= 80 ? 'pass' : readyScore >= 50 ? 'warn' : 'fail';
+  const readyDetail = readyMet.length === grantReadyNeeds.length
+    ? 'Your organization has the key readiness indicators this program looks for.'
+    : `You have ${readyMet.length} of ${grantReadyNeeds.length} key readiness indicators for this program type.`;
+  const readyActions = readyMissing.map(r => {
+    const labels = { past_performance:'Document 1–3 past project outcomes with measurable results', tax_compliant:'Resolve any tax liens before applying — required by most funders', financial_statements:'Prepare current year P&L and balance sheet', strategic_plan:'Draft a 1-page strategic plan or program description', impact_data:'Begin tracking and recording participant/community outcomes', partnership_loi:'Secure a letter of intent from at least one organizational partner', dedicated_staff:'Designate a staff member to own the application process' };
+    return labels[r] || r;
+  });
+
+  // ── Overall
+  const overall = Math.round((catScore*0.25 + eligScore*0.25 + locScore*0.2 + certScore*0.15 + readyScore*0.15));
+
+  return {
+    overall,
+    factors: [
+      { name:'Category Alignment', score:catScore, status:catScore>=70?'pass':catScore>=40?'warn':'fail', detail: catMatches.length>0 ? `${catMatches.length} of your focus area(s) directly match this program: ${catMatches.join(', ')}` : 'No direct category overlap found.', actions:catActions },
+      { name:'Eligibility Fit', score:eligScore, status:eligStatus, detail:eligDetail, actions:eligActions },
+      { name:'Geographic Fit', score:locScore, status:locStatus, detail:locDetail, actions:locActions },
+      { name:'Certifications', score:certScore, status:certStatus, detail:certDetail2, actions:certActions2 },
+      { name:'Business Readiness', score:readyScore, status:readyStatus, detail:readyDetail, actions:readyActions },
+    ],
+    gaps: [...catGaps, ...(eligActions), ...(locActions), ...certActions2, ...readyActions].slice(0, 5),
+  };
+}
+
+function renderReadinessCard() {
+  const ready = grantProfile.readiness || [];
+  const certs = grantProfile.certs.filter(c=>c!=='none');
+  const years = grantProfile.yearsOp;
+
+  // Score each dimension
+  const dims = [
+    {
+      name:'Compliance', icon:'✅',
+      score: Math.min(100, (ready.includes('tax_compliant')?40:0) + (certs.includes('sam')?30:0) + (certs.includes('501c3')||certs.includes('8a')?30:0)),
+      gaps: [!ready.includes('tax_compliant')&&'Confirm tax compliance / no outstanding liens', !certs.includes('sam')&&g_level_has_contract()&&'Register on SAM.gov for federal contracts'].filter(Boolean),
+    },
+    {
+      name:'Capacity', icon:'👥',
+      score: Math.min(100, (ready.includes('dedicated_staff')?30:0) + (ready.includes('financial_statements')?30:0) + (ready.includes('strategic_plan')?20:0) + (years==='10+'||years==='6-10'?20:years==='3-5'?10:0)),
+      gaps: [!ready.includes('financial_statements')&&'Prepare current financial statements', !ready.includes('strategic_plan')&&'Draft organizational strategic plan'].filter(Boolean),
+    },
+    {
+      name:'Credentials', icon:'🏅',
+      score: Math.min(100, certs.length*18 + (ready.includes('past_performance')?28:0)),
+      gaps: [certs.length===0&&'Pursue at least one certification (8(a), HUBZone, or WOSB)', !ready.includes('past_performance')&&'Document past performance on at least 1 project'].filter(Boolean),
+    },
+    {
+      name:'Impact Readiness', icon:'📈',
+      score: Math.min(100, (ready.includes('impact_data')?40:0) + (ready.includes('partnership_loi')?30:0) + (ready.includes('past_performance')?30:0)),
+      gaps: [!ready.includes('impact_data')&&'Begin tracking community/participant outcomes', !ready.includes('partnership_loi')&&'Secure letters of intent from partners'].filter(Boolean),
+    },
+  ];
+
+  const overall = Math.round(dims.reduce((s,d)=>s+d.score,0)/dims.length);
+  const overallColor = overall>=75?'#22c55e':overall>=50?'#c9a84c':overall>=30?'#f97316':'#4b5563';
+
+  const el = document.getElementById('gm-readiness-card');
+  if (!el) return;
+
+  document.getElementById('gm-readiness-overall').innerHTML = `
+    <div class="text-center">
+      ${scoreRingSVG(overall)}
+      <div class="text-xs text-gray-500 mt-1">Overall</div>
+    </div>`;
+
+  document.getElementById('gm-readiness-bars').innerHTML = dims.map(d => {
+    const c = d.score>=75?'#22c55e':d.score>=50?'#c9a84c':d.score>=30?'#f97316':'#4b5563';
+    const icon = d.score>=75?'✅':d.score>=50?'⚠️':'❌';
+    return `<div>
+      <div class="flex items-center justify-between mb-1">
+        <span class="text-xs text-gray-400">${d.icon} ${d.name}</span>
+        <span class="text-xs font-bold" style="color:${c}">${icon} ${d.score}%</span>
+      </div>
+      <div style="height:5px;background:#1c1c1e;border-radius:4px;">
+        <div style="width:${d.score}%;height:5px;background:${c};border-radius:4px;transition:width 0.6s ease;"></div>
+      </div>
+      ${d.gaps.length?`<div class="text-[10px] text-gray-600 mt-1">${d.gaps[0]}</div>`:''}
+    </div>`; }).join('');
+
+  const allGaps = dims.flatMap(d=>d.gaps).filter(Boolean).slice(0,4);
+  document.getElementById('gm-readiness-gaps').innerHTML = allGaps.length ? `
+    <div class="mt-2 pt-3 border-t border-white/5">
+      <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Priority Actions to Improve Readiness</div>
+      <div class="space-y-1">
+        ${allGaps.map(g=>`<div class="flex items-start gap-2 text-xs text-gray-400"><span class="text-orange-400 flex-shrink-0 mt-0.5">→</span>${g}</div>`).join('')}
+      </div>
+    </div>` : `<div class="text-xs text-green-400 mt-2 pt-3 border-t border-white/5">✅ Strong readiness profile — you're well-positioned to apply.</div>`;
+}
+
+function g_level_has_contract() { return grants.some(g=>g.level==='Contract'); }
+
+function scoreColor(s) {
+  if (s >= 80) return '#22c55e';
+  if (s >= 55) return '#c9a84c';
+  if (s >= 35) return '#f97316';
+  return '#4b5563';
+}
+
+function scoreLabel(s) {
+  if (s >= 80) return 'Strong Match';
+  if (s >= 55) return 'Good Match';
+  if (s >= 35) return 'Possible Match';
+  return 'Low Match';
+}
+
+function scoreRingSVG(s) {
+  const c = scoreColor(s);
+  const offset = CIRCUMFERENCE * (1 - s/100);
+  return `<svg width="56" height="56" viewBox="0 0 56 56">
+    <circle cx="28" cy="28" r="22" fill="none" stroke="#1c1c1e" stroke-width="4"/>
+    <circle cx="28" cy="28" r="22" fill="none" stroke="${c}" stroke-width="4"
+      stroke-dasharray="${CIRCUMFERENCE.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"
+      stroke-linecap="round" transform="rotate(-90 28 28)"/>
+    <text x="28" y="33" text-anchor="middle" font-size="12" font-weight="800" fill="${c}" font-family="Plus Jakarta Sans,sans-serif">${s}%</text>
+  </svg>`;
+}
+
+function levelBadge(lvl) {
+  const map = { Federal:'bg-blue-500/10 text-blue-400 border-blue-500/20', State:'bg-purple-500/10 text-purple-400 border-purple-500/20', Local:'bg-green-500/10 text-green-400 border-green-500/20', Contract:'bg-orange-500/10 text-orange-400 border-orange-500/20' };
+  return `<span class="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border ${map[lvl]||''}">${lvl}</span>`;
+}
+
+function pipelineStageFor(id) { return oppPipeline[id]||null; }
+
+const PIPELINE_STAGES = ['saved','qualifying','applying','submitted','awarded'];
+const PIPELINE_LABELS = { saved:'💾 Saved', qualifying:'🔍 Qualifying', applying:'✍️ Applying', submitted:'📤 Submitted', awarded:'🏆 Awarded' };
+const PIPELINE_COLORS = { saved:'#4b5563', qualifying:'#6fa8dc', applying:'#c9a84c', submitted:'#f97316', awarded:'#22c55e' };
+
+function setOppPipeline(grantId, stage, evt) {
+  if (evt) evt.stopPropagation();
+  if (oppPipeline[grantId] === stage) { delete oppPipeline[grantId]; }
+  else { oppPipeline[grantId] = stage; }
+  renderGrantMatch();
+}
+
+function renderGrantMatch() {
+  if (!grantProfile.hasProfile) {
+    document.getElementById('gm-setup').classList.remove('hidden');
+    document.getElementById('gm-dashboard').classList.add('hidden');
+    return;
+  }
+  document.getElementById('gm-setup').classList.add('hidden');
+  document.getElementById('gm-dashboard').classList.remove('hidden');
+
+  // Score all grants
+  const scored = grants.map(g => ({ ...g, score: scoreGrant(g) })).sort((a,b) => b.score - a.score);
+
+  // Stats
+  const highMatch = scored.filter(g => g.score >= 70).length;
+  const pipelineCount = Object.keys(oppPipeline).length;
+  const topValue = scored.slice(0,5).map(g => {
+    const nums = ((g.amount||'').match(/\$[\d,.]+M?/g)||[]).map(s => {
+      const n = parseFloat(s.replace(/[$,]/g,''));
+      return s.includes('M') ? n * 1000000 : n;
+    });
+    return nums.length ? Math.max(...nums) : 0;
+  }).reduce((a,b) => a+b, 0);
+
+  document.getElementById('gm-stat-total').textContent = scored.length;
+  document.getElementById('gm-stat-high').textContent = highMatch;
+  document.getElementById('gm-stat-pipeline').textContent = pipelineCount;
+  document.getElementById('gm-stat-value').textContent = topValue > 0 ? '$' + (topValue >= 1000000 ? (topValue/1000000).toFixed(1)+'M+' : (topValue/1000).toFixed(0)+'K+') : '—';
+
+  // Profile summary chips
+  const chips = [
+    grantProfile.orgType && `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs bg-[#1c1c1e] border border-white/10 text-gray-300">🏢 ${grantProfile.orgType}</span>`,
+    grantProfile.state && `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs bg-[#1c1c1e] border border-white/10 text-gray-300">📍 ${grantProfile.state}${grantProfile.region ? ' · '+grantProfile.region : ''}</span>`,
+    grantProfile.categories.length && `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs bg-[#1c1c1e] border border-white/10 text-gray-300">🎯 ${grantProfile.categories.length} focus area${grantProfile.categories.length>1?'s':''}</span>`,
+    grantProfile.certs.length && `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs bg-[rgba(201,168,76,0.1)] border border-[rgba(201,168,76,0.2)] text-[#c9a84c]">✓ ${grantProfile.certs.filter(c=>c!=='none').length} cert${grantProfile.certs.filter(c=>c!=='none').length>1?'s':''}</span>`,
+  ].filter(Boolean).join('');
+  document.getElementById('gm-profile-summary').innerHTML = chips || '<span class="text-gray-500 text-xs">No profile details set</span>';
+
+  // Render current view
+  renderReadinessCard();
+  if (gmView === 'matches') renderGmCards(scored);
+  else renderGmPipeline(scored);
+}
+
+function renderGmCards(scored) {
+  document.getElementById('gm-matches-view').classList.remove('hidden');
+  document.getElementById('gm-pipeline-view').classList.add('hidden');
+
+  let filtered = scored;
+  if (gmScoreFilter === 'high') filtered = scored.filter(g => g.score >= 70);
+  else if (gmScoreFilter === 'federal') filtered = scored.filter(g => g.level === 'Federal');
+  else if (gmScoreFilter === 'state') filtered = scored.filter(g => g.level === 'State');
+  else if (gmScoreFilter === 'contract') filtered = scored.filter(g => g.level === 'Contract');
+
+  const grid = document.getElementById('gm-cards-grid');
+  if (!filtered.length) { grid.innerHTML = '<div class="col-span-3 text-center text-gray-500 py-12">No grants match this filter.</div>'; return; }
+
+  grid.innerHTML = filtered.map(g => {
+    const stage = pipelineStageFor(g.id);
+    const stageColor = stage ? PIPELINE_COLORS[stage] : null;
+    const stageBadge = stage ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full border" style="color:${stageColor};border-color:${stageColor}33;background:${stageColor}11;">${PIPELINE_LABELS[stage]}</span>` : '';
+    const fit = analyzeFit(g);
+    const fitFactorsHTML = fit.factors.map(f => {
+      const ic = f.status==='pass'?'✅':f.status==='warn'?'⚠️':'❌';
+      const fc = f.status==='pass'?'#22c55e':f.status==='warn'?'#c9a84c':'#ef4444';
+      return `<div class="mb-2">
+        <div class="flex items-center justify-between mb-0.5">
+          <span class="text-[10px] text-gray-400">${ic} ${f.name}</span>
+          <span class="text-[10px] font-bold" style="color:${fc}">${f.score}%</span>
+        </div>
+        <div style="height:3px;background:#1c1c1e;border-radius:3px;">
+          <div style="width:${f.score}%;height:3px;background:${fc};border-radius:3px;"></div>
+        </div>
+        <div class="text-[9px] text-gray-600 mt-0.5 leading-tight">${f.detail}</div>
+        ${f.actions.length?`<div class="text-[9px] text-orange-400 mt-0.5">→ ${f.actions[0]}</div>`:''}
+      </div>`;
+    }).join('');
+
+    return `
+    <div class="bg-[#111214] border border-white/8 rounded-xl flex flex-col hover:border-white/15 transition" style="${stage?'border-color:'+stageColor+'44':''}">
+      <div class="p-5 flex flex-col gap-3">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1.5 flex-wrap">${levelBadge(g.level)} ${stageBadge}</div>
+            <div class="font-bold text-sm text-white leading-snug">${g.name}</div>
+            <div class="text-xs text-gray-500 mt-0.5">${g.agency}</div>
+          </div>
+          <div class="flex-shrink-0 text-center">
+            ${scoreRingSVG(g.score)}
+            <div class="text-[9px] text-gray-600 mt-0.5">${scoreLabel(g.score)}</div>
+          </div>
+        </div>
+        <div class="text-xs text-gray-400 leading-relaxed line-clamp-2">${g.description}</div>
+        <div class="flex items-center justify-between text-xs text-gray-500 gap-2 pt-1 border-t border-white/5">
+          <span class="text-[#c9a84c] font-semibold truncate">${g.amount}</span>
+          <span class="flex-shrink-0">🗓 ${g.deadline.split('—')[0].trim()}</span>
+        </div>
+        <div class="flex gap-1.5 mt-1 flex-wrap items-center">
+          ${PIPELINE_STAGES.map(st => `<button onclick="setOppPipeline('${g.id}','${st}',event)" title="${PIPELINE_LABELS[st]}" class="px-2 py-1 rounded text-[10px] border transition ${stage===st ? 'font-bold' : 'opacity-40 hover:opacity-100'}" style="color:${PIPELINE_COLORS[st]};border-color:${PIPELINE_COLORS[st]}44;background:${PIPELINE_COLORS[st]}11;">${PIPELINE_LABELS[st].split(' ')[0]}</button>`).join('')}
+          <a href="${g.link}" target="_blank" class="ml-auto px-3 py-1 rounded text-[10px] font-semibold bg-[rgba(201,168,76,0.1)] border border-[rgba(201,168,76,0.3)] text-[#c9a84c] hover:bg-[rgba(201,168,76,0.2)] transition">Apply →</a>
+        </div>
+        <div class="flex gap-2 mt-1">
+          <button onclick="toggleFitPanel('fit-${g.id}',this)" class="flex-1 py-1.5 rounded-lg text-[10px] font-bold border border-white/8 bg-white/3 text-gray-500 hover:bg-white/8 hover:text-gray-300 transition flex items-center justify-center gap-1">
+            <span>📊 Fit Analysis</span><span class="fit-arrow-${g.id}">▼</span>
+          </button>
+          <button onclick="toggleTeamPanel('team-${g.id}',this)" class="flex-1 py-1.5 rounded-lg text-[10px] font-bold border border-[rgba(201,168,76,0.2)] bg-[rgba(201,168,76,0.05)] text-[#c9a84c] hover:bg-[rgba(201,168,76,0.12)] transition flex items-center justify-center gap-1">
+            <span>👥 Find Partners</span><span class="team-arrow">▼</span>
+          </button>
+        </div>
+      </div>
+      <!-- Fit Analysis Panel -->
+      <div id="fit-${g.id}" class="hidden border-t border-white/8 bg-[#0d0f11] p-4">
+        <div class="text-[10px] font-bold uppercase tracking-widest text-[#c9a84c] mb-3">Fit Analysis — ${g.name.length>40?g.name.substring(0,40)+'…':g.name}</div>
+        <div>${fitFactorsHTML}</div>
+        ${fit.gaps.length ? `
+        <div class="mt-3 pt-3 border-t border-white/5">
+          <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">Priority Gaps to Close</div>
+          ${fit.gaps.slice(0,3).map(gap=>`<div class="flex items-start gap-1.5 text-[10px] text-gray-400 mb-1"><span class="text-orange-400 flex-shrink-0">→</span>${gap}</div>`).join('')}
+        </div>` : `<div class="mt-2 pt-2 border-t border-white/5 text-[10px] text-green-400">✅ No critical gaps — strong candidate for this opportunity.</div>`}
+        <div class="mt-3 text-[10px] text-gray-600">Overall fit score: <strong style="color:${scoreColor(fit.overall)}">${fit.overall}% (weighted analysis)</strong></div>
+      </div>
+      <!-- Teaming Partners Panel -->
+      <div id="team-${g.id}" class="hidden border-t border-[rgba(201,168,76,0.12)] bg-[#0d0f11] rounded-b-xl p-4">
+        ${buildTeamPanel(g)}
+      </div>
+    </div>`; }).join('');
+}
+
+function renderGmPipeline(scored) {
+  document.getElementById('gm-matches-view').classList.add('hidden');
+  document.getElementById('gm-pipeline-view').classList.remove('hidden');
+
+  const board = document.getElementById('gm-pipeline-board');
+  board.innerHTML = PIPELINE_STAGES.map(stage => {
+    const items = scored.filter(g => oppPipeline[g.id] === stage);
+    const c = PIPELINE_COLORS[stage];
+    return `
+    <div class="rounded-xl border border-white/8 bg-[#111214] p-3">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold" style="color:${c}">${PIPELINE_LABELS[stage]}</span>
+        <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:${c}22;color:${c}">${items.length}</span>
+      </div>
+      <div class="space-y-2">
+        ${items.length === 0 ? `<div class="text-center text-gray-700 text-xs py-6 border border-dashed border-white/5 rounded-lg">Empty</div>` :
+          items.map(g => `
+          <div class="bg-[#18191c] rounded-lg p-3 border border-white/5">
+            <div class="text-xs font-semibold text-white leading-snug mb-1">${g.name.length>45?g.name.substring(0,45)+'…':g.name}</div>
+            <div class="flex items-center justify-between gap-1">
+              ${levelBadge(g.level)}
+              <span class="text-[10px] font-bold" style="color:${scoreColor(g.score)}">${g.score}%</span>
+            </div>
+            <div class="flex gap-1 mt-2 flex-wrap">
+              ${PIPELINE_STAGES.filter(s=>s!==stage).map(s=>`<button onclick="setOppPipeline('${g.id}','${s}',event)" class="text-[9px] px-1.5 py-0.5 rounded border border-white/10 text-gray-500 hover:text-white transition">→ ${PIPELINE_LABELS[s].split(' ')[1]}</button>`).join('')}
+              <button onclick="setOppPipeline('${g.id}','${stage}',event)" class="text-[9px] px-1.5 py-0.5 rounded border border-red-500/20 text-red-400 hover:bg-red-500/10 transition">✕</button>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`; }).join('');
+}
+
+function setGmView(view, btn) {
+  gmView = view;
+  document.querySelectorAll('.gm-view-btn').forEach(b => {
+    b.className = 'gm-view-btn px-4 py-2 rounded-lg text-sm font-semibold border border-white/10 bg-white/5 text-gray-400 hover:bg-white/10 transition';
+  });
+  btn.className = 'gm-view-btn active-gmv px-4 py-2 rounded-lg text-sm font-semibold bg-[rgba(201,168,76,0.12)] border border-[rgba(201,168,76,0.4)] text-[#c9a84c]';
+  const scored = grants.map(g => ({ ...g, score: scoreGrant(g) })).sort((a,b) => b.score - a.score);
+  if (view === 'matches') renderGmCards(scored);
+  else renderGmPipeline(scored);
+}
+
+function setGmFilter(f, btn) {
+  gmScoreFilter = f;
+  document.querySelectorAll('.gm-sf').forEach(b => {
+    b.className = 'gm-sf px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#1c1c1e] text-gray-400';
+  });
+  btn.className = 'gm-sf active-gmf px-3 py-1.5 rounded-full text-xs border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.1)] text-[#c9a84c]';
+  const scored = grants.map(g => ({ ...g, score: scoreGrant(g) })).sort((a,b) => b.score - a.score);
+  renderGmCards(scored);
+}
+
+function saveGrantProfile() {
+  const orgType = [...document.querySelectorAll('.gm-pill-orgtype')].find(b => b.classList.contains('active-pill'))?.dataset.val || '';
+  const categories = [...document.querySelectorAll('.gm-pill-focus.active-pill')].map(b => b.dataset.val);
+  const certs = [...document.querySelectorAll('.gm-pill-cert.active-pill')].map(b => b.dataset.val);
+  const readiness = [...document.querySelectorAll('.gm-pill-ready.active-pill')].map(b => b.dataset.val);
+  const state = document.getElementById('gm-state').value;
+  const region = document.getElementById('gm-region').value;
+  const employees = document.getElementById('gm-employees').value;
+  const revenue = document.getElementById('gm-revenue').value;
+  const orgName = document.getElementById('gm-orgname')?.value || '';
+  const naics = document.getElementById('gm-naics')?.value || '';
+  const yearsOp = document.getElementById('gm-years')?.value || '';
+  const bonding = document.getElementById('gm-bonding')?.value || '';
+
+  if (!orgType) { showToast('Please select your organization type', '⚠️'); return; }
+  if (!categories.length) { showToast('Please select at least one focus area', '⚠️'); return; }
+
+  grantProfile = { orgType, categories, state, region, employees, revenue, certs, readiness, orgName, naics, yearsOp, bonding, hasProfile:true };
+  renderGrantMatch();
+  showToast('Profile saved — fit analysis complete!', '🎯');
+}
+
+function resetGrantProfile() {
+  grantProfile = { orgType:'', categories:[], state:'', region:'', employees:'', revenue:'', certs:[], readiness:[], orgName:'', naics:'', yearsOp:'', bonding:'', hasProfile:false };
+  document.querySelectorAll('.gm-pill').forEach(b => {
+    b.classList.remove('active-pill');
+    b.style.borderColor = ''; b.style.background = ''; b.style.color = '';
+  });
+  ['gm-state','gm-region','gm-employees','gm-revenue','gm-years','gm-bonding'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.value='';
+  });
+  const nameEl = document.getElementById('gm-orgname'); if(nameEl) nameEl.value='';
+  const naicsEl = document.getElementById('gm-naics'); if(naicsEl) naicsEl.value='';
+  renderGrantMatch();
+}
+
+function toggleFitPanel(panelId, btn) {
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const isOpen = !panel.classList.contains('hidden');
+  panel.classList.toggle('hidden');
+  const arrowClass = panelId.replace('fit-','fit-arrow-');
+  document.querySelectorAll('[class*="'+arrowClass+'"]').forEach(el => { el.textContent = isOpen ? '▼' : '▲'; });
+  btn.querySelector('span:last-child').textContent = isOpen ? '▼' : '▲';
+}
+
+// Pill toggle behavior
+document.addEventListener('click', function(e) {
+  const pill = e.target.closest('.gm-pill');
+  if (!pill) return;
+  if (pill.classList.contains('gm-pill-orgtype')) {
+    document.querySelectorAll('.gm-pill-orgtype').forEach(b => {
+      b.classList.remove('active-pill');
+      b.style.borderColor = '';
+      b.style.background = '';
+      b.style.color = '';
+    });
+    pill.classList.add('active-pill');
+    pill.style.borderColor = 'rgba(201,168,76,0.6)';
+    pill.style.background = 'rgba(201,168,76,0.1)';
+    pill.style.color = '#c9a84c';
+  } else if (pill.classList.contains('gm-pill-focus') || pill.classList.contains('gm-pill-cert') || pill.classList.contains('gm-pill-ready')) {
+    pill.classList.toggle('active-pill');
+    if (pill.classList.contains('active-pill')) {
+      pill.style.borderColor = 'rgba(201,168,76,0.6)';
+      pill.style.background = 'rgba(201,168,76,0.1)';
+      pill.style.color = '#c9a84c';
+    } else {
+      pill.style.borderColor = '';
+      pill.style.background = '';
+      pill.style.color = '';
+    }
+  }
+});
 
 // ══════════════════════════
 //  ECOSYSTEM MAP
