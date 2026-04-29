@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Health Assessment | Eco Tech AI Â· Entrepreneur Ecosystem</title>
+  <meta name="description" content="Discover your business's digital readiness score. Get a personalized action plan powered by Eco Tech AI with free resources from Verizon Digital Ready.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { jakarta: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            brand: { dark: '#0A0A0F', darker: '#06060A', card: '#0F1117', border: 'rgba(255,255,255,0.08)', silver: '#94A3B8' },
+            accent: { blue: '#2563EB', blueLight: '#3B82F6', blueDeep: '#1E40AF', green: '#16A34A', greenLight: '#22C55E' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: #0A0A0F; }
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .nav-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .silver-divider { border-color: rgba(148,163,184,0.12); }
+    .text-gradient { background: linear-gradient(135deg,#2563EB,#16A34A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .btn-glow:hover { box-shadow: 0 0 30px rgba(37,99,235,0.45); }
+    .btn-glow-green:hover { box-shadow: 0 0 30px rgba(22,163,74,0.4); }
+    .option-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 18px; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:12px; }
+    .option-card:hover { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.3); }
+    .option-card.selected { background: rgba(37,99,235,0.15); border-color: #2563EB; }
+    .option-card.selected .option-dot { background: #2563EB; }
+    .option-dot { width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); flex-shrink:0; transition:all 0.2s; }
+    .score-ring { stroke-dasharray: 283; stroke-dashoffset: 283; transition: stroke-dashoffset 1.5s ease; }
+    .progress-bar-fill { transition: width 0.5s ease; }
+    .category-bar-fill { transition: width 1s ease; }
+    .resource-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; transition:all 0.25s; }
+    .resource-card:hover { background: rgba(37,99,235,0.06); border-color: rgba(37,99,235,0.25); transform:translateY(-2px); }
+    @media print {
+      nav, #start-screen, #assessment-screen, .no-print { display: none !important; }
+      #results-screen { display: block !important; }
+      body { background: white; color: black; }
+      .print-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body class="text-white overflow-x-hidden">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 nav-blur bg-brand-dark/85 border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-md bg-accent-blue flex items-center justify-center">
+            <i class="fas fa-seedling text-white text-xs"></i>
+          </div>
+          <span class="text-base font-bold tracking-tight">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-5">
+          <a href="/" class="text-sm text-white/60 hover:text-white transition">Home</a>
+          <a href="/ecosystem.html" class="text-sm text-white/60 hover:text-white transition">The Ecosystem</a>
+          <a href="/tech-ai.html" class="text-sm text-white font-semibold border-b-2 border-accent-blue pb-0.5">Eco Tech AI</a>
+          <a href="/finance-ai.html" class="text-sm text-white/60 hover:text-white transition">Eco Finance AI</a>
+          <a href="https://entrepreneurecosystem.optixapp.com/signup" target="_blank"
+            class="px-4 py-2 bg-accent-blue hover:bg-accent-blueDeep rounded-lg text-sm font-semibold transition btn-glow text-white">Join Now</a>
+        </div>
+        <button id="hamburger" class="md:hidden text-white/80 hover:text-white">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t silver-divider bg-brand-dark/95 nav-blur">
+      <div class="px-4 py-4 space-y-3">
+        <a href="/" class="block text-sm text-white/60 hover:text-white py-1">Home</a>
+        <a href="/ecosystem.html" class="block text-sm text-white/60 hover:text-white py-1">The Ecosystem</a>
+        <a href="/tech-ai.html" class="block text-sm text-white font-semibold py-1">Eco Tech AI</a>
+        <a href="/finance-ai.html" class="block text-sm text-white/60 hover:text-white py-1">Eco Finance AI</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- âââ LEAD CAPTURE MODAL âââ -->
+  <div id="lead-modal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#0F1117;border:1px solid rgba(255,255,255,0.12);border-radius:24px;max-width:540px;width:100%;padding:40px;">
+      <div class="text-center mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-accent-blue/20 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-microchip text-accent-blueLight text-2xl"></i>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">Your Results Are Ready!</h2>
+        <p class="text-white/50 text-sm">Enter your info to unlock your Digital Health Score, personalized action plan, and free Verizon Digital Ready resources.</p>
+      </div>
+      <form id="lead-form" class="space-y-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-white/50 font-semibold uppercase tracking-wider mb-1.5 block">First Name *</label>
+            <input type="text" id="field-first" required placeholder="Marcus"
+              style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;">
+          </div>
+          <div>
+            <label class="text-xs text-white/50 font-semibold uppercase tracking-wider mb-1.5 block">Last Name *</label>
+            <input type="text" id="field-last" required placeholder="Johnson"
+              style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;">
+          </div>
+        </div>
+        <div>
+          <label class="text-xs text-white/50 font-semibold uppercase tracking-wider mb-1.5 block">Business Name *</label>
+          <input type="text" id="field-biz" required placeholder="Your Business Name"
+            style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;">
+        </div>
+        <div>
+          <label class="text-xs text-white/50 font-semibold uppercase tracking-wider mb-1.5 block">Email Address *</label>
+          <input type="email" id="field-email" required placeholder="marcus@yourbusiness.com"
+            style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;">
+        </div>
+        <div>
+          <label class="text-xs text-white/50 font-semibold uppercase tracking-wider mb-1.5 block">Phone (optional)</label>
+          <input type="tel" id="field-phone" placeholder="(909) 555-0100"
+            style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;">
+        </div>
+        <div>
+          <label class="text-xs text-white/50 font-semibold uppercase tracking-wider mb-1.5 block">Business Industry</label>
+          <select id="field-industry" style="width:100%;padding:12px 16px;border-radius:12px;background:#06060A;border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;">
+            <option value="">Select your industry</option>
+            <option>Restaurant / Food Service</option>
+            <option>Retail</option>
+            <option>Healthcare / Wellness</option>
+            <option>Construction / Trades</option>
+            <option>Professional Services</option>
+            <option>Trucking / Logistics</option>
+            <option>Technology</option>
+            <option>Real Estate</option>
+            <option>Manufacturing</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" id="lead-submit"
+          style="width:100%;padding:16px;background:#2563EB;border-radius:12px;font-size:14px;font-weight:700;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;">
+          <i class="fas fa-unlock"></i> View My Digital Health Score
+        </button>
+        <p style="font-size:11px;color:rgba(255,255,255,0.25);text-align:center;">Your information is confidential. AmPac may follow up with helpful digital resources.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- âââ START SCREEN âââ -->
+  <div id="start-screen">
+    <section class="pt-32 pb-20 relative overflow-hidden">
+      <div class="absolute inset-0" style="background:radial-gradient(ellipse at 35% 40%,rgba(37,99,235,0.14),transparent 65%),radial-gradient(ellipse at 70% 60%,rgba(22,163,74,0.07),transparent 60%);"></div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div class="fade-in inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-blue/10 border border-accent-blue/20 text-accent-blueLight text-sm font-medium mb-6">
+          <i class="fas fa-microchip text-xs"></i> Powered by Eco Tech AI
+        </div>
+        <h1 class="fade-in text-4xl sm:text-5xl font-extrabold mb-5 leading-tight">
+          Your Free <span class="text-gradient">Digital Health</span><br>Assessment
+        </h1>
+        <p class="fade-in text-white/55 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+          Discover exactly where your business stands digitally â and get a personalized action plan with free resources from <strong class="text-white/80">Verizon Digital Ready</strong> to close every gap.
+        </p>
+        <div class="fade-in flex flex-wrap justify-center gap-6 mb-10 text-sm text-white/50">
+          <div class="flex items-center gap-2"><i class="fas fa-clock text-accent-blue"></i> 8â10 minutes</div>
+          <div class="flex items-center gap-2"><i class="fas fa-list-check text-accent-green"></i> 33 questions Â· 7 categories</div>
+          <div class="flex items-center gap-2"><i class="fas fa-file-arrow-down text-accent-blueLight"></i> Downloadable PDF report</div>
+          <div class="flex items-center gap-2"><i class="fas fa-lock text-brand-silver"></i> Free & confidential</div>
+        </div>
+        <button onclick="startAssessment()" class="fade-in px-10 py-4 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-lg font-bold transition btn-glow text-white inline-flex items-center gap-3">
+          <i class="fas fa-play-circle"></i> Start My Assessment
+        </button>
+        <p class="fade-in mt-4 text-xs text-white/25">Free Â· Results unlocked after a quick info capture</p>
+      </div>
+    </section>
+
+    <!-- What you'll discover -->
+    <section class="py-16 border-t silver-divider">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-center text-2xl font-bold mb-10">What We'll Assess</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-blue/15 flex items-center justify-center mb-3"><i class="fas fa-globe text-accent-blueLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">Website & Online Presence</h3>
+            <p class="text-xs text-white/40">SEO, mobile-readiness, Google profile, brand visibility</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-green/15 flex items-center justify-center mb-3"><i class="fas fa-share-nodes text-accent-greenLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">Social Media & Marketing</h3>
+            <p class="text-xs text-white/40">Content, paid ads, email marketing, analytics</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-blue/15 flex items-center justify-center mb-3"><i class="fas fa-cart-shopping text-accent-blueLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">E-Commerce & Online Sales</h3>
+            <p class="text-xs text-white/40">Online store, payments, multi-channel, booking</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-green/15 flex items-center justify-center mb-3"><i class="fas fa-shield-halved text-accent-greenLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">Cybersecurity</h3>
+            <p class="text-xs text-white/40">Passwords, backups, training, incident response</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-blue/15 flex items-center justify-center mb-3"><i class="fas fa-cloud text-accent-blueLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">Cloud Tools & Tech Stack</h3>
+            <p class="text-xs text-white/40">Software, CRM, accounting, collaboration</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-green/15 flex items-center justify-center mb-3"><i class="fas fa-chart-bar text-accent-greenLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">Data & Analytics</h3>
+            <p class="text-xs text-white/40">Tracking, reporting, customer insights, dashboards</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-brand-card border border-brand-border">
+            <div class="w-10 h-10 rounded-xl bg-accent-blue/15 flex items-center justify-center mb-3"><i class="fas fa-robot text-accent-blueLight"></i></div>
+            <h3 class="font-semibold text-sm mb-1">AI & Automation Readiness</h3>
+            <p class="text-xs text-white/40">AI tools, automation, team adoption, strategy</p>
+          </div>
+          <div class="fade-in p-5 rounded-2xl bg-accent-blue/08 border border-accent-blue/20 flex flex-col justify-center items-center text-center">
+            <i class="fas fa-award text-accent-blueLight text-2xl mb-3"></i>
+            <p class="text-sm font-semibold text-accent-blueLight">Get Your Digital Score + Action Plan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verizon badge -->
+    <section class="py-12 border-t silver-divider">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <p class="text-white/30 text-xs uppercase tracking-widest mb-4 font-semibold">Resources powered by</p>
+        <div class="inline-flex items-center gap-4 px-8 py-4 rounded-2xl bg-brand-card border border-brand-border">
+          <div class="w-10 h-10 rounded-xl bg-red-600/20 flex items-center justify-center">
+            <i class="fas fa-wifi text-red-400 text-lg"></i>
+          </div>
+          <div class="text-left">
+            <div class="font-bold text-sm">Verizon Small Business Digital Ready</div>
+            <div class="text-xs text-white/40">Free courses, coaching &amp; $10K grants Â· digitalready.verizon.com</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- âââ ASSESSMENT SCREEN âââ -->
+  <div id="assessment-screen" class="hidden pt-24 pb-20 min-h-screen">
+    <div class="max-w-3xl mx-auto px-4">
+
+      <!-- Progress header -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <p class="text-xs text-white/40 uppercase tracking-widest font-semibold" id="section-label">Section 1 of 7</p>
+            <h2 class="text-xl font-bold mt-1" id="section-title">Website &amp; Online Presence</h2>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-white/40 mb-1">Overall Progress</p>
+            <p class="text-sm font-semibold" id="progress-pct">0%</p>
+          </div>
+        </div>
+        <div class="h-2 rounded-full bg-white/08 overflow-hidden">
+          <div id="progress-bar" class="h-full rounded-full bg-gradient-to-r from-accent-blue to-accent-green progress-bar-fill" style="width:0%"></div>
+        </div>
+        <!-- Section tabs -->
+        <div class="flex gap-1.5 mt-4 flex-wrap">
+          <div id="tab-0" class="flex-1 min-w-8 h-1.5 rounded-full bg-accent-blue transition-all"></div>
+          <div id="tab-1" class="flex-1 min-w-8 h-1.5 rounded-full bg-white/15 transition-all"></div>
+          <div id="tab-2" class="flex-1 min-w-8 h-1.5 rounded-full bg-white/15 transition-all"></div>
+          <div id="tab-3" class="flex-1 min-w-8 h-1.5 rounded-full bg-white/15 transition-all"></div>
+          <div id="tab-4" class="flex-1 min-w-8 h-1.5 rounded-full bg-white/15 transition-all"></div>
+          <div id="tab-5" class="flex-1 min-w-8 h-1.5 rounded-full bg-white/15 transition-all"></div>
+          <div id="tab-6" class="flex-1 min-w-8 h-1.5 rounded-full bg-white/15 transition-all"></div>
+        </div>
+      </div>
+
+      <!-- Section icon -->
+      <div id="section-icon-wrap" class="flex items-center gap-4 mb-8 p-5 rounded-2xl bg-brand-card border border-brand-border">
+        <div id="section-icon" class="w-12 h-12 rounded-xl bg-accent-blue/15 flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-globe text-accent-blueLight text-xl"></i>
+        </div>
+        <div>
+          <p id="section-desc" class="text-white/60 text-sm leading-relaxed">Answer each question as honestly as possible â your results will be most valuable that way.</p>
+        </div>
+      </div>
+
+      <!-- Questions container -->
+      <div id="questions-container" class="space-y-8"></div>
+
+      <!-- Navigation buttons -->
+      <div class="flex items-center justify-between mt-10 pt-8 border-t silver-divider">
+        <button id="prev-btn" onclick="prevSection()" class="px-6 py-3 border border-white/20 hover:border-white/40 rounded-xl text-sm font-semibold transition flex items-center gap-2 text-white/70 hover:text-white">
+          <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <button id="next-btn" onclick="nextSection()" class="px-8 py-3 bg-accent-blue hover:bg-accent-blueDeep rounded-xl text-sm font-bold transition btn-glow text-white flex items-center gap-2">
+          Next Section <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- âââ RESULTS SCREEN âââ -->
+  <div id="results-screen" class="hidden pt-24 pb-20">
+    <div class="max-w-6xl mx-auto px-4">
+
+      <!-- Score hero -->
+      <div class="text-center mb-16">
+        <p class="text-accent-blue text-sm font-semibold tracking-widest uppercase mb-4">Your Digital Health Score</p>
+        <div class="inline-block relative mb-6">
+          <svg width="180" height="180" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+            <circle id="score-ring" class="score-ring" cx="50" cy="50" r="45" fill="none" stroke="url(#scoreGrad)" stroke-width="8" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+            <defs>
+              <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#2563EB"/>
+                <stop offset="100%" style="stop-color:#16A34A"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span id="overall-score-display" class="text-4xl font-extrabold">0</span>
+            <span class="text-xs text-white/40">out of 100</span>
+          </div>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold mb-3">
+          Your Business is: <span id="rating-label" class="text-gradient">â</span>
+        </h1>
+        <p id="rating-desc" class="text-white/55 max-w-2xl mx-auto mb-6 leading-relaxed"></p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button onclick="downloadPDF()" class="px-7 py-3 bg-accent-green hover:bg-green-700 rounded-xl text-sm font-bold transition btn-glow-green text-white flex items-center gap-2">
+            <i class="fas fa-file-arrow-down"></i> Download Full PDF Report
+          </button>
+          <a href="https://outlook.office.com/bookwithme/user/7c4a9d8bdaed4dc986e2495104642c66@ampac.com?anonymous&ep=signature" target="_blank"
+            class="px-7 py-3 border border-accent-blue/40 hover:border-accent-blue rounded-xl text-sm font-bold transition text-accent-blueLight hover:text-white flex items-center gap-2">
+            <i class="fas fa-calendar-check"></i> Book a Tech Strategy Session
+          </a>
+        </div>
+      </div>
+
+      <!-- Radar Chart -->
+      <div class="grid lg:grid-cols-2 gap-8 mb-12">
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border">
+          <h3 class="font-bold mb-4 text-center">Digital Readiness Radar</h3>
+          <canvas id="radarChart" height="300"></canvas>
+        </div>
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-center">
+          <h3 class="font-bold mb-5">Category Scores</h3>
+          <div id="category-bars" class="space-y-4"></div>
+        </div>
+      </div>
+
+      <!-- Category Breakdown -->
+      <h2 class="text-2xl font-bold mb-6">Your Detailed Results &amp; Action Plan</h2>
+      <div id="category-breakdown" class="space-y-6 mb-12"></div>
+
+      <!-- Verizon Resources Banner -->
+      <div class="rounded-3xl p-8 mb-12" style="background:linear-gradient(135deg,rgba(37,99,235,0.1),rgba(22,163,74,0.06));border:1px solid rgba(37,99,235,0.2);">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-red-600/20 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-wifi text-red-400 text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold">Free Resources from Verizon Digital Ready</h3>
+            <p class="text-white/50 text-sm">Free courses, live coaching sessions, and $10K small business grants</p>
+          </div>
+          <a href="https://digitalready.verizon.com" target="_blank"
+            class="sm:ml-auto px-5 py-2.5 bg-red-600 hover:bg-red-700 rounded-xl text-sm font-bold text-white transition flex items-center gap-2 flex-shrink-0">
+            <i class="fas fa-external-link-alt"></i> Visit Hub
+          </a>
+        </div>
+        <div id="verizon-resources" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      </div>
+
+      <!-- Retake + Finance CTA -->
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-brand-card border border-brand-border text-center">
+          <i class="fas fa-rotate text-accent-blue text-2xl mb-3"></i>
+          <h4 class="font-bold mb-2">Retake the Assessment</h4>
+          <p class="text-sm text-white/40 mb-4">Track your digital progress over time</p>
+          <button onclick="restartAssessment()" class="px-6 py-2.5 border border-accent-blue/40 hover:border-accent-blue rounded-xl text-sm font-semibold text-accent-blueLight hover:text-white transition">
+            Start Over
+          </button>
+        </div>
+        <div class="p-6 rounded-2xl border text-center" style="background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(21,128,61,0.05));border-color:rgba(22,163,74,0.2);">
+          <i class="fas fa-chart-line text-accent-greenLight text-2xl mb-3"></i>
+          <h4 class="font-bold mb-2">Also Check Your Financial Health</h4>
+          <p class="text-sm text-white/40 mb-4">Get your Financial Health Score from Eco Finance AI</p>
+          <a href="/cfo-ai-assessment.html" class="px-6 py-2.5 bg-accent-green hover:bg-green-700 rounded-xl text-sm font-semibold text-white transition inline-block">
+            Take Financial Assessment
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t silver-divider bg-brand-darker mt-20">
+    <div class="max-w-7xl mx-auto px-4 py-10 text-center">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="w-6 h-6 rounded bg-accent-blue flex items-center justify-center">
+          <i class="fas fa-seedling text-white text-xs"></i>
+        </div>
+        <span class="text-sm font-bold">ENTREPRENEUR <span class="text-accent-green">ECOSYSTEM</span></span>
+      </div>
+      <p class="text-xs text-white/25">A program of AmPac Business Capital Â· 3110-B Inland Empire Blvd. Ontario, CA 91764</p>
+      <p class="text-xs text-white/20 mt-1">Verizon Digital Ready resources are provided by Verizon and are free to all small business owners</p>
+    </div>
+  </footer>
+
+  <script>
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  // ASSESSMENT DATA
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  const SECTIONS = [
+    {
+      id: 'website', title: 'Website & Online Presence', icon: 'fa-globe', color: '#2563EB',
+      desc: 'Your website is your digital storefront. Let\'s see how it\'s working for you.',
+      questions: [
+        { q: 'Does your business have a website?', opts: ['No website at all','Just a domain name, no active site','Basic website with minimal pages','Professional website with good content','Fully optimized site with SEO, analytics & regular updates'] },
+        { q: 'Is your website mobile-friendly?', opts: ['Not mobile-friendly','Partially works on mobile','Functional on mobile devices','Mobile-optimized experience','Mobile-first design with excellent UX'] },
+        { q: 'Do you have a Google Business Profile (Google Maps listing)?', opts: ['No listing at all','Unclaimed or badly outdated listing','Basic claimed listing','Active listing with photos and posts','Fully optimized with reviews, Q&A & regular updates'] },
+        { q: 'How strong is your business\'s search engine visibility?', opts: ['We don\'t appear in search results','Only appear for our exact business name','Appear for some relevant searches','Rank well for key terms in our area','Strong SEO with consistent top rankings'] },
+        { q: 'How professional and current is your brand\'s overall online image?', opts: ['No consistent brand online','Basic, outdated web presence','Decent presence but needs refreshing','Professional and consistent across platforms','Strong brand with excellent visual identity'] }
+      ],
+      resources: [
+        { title: 'Build Your Business Website', url: 'https://digitalready.verizon.com/catalog', desc: 'Free course: creating a professional small business website from scratch', tag: 'Course' },
+        { title: 'Google My Business Optimization', url: 'https://digitalready.verizon.com/catalog', desc: 'Step-by-step guide to claiming and optimizing your Google Business Profile', tag: 'Course' },
+        { title: 'SEO Fundamentals for Small Business', url: 'https://digitalready.verizon.com/catalog', desc: 'Get discovered by local customers searching for what you offer', tag: 'Course' }
+      ]
+    },
+    {
+      id: 'social', title: 'Social Media & Digital Marketing', icon: 'fa-share-nodes', color: '#16A34A',
+      desc: 'Marketing is how new customers find you. Let\'s measure your digital marketing strength.',
+      questions: [
+        { q: 'How active is your business on social media?', opts: ['No social media presence','Have accounts but rarely post','Post occasionally (monthly or less)','Post consistently (weekly)','Daily content with strong engagement & community'] },
+        { q: 'Do you use paid digital advertising (Google Ads, Meta Ads, etc.)?', opts: ['Never used digital ads','Tried once or twice','Run occasional campaigns','Regular advertising with performance tracking','Strategic multi-channel campaigns with ongoing optimization'] },
+        { q: 'Do you use email marketing to stay connected with customers?', opts: ['No email marketing at all','Send occasional mass emails','Monthly newsletter','Regular segmented campaigns','Automated email sequences with personalization'] },
+        { q: 'Do you create content (blogs, videos, reels) to attract customers?', opts: ['No content marketing','Very rarely create content','Occasionally create content','Regular content calendar','Consistent high-quality content driving measurable traffic'] },
+        { q: 'Do you track and analyze your digital marketing results?', opts: ['No tracking at all','Check social likes occasionally','Monitor basic analytics monthly','Regular analytics review guiding decisions','Full attribution tracking with data-driven optimization'] }
+      ],
+      resources: [
+        { title: 'Social Media Marketing Essentials', url: 'https://digitalready.verizon.com/catalog', desc: 'Master social platforms to grow your audience and convert followers to customers', tag: 'Course' },
+        { title: 'Email Marketing That Converts', url: 'https://digitalready.verizon.com/catalog', desc: 'Build an email list and send campaigns that drive real business results', tag: 'Course' },
+        { title: 'Digital Advertising 101', url: 'https://digitalready.verizon.com/catalog', desc: 'Run your first Google or Meta ad campaign with confidence', tag: 'Course' }
+      ]
+    },
+    {
+      id: 'ecommerce', title: 'E-Commerce & Online Sales', icon: 'fa-cart-shopping', color: '#2563EB',
+      desc: 'Can customers buy from you anytime, anywhere? Let\'s find out.',
+      questions: [
+        { q: 'Can customers purchase your products or services online?', opts: ['No online purchasing at all','Only by contacting us directly','Basic online purchase option available','Full e-commerce store with good UX','Optimized multi-channel online store driving significant revenue'] },
+        { q: 'What digital payment methods do you accept?', opts: ['Cash or check only','Invoice/check payments','PayPal or one digital option','Credit cards + multiple digital options','All major payment methods including contactless & mobile pay'] },
+        { q: 'Do you sell on online marketplaces or additional channels?', opts: ['Only sell from one location/channel','Considering expanding to other channels','Active on 1 additional platform','Active on 2â3 platforms','Comprehensive multi-channel sales strategy'] },
+        { q: 'How would you rate the online experience for your customers?', opts: ['We don\'t serve customers online','Poor online customer experience','Average experience â functional but basic','Good, professional online experience','Excellent, seamless experience with strong reviews'] },
+        { q: 'Do you offer online appointment scheduling or booking?', opts: ['No booking system','Phone or email only','Basic contact/request form','Dedicated online booking tool','Automated booking with reminders, confirmations & CRM integration'] }
+      ],
+      resources: [
+        { title: 'Launching Your Online Store', url: 'https://digitalready.verizon.com/catalog', desc: 'Set up a professional e-commerce presence to sell your products 24/7', tag: 'Course' },
+        { title: 'Accepting Digital Payments', url: 'https://digitalready.verizon.com/catalog', desc: 'Add modern payment options to reduce friction and boost sales', tag: 'Course' },
+        { title: 'Multi-Channel Selling Strategy', url: 'https://digitalready.verizon.com/catalog', desc: 'Expand to Amazon, Etsy, and social commerce to multiply your revenue', tag: 'Course' }
+      ]
+    },
+    {
+      id: 'security', title: 'Cybersecurity & Data Protection', icon: 'fa-shield-halved', color: '#16A34A',
+      desc: 'Cyber threats cost small businesses an average of $120K per incident. Let\'s check your defenses.',
+      questions: [
+        { q: 'How strong is your business\'s password and account security?', opts: ['Simple or reused passwords across accounts','Moderate passwords, sometimes reused','Strong passwords for important accounts only','Strong unique passwords for all accounts','Strong passwords + password manager + MFA on all accounts'] },
+        { q: 'How frequently do you back up your business-critical data?', opts: ['Never back up data','Occasional manual backups','Monthly backups','Weekly backups','Automatic daily encrypted backups to secure cloud'] },
+        { q: 'What cybersecurity protections does your business have in place?', opts: ['No protections at all','Free antivirus software only','Basic paid security software','Business-grade security suite with updates','Enterprise security with monitoring, updates & vulnerability scanning'] },
+        { q: 'Do you train your team on cybersecurity awareness?', opts: ['No training whatsoever','Mentioned it casually once','Annual one-time training','Regular training sessions throughout the year','Ongoing cybersecurity awareness program with testing'] },
+        { q: 'Do you have a plan if your business experiences a cyberattack or data breach?', opts: ['No plan â would improvise','Would figure it out when it happens','Have a basic idea of what to do','Written and documented incident response plan','Tested incident response plan with cyber insurance coverage'] }
+      ],
+      resources: [
+        { title: 'Cybersecurity for Small Business', url: 'https://digitalready.verizon.com/catalog', desc: 'Protect your business from the most common and costly cyber threats', tag: 'Course' },
+        { title: 'Securing Customer Data & Privacy', url: 'https://digitalready.verizon.com/catalog', desc: 'Understand data privacy laws and protect your customers\' information', tag: 'Course' },
+        { title: 'Creating a Cybersecurity Policy', url: 'https://digitalready.verizon.com/catalog', desc: 'Build simple but effective security policies your whole team will follow', tag: 'Course' }
+      ]
+    },
+    {
+      id: 'cloud', title: 'Cloud Tools & Technology Stack', icon: 'fa-cloud', color: '#2563EB',
+      desc: 'The right tools make everything faster, cheaper, and more professional.',
+      questions: [
+        { q: 'Does your business use cloud-based software and tools?', opts: ['Use no cloud tools â everything is offline','Use 1â2 basic cloud tools','Use several cloud tools for key functions','Most business functions run on integrated cloud tools','Fully cloud-based operations with well-integrated systems'] },
+        { q: 'How do you manage your business finances and accounting?', opts: ['Paper records or no system','Excel spreadsheets','Basic desktop accounting software','Cloud accounting (QuickBooks, Xero, Wave, etc.)','Integrated cloud accounting with real-time reporting & automation'] },
+        { q: 'Do you use a Customer Relationship Management (CRM) system?', opts: ['No CRM â track customers mentally or on paper','Use a spreadsheet for customer records','Have a basic CRM tool','Active CRM with full contact records and history','Advanced CRM with automation, analytics & pipeline management'] },
+        { q: 'How do you communicate and collaborate with your team?', opts: ['Mostly in person or phone calls','Primarily email','Email + a chat app (WhatsApp, iMessage)','Dedicated team platform (Slack, Teams, etc.)','Integrated communication + project management + video suite'] },
+        { q: 'How would you rate the overall technology your business uses day-to-day?', opts: ['Very outdated â mostly manual processes','Behind the times but functional','Adequate for current needs','Modern and efficient technology','Best-in-class tech stack driving measurable efficiency gains'] }
+      ],
+      resources: [
+        { title: 'Cloud Technology for Small Business', url: 'https://digitalready.verizon.com/catalog', desc: 'Migrate your business to the cloud to cut costs and work from anywhere', tag: 'Course' },
+        { title: 'Choosing the Right Business Software', url: 'https://digitalready.verizon.com/catalog', desc: 'Compare tools for accounting, CRM, project management & communications', tag: 'Course' },
+        { title: 'CRM Fundamentals', url: 'https://digitalready.verizon.com/catalog', desc: 'Manage customer relationships like a pro with the right CRM system', tag: 'Course' }
+      ]
+    },
+    {
+      id: 'data', title: 'Data & Analytics', icon: 'fa-chart-bar', color: '#16A34A',
+      desc: 'Data turns guesses into decisions. Let\'s see how data-driven your business is.',
+      questions: [
+        { q: 'Do you track and use website analytics (Google Analytics, etc.)?', opts: ['No analytics installed at all','Have analytics but rarely ever check','Check metrics once a month or so','Review analytics regularly and act on key insights','Daily monitoring with A/B testing and ongoing optimization'] },
+        { q: 'Do you collect and analyze customer data to improve your business?', opts: ['Don\'t collect any customer data','Collect some data but never analyze it','Track basic customer data (names, purchases)','Regular customer analysis informs product and service decisions','Advanced customer analytics directly driving strategy and growth'] },
+        { q: 'How often do data and numbers guide your business decisions?', opts: ['Decisions are entirely gut-based','Rarely look at any numbers','Sometimes reference key metrics','Most major decisions are guided by data','Deeply data-driven culture â every decision has a metric'] },
+        { q: 'Do you have dashboards or reports to track business performance?', opts: ['No reporting or tracking tools','Occasional one-off manual reports','Basic periodic reports (monthly/quarterly)','Regular dashboards tracking key performance metrics','Real-time performance dashboards accessible to leadership'] }
+      ],
+      resources: [
+        { title: 'Google Analytics for Beginners', url: 'https://digitalready.verizon.com/catalog', desc: 'Understand who visits your website and what they do there', tag: 'Course' },
+        { title: 'Data-Driven Business Decisions', url: 'https://digitalready.verizon.com/catalog', desc: 'Learn to gather, read, and act on the data your business generates every day', tag: 'Course' },
+        { title: 'Building Business Dashboards', url: 'https://digitalready.verizon.com/catalog', desc: 'Create simple dashboards that keep you on top of what matters', tag: 'Course' }
+      ]
+    },
+    {
+      id: 'ai', title: 'AI & Automation Readiness', icon: 'fa-robot', color: '#2563EB',
+      desc: 'AI is reshaping every industry. Let\'s see where your business stands.',
+      questions: [
+        { q: 'Have you used AI tools (ChatGPT, Copilot, Jasper, etc.) in your business?', opts: ['Never heard of or tried AI tools','Aware of AI but haven\'t used it','Tried a few AI t/ols once or twice','Use AI tools regularly for specific tasks','AI is integrated into multiple core business processes'] },
+        { q: 'Do you automate any repetitive tasks in your business?', opts: ['Everything is done manually','Automated 1â2 small tasks','Some automation in key areas','Many core processes are automated','Highly automated operations saving significant time and cost'] },
+        { q: 'Is your team ready and willing to adopt new technologies?', opts: ['Strong resistance to change','Generally skeptical of new technology','Open but cautious about change','Generally excited to try new tools','Actively seeking new tech and building a culture of innovation'] },
+        { q: 'How prepared is your business to leverage AI for growth?', opts: ['Not at all prepared â don\'t know where to start','Curious but overwhelmed about getting started','Have started exploring AI tools and use cases','Actively using AI tools and seeing measurable time savings','Clear AI strategy delivering significant competitive advantage'] }
+      ],
+      resources: [
+        { title: 'AI Tools for Small Business', url: 'https://digitalready.verizon.com/catalog', desc: 'Discover the AI tools saving entrepreneurs 10+ hours per week', tag: 'Course' },
+        { title: 'Automating Your Business Processes', url: 'https://digitalready.verizon.com/catalog', desc: 'Identify and automate the tasks eating up your time every day', tag: 'Course' },
+        { title: 'Future-Proofing Your Small Business', url: 'https://digitalready.verizon.com/catalog', desc: 'Build an AI-ready business that stays competitive as technology evolves', tag: 'Course' }
+      ]
+    }
+  ];
+
+  const RATINGS = [
+    { min: 0,  max: 29, label: 'Just Getting Started', color: '#EF4444', desc: 'Your business has significant digital gaps that are likely costing you customers and revenue every day. The good news: this is your biggest opportunity, and the resources below will help you make rapid progress.' },
+    { min: 30, max: 49, label: 'Developing Digitally', color: '#F97316', desc: 'You have some digital foundations in place, but critical gaps remain. Addressing these strategically will meaningfully grow your customer base and operational efficiency.' },
+    { min: 50, max: 69, label: 'Digitally Functional', color: '#EAB308', desc: 'Your business has solid digital basics covered. Focused improvements in your weaker categories will unlock the next level of growth â and give you a real competitive edge.' },
+    { min: 70, max: 84, label: 'Digitally Strong', color: '#22C55E', desc: 'Your business is performing well digitally. You\'re ahead of most small businesses your size. Now\'s the time to optimize your strengths and close the remaining gaps to reach expert level.' },
+    { min: 85, max: 100, label: 'Digital Leader', color: '#2563EB', desc: 'Your business is a digital leader in your category. Your technology, marketing, and security are working together effectively. Focus on maintaining this edge and staying ahead of emerging trends.' }
+  ];
+
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  // STATE
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  let currentSection = 0;
+  let answers = Array.from({ length: SECTIONS.length }, (_, i) =>
+    Array(SECTIONS[i].questions.length).fill(0)
+  );
+
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  // NAVIGATION
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  function startAssessment() {
+    document.getElementById('start-screen').classList.add('hidden');
+    document.getElementById('assessment-screen').classList.remove('hidden');
+    renderSection(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderSection(idx) {
+    currentSection = idx;
+    const s = SECTIONS[idx];
+
+    document.getElementById('section-label').textContent = `Section ${idx + 1} of ${SECTIONS.length}`;
+    document.getElementById('section-title').textContent = s.title;
+    document.getElementById('section-desc').textContent = s.desc;
+    document.getElementById('section-icon').innerHTML = `<i class="fas ${s.icon} text-xl" style="color:${s.color}"></i>`;
+    document.getElementById('section-icon').style.background = s.color + '22';
+
+    const pct = Math.round((idx / SECTIONS.length) * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '% complete';
+
+    for (let t = 0; t < SECTIONS.length; t++) {
+      const tab = document.getElementById('tab-' + t);
+      tab.style.background = t < idx ? '#16A34A' : t === idx ? s.color : 'rgba(255,255,255,0.12)';
+    }
+
+    const container = document.getElementById('questions-container');
+    container.innerHTML = '';
+    s.questions.forEach((q, qi) => {
+      const div = document.createElement('div');
+      div.className = 'fade-in';
+      div.innerHTML = `
+        <p class="font-semibold mb-3 text-sm sm:text-base">${qi + 1}. ${q.q}</p>
+        <div class="space-y-2" id="opts-${qi}">
+          ${q.opts.map((opt, oi) => `
+            <div class="option-card ${answers[idx][qi] === oi + 1 ? 'selected' : ''}"
+                 onclick="selectAnswer(${qi}, ${oi + 1})">
+              <div class="option-dot ${answers[idx][qi] === oi + 1 ? 'bg-accent-blue border-accent-blue' : ''}"></div>
+              <div>
+                <span class="text-xs text-white/35 font-semibold mr-2">${oi + 1}</span>
+                <span class="text-sm">${opt}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    setTimeout(() => {
+      container.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    }, 50);
+
+    document.getElementById('prev-btn').disabled = idx === 0;
+    document.getElementById('prev-btn').style.opacity = idx === 0 ? '0.3' : '1';
+    document.getElementById('next-btn').innerHTML = idx === SECTIONS.length - 1
+      ? '<i class="fas fa-chart-bar"></i> View My Results'
+      : 'Next Section <i class="fas fa-arrow-right"></i>';
+  }
+
+  function selectAnswer(qIdx, val) {
+    answers[currentSection][qIdx] = val;
+    const container = document.getElementById(`opts-${qIdx}`);
+    container.querySelectorAll('.option-card').forEach((card, i) => {
+      card.classList.toggle('selected', i + 1 === val);
+      card.querySelector('.option-dot').classList.toggle('bg-accent-blue', i + 1 === val);
+      card.querySelector('.option-dot').classList.toggle('border-accent-blue', i + 1 === val);
+    });
+  }
+
+  let userData = {};
+
+  function nextSection() {
+    if (currentSection < SECTIONS.length - 1) {
+      renderSection(currentSection + 1);
+      window.scrollTo({ top: 64, behavior: 'smooth' });
+    } else {
+      showLeadCapture();
+    }
+  }
+
+  function showLeadCapture() {
+    document.getElementById('assessment-screen').classList.add('hidden');
+    const modal = document.getElementById('lead-modal');
+    modal.style.display = 'flex';
+  }
+
+  document.getElementById('lead-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('lead-submit');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing your results...';
+    btn.disabled = true;
+
+    userData = {
+      first: document.getElementById('field-first').value,
+      last: document.getElementById('field-last').value,
+      biz: document.getElementById('field-biz').value,
+      email: document.getElementById('field-email').value,
+      phone: document.getElementById('field-phone').value,
+      industry: document.getElementById('field-industry').value
+    };
+
+    const scores = getScores();
+    const overall = getOverallScore(scores);
+    const rating = getRating(overall);
+
+    // ââ Submit to Formspree (replace YOUR_FORM_ID at formspree.io)
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    const payload = {
+      _subject: `Digital Health Assessment â ${userData.biz} (Score: ${overall})`,
+      first_name: userData.first, last_name: userData.last,
+      business_name: userData.biz, email: userData.email,
+      phone: userData.phone, industry: userData.industry,
+      assessment_type: 'Digital Health Assessment',
+      overall_score: overall + '/100', rating: rating.label,
+      website: scores[0]+'%', social_media: scores[1]+'%',
+      ecommerce: scores[2]+'%', cybersecurity: scores[3]+'%',
+      cloud_tools: scores[4]+'%', data_analytics: scores[5]+'%',
+      ai_readiness: scores[6]+'%',
+      completed_at: new Date().toLocaleString()
+    };
+    try {
+      if (!FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+        await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+    } catch(err) { /* silent fail */ }
+
+    document.getElementById('lead-modal').style.display = 'none';
+    showResults();
+  });
+
+  function prevSection() {
+    if (currentSection > 0) {
+      renderSection(currentSection - 1);
+      window.scrollTo({ top: 64, behavior: 'smooth' });
+    }
+  }
+
+  function restartAssessment() {
+    answers = Array.from({ length: SECTIONS.length }, (_, i) => Array(SECTIONS[i].questions.length).fill(0));
+    document.getElementById('results-screen').classList.add('hidden');
+    document.getElementById('start-screen').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  // SCORING
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  function getScores() {
+    return SECTIONS.map((s, si) => {
+      const sum = answers[si].reduce((a, b) => a + b, 0);
+      const max = s.questions.length * 5;
+      return Math.round((sum / max) * 100);
+    });
+  }
+
+  function getOverallScore(scores) {
+    return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+  }
+
+  function getRating(score) {
+    return RATINGS.find(r => score >= r.min && score <= r.max) || RATINGS[0];
+  }
+
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  // RESULTS
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  function showResults() {
+    document.getElementById('assessment-screen').classList.add('hidden');
+    document.getElementById('results-screen').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const scores = getScores();
+    const overall = getOverallScore(scores);
+    const rating = getRating(overall);
+
+    // Score ring animation
+    document.getElementById('overall-score-display').textContent = overall;
+    document.getElementById('rating-label').textContent = rating.label;
+    document.getElementById('rating-label').style.cssText = `background:linear-gradient(135deg,${rating.color},${rating.color}99);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;`;
+    document.getElementById('rating-desc').textContent = rating.desc;
+
+    setTimeout(() => {
+      const circumference = 283;
+      const offset = circumference - (overall / 100) * circumference;
+      document.getElementById('score-ring').style.strokeDashoffset = offset;
+      document.getElementById('score-ring').style.stroke = rating.color;
+    }, 200);
+
+    // Radar chart
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: SECTIONS.map(s => s.title.split(' ').slice(0, 2).join(' ')),
+        datasets: [{
+          label: 'Your Score',
+          data: scores,
+          backgroundColor: 'rgba(37,99,235,0.15)',
+          borderColor: '#2563EB',
+          borderWidth: 2,
+          pointBackgroundColor: '#22C55E',
+          pointBorderColor: '#fff',
+          pointRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            min: 0, max: 100,
+            ticks: { color: 'rgba(255,255,255,0.3)', backdropColor: 'transparent', stepSize: 25 },
+            grid: { color: 'rgba(255,255,255,0.08)' },
+            pointLabels: { color: 'rgba(255,255,255,0.7)', font: { size: 10, family: 'Plus Jakarta Sans' } }
+          }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    // Category bars
+    const barsEl = document.getElementById('category-bars');
+    scores.forEach((score, i) => {
+      const s = SECTIONS[i];
+      const color = score >= 70 ? '#22C55E' : score >= 50 ? '#EAB308' : score >= 30 ? '#F97316' : '#EF4444';
+      barsEl.innerHTML += `
+        <div>
+          <div class="flex justify-between text-xs mb-1.5">
+            <span class="text-white/70 font-medium">${s.title.split(' ').slice(0,3).join(' ')}</span>
+            <span class="font-bold" style="color:${color}">${score}%</span>
+          </div>
+          <div class="h-2 rounded-full bg-white/08 overflow-hidden">
+            <div class="h-full rounded-full category-bar-fill" style="width:0%;background:${color}" data-width="${score}%"></div>
+          </div>
+        </div>
+      `;
+    });
+    setTimeout(() => {
+      barsEl.querySelectorAll('.category-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width;
+      });
+    }, 300);
+
+    // Category breakdown
+    const breakdown = document.getElementById('category-breakdown');
+    scores.forEach((score, i) => {
+      const s = SECTIONS[i];
+      const color = score >= 70 ? '#22C55E' : score >= 50 ? '#EAB308' : score >= 30 ? '#F97316' : '#EF4444';
+      const label = score >= 70 ? 'Strong' : score >= 50 ? 'Progressing' : score >= 30 ? 'Developing' : 'Needs Attention';
+      const recs = getRecommendations(i, score);
+      breakdown.innerHTML += `
+        <div class="print-card rounded-2xl bg-brand-card border border-brand-border overflow-hidden">
+          <div class="flex items-center gap-4 p-6 border-b silver-divider">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${s.color}22">
+              <i class="fas ${s.icon} text-xl" style="color:${s.color}"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold">${s.title}</h3>
+              <div class="flex items-center gap-3 mt-1">
+                <div class="h-1.5 w-32 rounded-full bg-white/08 overflow-hidden">
+                  <div class="h-full rounded-full" style="width:${score}%;background:${color}"></div>
+                </div>
+                <span class="text-sm font-bold" style="color:${color}">${score}% â ${label}</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h4 class="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Recommendations</h4>
+            <ul class="space-y-2 mb-5">
+              ${recs.map(r => `<li class="flex items-start gap-2 text-sm text-white/70"><i class="fas fa-circle-check text-accent-green mt-0.5 flex-shrink-0"></i><span>${r}</span></li>`).join('')}
+            </ul>
+            ${score < 70 ? `
+            <div class="mt-4 pt-4 border-t silver-divider">
+              <p class="text-xs font-semibold text-white/40 uppercase tracking-widest mb-3">Free Verizon Digital Ready Resources</p>
+              <div class="grid sm:grid-cols-3 gap-2">
+                ${s.resources.map(r => `
+                  <a href="${r.url}" target="_blank" class="resource-card flex flex-col gap-1">
+                    <span class="text-xs font-bold text-accent-blueLight">${r.tag}</span>
+                    <span class="text-xs font-semibold text-white">${r.title}</span>
+                    <span class="text-xs text-white/40">${r.desc}</span>
+                  </a>
+                `).join('')}
+              </div>
+            </div>` : ''}
+          </div>
+        </div>
+      `;
+    });
+
+    // Verizon resources (top gaps only)
+    const topGaps = scores.map((s,i)=>({score:s,idx:i})).sort((a,b)=>a.score-b.score).slice(0,3);
+    const vzEl = document.getElementById('verizon-resources');
+    topGaps.forEach(g => {
+      SECTIONS[g.idx].resources.forEach(r => {
+        vzEl.innerHTML += `
+          <a href="${r.url}" target="_blank" class="resource-card">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs px-2 py-0.5 rounded-full bg-red-600/20 text-red-400 font-semibold">${r.tag}</span>
+              <span class="text-xs text-white/30">${SECTIONS[g.idx].title}</span>
+            </div>
+            <p class="text-sm font-semibold text-white mb-1">${r.title}</p>
+            <p class="text-xs text-white/40">${r.desc}</p>
+          </a>
+        `;
+      });
+    });
+  }
+
+  function getRecommendations(sectionIdx, score) {
+    const recs = {
+      website: {
+        low: ['Create a professional website â even a simple one-page site puts you on the map','Claim and optimize your Google Business Profile immediately (it\'s free)','Add your business to Google Maps with photos, hours, and your phone number'],
+        mid: ['Review your website\'s mobile experience on multiple devices','Add fresh content or a blog to improve your search engine rankings','Run a free SEO audit using tools like Google Search Console'],
+        high: ['Consider A/B testing key landing pages to improve conversion rates','Explore adding live chat to capture leads from website visitors','Ensure your site loads in under 3 seconds on mobile']
+      },
+      social: {
+        low: ['Start with one social platform where your customers spend time (usually Facebook or Instagram)','Set up a free social media calendar using a simple spreadsheet','Post at minimum 3x per week to establish consistency'],
+        mid: ['Experiment with a small $50â100 paid social campaign to test ads','Build your email list with a simple lead magnet or signup incentive','Use free tools like Canva to create professional-looking graphics'],
+        high: ['Explore influencer partnerships with micro-influencers in your niche','A/B test your email subject lines to improve open rates','Set up automated email sequences for new subscribers and post-purchase']
+      },
+      ecommerce: {
+        low: ['Add an online ordering option â even a simple payment link via Square or PayPal','Set up a free Calendly or Google booking page for appointments','Accept credit cards in person and online using Square or Stripe'],
+        mid: ['Expand to a second sales channel (Etsy, Amazon, Instagram Shop)','Add clear calls-to-action on every page of your website to drive online sales','Implement an abandoned cart email if you have an online store'],
+        high: ['Explore subscription models or decurring revenue to stabilize cash flow','Audit your checkout flow for friction points reducing conversions','Test international shipping to expand your potential market']
+      },
+      security: {
+        low: ['Enable two-factor authentication (2FA) on all business accounts today','Install a free password manager like Bitwarden to manage credentials','Set up automatic cloud backups of your critical files immediately'],
+        mid: ['Upgrade to a business-grade antivirus and firewall solution','Conduct a cybersecurity training session with your team this quarter','Document a simple incident response plan (what to do if you\'re hacked)'],
+        high: ['Obtain cyber liability insurance to protect against breach costs','Schedule annual penetration testing of your business systems','Review vendor and supplier security practices']
+      },
+      cloud: {
+        low: ['Move to a free cloud accounting tool like Wave or QuickBooks Simple Start','Switch your email to a professional domain address (name@yourbusiness.com)','Use Google Workspace or Microsoft 365 for team collaboration'],
+        mid: ['Evaluate and implement a basic CRM to manage customer relationships','Consolidate your tools to reduce costs and integration headaches','Automate recurring invoicing and payment reminders'],
+        high: ['Integrate your key systems (CRM + accounting + email) with automation tools like Zapier','Document your tech stack and create onboarding guides for new team members','Evaluate emerging AI-powered tools in your core software category']
+      },
+      data: {
+        low: ['Install Google Analytics on your website today (free, 30 minutes to set up)','Start tracking 3 key metrics each month: website visitors, leads, and revenue','Create a simple monthly dashboard in a Google Sheet to review your numbers'],
+        mid: ['Set up Google Search Console to understand how customers find you','Build a customer profile using your existing purchase and interaction data','Establish weekly or bi-weekly reviews of your key business metrics'],
+        high: ['Implement heat mapping tools (like Hotjar) to understand website visitor behavior','Create predictive dashboards to forecast revenue and inventory needs','Build a customer lifetime value model to prioritize your best customer segments']
+      },
+      ai: {
+        low: ['Try ChatGPT or Claude free today â use it to write one piece of marketing content','Identify your 3 most repetitive tasks and research if AI can automate them','Enroll in a free AI basics course through Verizon Digital Ready'],
+        mid: ['Use AI tools to draft social media content, email campaigns, or customer responses','Set up a simple Zapier automation to connect your key tools and save time','Create a small experiment: use AI to handle one task for 30 days and measure the time saved'],
+        high: ['Develop a formal AI adoption policy and strategy for your business','Build AI literacy across your full team with ongoing training','Explore custom AI solutions specific to your industry or business model']
+      }
+    };
+
+    const key = SECTIONS[sectionIdx].id;
+    const level = score < 40 ? 'low' : score < 70 ? 'mid' : 'high';
+    return recs[key]?.[level] || ['Continue building on your current digital foundation','Explore advanced resources at Verizon Digital Ready','Schedule a free Tech Strategy session with our Eco Tech AI team'];
+  }
+
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  // PDF EXPORT
+  // âââââââââââââââââââââââââââââââââââââââââââ
+  function downloadPDF() {
+    const scores = getScores();
+    const overall = getOverallScore(scores);
+    const rating = getRating(overall);
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'letter' });
+    const W = 215.9, M = 18;
+
+    // Header
+    doc.setFillColor(10, 10, 15);
+    doc.rect(0, 0, W, 50, 'F');
+    doc.setFontSize(8); doc.setTextColor(100, 160, 250);
+    doc.text('ENTREPRENEUR ECOSYSTEM Â· ECO TECH AI', M, 14);
+    doc.setFontSize(20); doc.setTextColor(255, 255, 255); doc.setFont(undefined, 'bold');
+    doc.text('Digital Health Assessment Report', M, 26);
+    doc.setFontSize(9); doc.setTextColor(148, 163, 184); doc.setFont(undefined, 'normal');
+    doc.text(`Generated: ${new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}   |   Powered by Verizon Digital Ready Resources`, M, 36);
+    doc.setFontSize(11); doc.setTextColor(200, 220, 255);
+    doc.text(`Overall Digital Score: ${overall}/100 â ${rating.label}`, M, 46);
+
+    let y = 60;
+    doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+    doc.setFont(undefined, 'normal');
+    const descLines = doc.splitTextToSize(rating.desc, W - M * 2);
+    doc.text(descLines, M, y); y += descLines.length * 5 + 8;
+
+    // Section scores
+    doc.setFillColor(37, 99, 235);
+    doc.rect(M, y, W - M * 2, 7, 'F');
+    doc.setFontSize(9); doc.setTextColor(255, 255, 255); doc.setFont(undefined, 'bold');
+    doc.text('CATEGORY SCORES', M + 3, y + 5);
+    y += 12;
+
+    scores.forEach((score, i) => {
+      const s = SECTIONS[i];
+      const label = score >= 70 ? 'Strong' : score >= 50 ? 'Progressing' : score >= 30 ? 'Developing' : 'Needs Attention';
+      doc.setFontSize(9); doc.setTextColor(30, 30, 30); doc.setFont(undefined, 'bold');
+      doc.text(s.title, M, y);
+      doc.setFont(undefined, 'normal'); doc.setTextColor(100, 100, 100);
+      doc.text(`${score}% â ${label}`, W - M - 35, y);
+
+      y += 4;
+      doc.setFillColor(220, 220, 220);
+      doc.rect(M, y, W - M * 2, 3, 'F');
+      const barColor = score >= 70 ? [34, 197, 94] : score >= 50 ? [234, 179, 8] : score >= 30 ? [249, 115, 22] : [239, 68, 68];
+      doc.setFillColor(...barColor);
+      doc.rect(M, y, (W - M * 2) * score / 100, 3, 'F');
+      y += 8;
+
+      if (y > 240) { doc.addPage(); y = 20; }
+    });
+
+    y += 5;
+    // Recommendations
+    doc.setFillColor(22, 163, 74);
+    doc.rect(M, y, W - M * 2, 7, 'F');
+    doc.setFontSize(9); doc.setTextColor(255, 255, 255); doc.setFont(undefined, 'bold');
+    doc.text('PERSONALIZED ACTION PLAN', M + 3, y + 5);
+    y += 12;
+
+    scores.forEach((score, i) => {
+      if (score >= 85) return;
+      const s = SECTIONS[i];
+      if (y > 250) { doc.addPage(); y = 20; }
+      doc.setFontSize(9); doc.setTextColor(37, 99, 235); doc.setFont(undefined, 'bold');
+      doc.text(s.title, M, y); y += 5;
+      const recs = getRecommendations(i, score);
+      doc.setFont(undefined, 'normal'); doc.setTextColor(50, 50, 50);
+      recs.forEach(r => {
+        if (y > 250) { doc.addPage(); y = 20; }
+        const lines = doc.splitTextToSize(`â¢ ${r}`, W - M * 2 - 5);
+        doc.text(lines, M + 3, y); y += lines.length * 4.5 + 1;
+      });
+      y += 4;
+    });
+
+    // Verizon footer
+    if (y > 240) { doc.addPage(); y = 20; }
+    doc.setFillColor(239, 68, 68, 20);
+    doc.setDrawColor(239, 68, 68);
+    doc.roundedRect(M, y, W - M * 2, 22, 2, 2, 'S');
+    doc.setFontSize(8); doc.setTextColor(50, 50, 50); doc.setFont(undefined, 'bold');
+    doc.text('FREE RESOURCES: Verizon Small Business Digital Ready', M + 4, y + 7);
+    doc.setFont(undefined, 'normal');
+    doc.text('Access free courses, live coaching, and $10K grants at: digitalready.verizon.com', M + 4, y + 13);
+    doc.setTextColor(37, 99, 235);
+    doc.text('Book a free Eco Tech AI strategy session: entrepreneur-ecosystem.com/tech-ai.html', M + 4, y + 19);
+
+    doc.save(`Digital-Health-Report-${new Date().toISOString().split('T')[0]}.pdf`);
+  }
+
+  // Init
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+  }, 100);
+  </script>
+</body>
+</html>
