@@ -153,6 +153,7 @@
     <button class="tab-btn active flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('intake',this)">📥 Intake</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('matching',this)">🔗 Matches <span id="match-badge" class="hidden ml-1 text-xs font-bold bg-[#c9a84c] text-black px-1.5 py-0.5 rounded-full"></span></button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('hub',this)">📋 Projects</button>
+    <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('grants',this)">💰 Grants & Contracts</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('education',this)">📚 Education Hub</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('reporting',this)">📊 Impact</button>
     <button class="tab-btn flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 border border-transparent transition" onclick="switchTab('aiagents',this)">🤖 AI Agents</button>
@@ -303,6 +304,78 @@
       <button onclick="showToast('Use Matching → \"Start Project\" to create projects from matched pairs.','ℹ️')" class="px-5 py-2 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">+ New Project</button>
     </div>
     <div class="flex flex-col gap-4" id="project-list"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     GRANTS & CONTRACTS TAB
+═══════════════════════════════════ -->
+<div class="tab-page" id="tab-grants">
+  <div class="max-w-6xl mx-auto px-5 py-12">
+
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="inline-block text-xs font-bold tracking-widest uppercase text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 px-3 py-1 rounded-full mb-3">💰 Grants & Government Contracts</div>
+      <h2 class="text-3xl font-extrabold mb-2">Funding That Fits Your Work</h2>
+      <p class="text-gray-400 max-w-2xl leading-relaxed">Federal, state, and local grants and contracts — automatically matched to your projects and community needs. Every opportunity is linked to the organizations and initiatives already active in this ecosystem.</p>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-[#1c1c1e] border border-yellow-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-yellow-400" id="g-stat-total">34</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Open Opportunities</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-yellow-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-yellow-400" id="g-stat-matched">0</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Matched to Projects</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-yellow-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-yellow-400">$2.4B+</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Total Available</div>
+      </div>
+      <div class="bg-[#1c1c1e] border border-yellow-500/20 rounded-xl p-5 text-center">
+        <div class="text-3xl font-extrabold text-yellow-400">3</div>
+        <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Gov't Levels</div>
+      </div>
+    </div>
+
+    <!-- Edu tip -->
+    <div class="edu-tip mb-8">
+      <strong>How grant matching works:</strong> Every grant and contract is tagged by category (workforce, finance, youth, etc.) and location. The platform compares those tags against your active projects and community submissions — and surfaces the best fits automatically. Submit your project first, then check for matches here.
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-3 mb-6">
+      <div class="flex gap-2 flex-wrap">
+        <span class="text-xs text-gray-500 self-center mr-1">Level:</span>
+        <button class="g-level-btn active px-3 py-1.5 rounded-full text-xs font-semibold border border-yellow-400/40 bg-yellow-400/10 text-yellow-400" data-level="all" onclick="filterGrants(this,'level','all')">All</button>
+        <button class="g-level-btn px-3 py-1.5 rounded-full text-xs font-semibold border border-white/10 bg-[#2e2e30] text-gray-400" data-level="Federal" onclick="filterGrants(this,'level','Federal')">🇺🇸 Federal</button>
+        <button class="g-level-btn px-3 py-1.5 rounded-full text-xs font-semibold border border-white/10 bg-[#2e2e30] text-gray-400" data-level="State" onclick="filterGrants(this,'level','State')">🏛️ California</button>
+        <button class="g-level-btn px-3 py-1.5 rounded-full text-xs font-semibold border border-white/10 bg-[#2e2e30] text-gray-400" data-level="Local" onclick="filterGrants(this,'level','Local')">📍 Local</button>
+        <button class="g-level-btn px-3 py-1.5 rounded-full text-xs font-semibold border border-white/10 bg-[#2e2e30] text-gray-400" data-level="Contract" onclick="filterGrants(this,'level','Contract')">📋 Gov't Contracts</button>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-2 mb-8">
+      <span class="text-xs text-gray-500 self-center mr-1">Category:</span>
+      <button class="g-cat-btn active px-3 py-1.5 rounded-full text-xs border border-yellow-400/40 bg-yellow-400/10 text-yellow-400" data-cat="all" onclick="filterGrants(this,'cat','all')">All Categories</button>
+      <button class="g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400" data-cat="Workforce" onclick="filterGrants(this,'cat','Workforce')">Workforce</button>
+      <button class="g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400" data-cat="Finance" onclick="filterGrants(this,'cat','Finance')">Finance & Capital</button>
+      <button class="g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400" data-cat="Community" onclick="filterGrants(this,'cat','Community')">Community Dev</button>
+      <button class="g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400" data-cat="Youth" onclick="filterGrants(this,'cat','Youth')">Youth</button>
+      <button class="g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400" data-cat="Tech" onclick="filterGrants(this,'cat','Tech')">Technology</button>
+      <button class="g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400" data-cat="Housing" onclick="filterGrants(this,'cat','Housing')">Housing</button>
+    </div>
+
+    <!-- Matched to your projects banner -->
+    <div id="grants-matched-banner" class="hidden mb-6 bg-yellow-400/06 border border-yellow-400/25 rounded-xl p-5">
+      <div class="flex items-center gap-2 mb-3"><span class="text-lg">🎯</span><span class="font-bold text-yellow-400">Matched to Your Active Projects</span></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="grants-matched-list"></div>
+    </div>
+
+    <!-- Grants grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="grants-grid"></div>
+
   </div>
 </div>
 
@@ -551,7 +624,7 @@
     <div class="flex flex-wrap gap-3">
       <button onclick="exportReport()" class="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#c9a84c] text-black hover:bg-[#e8c96a] transition">📄 Export Impact Report</button>
       <button onclick="showToast('RFP Summary copied to clipboard!','📋')" class="px-6 py-2.5 rounded-lg text-sm border border-white/10 bg-white/5 text-gray-300 hover:bg-white/10 transition">📋 Copy RFP Summary</button>
-      <button onclick="switchTab('education', document.querySelectorAll('.tab-btn')[3])" class="px-6 py-2.5 rounded-lg text-sm border border-green-500/30 bg-green-500/5 text-green-400 hover:bg-green-500/10 transition">📚 View Education Impact</button>
+      <button onclick="switchTab('education', document.querySelectorAll('.tab-btn')[4])" class="px-6 py-2.5 rounded-lg text-sm border border-green-500/30 bg-green-500/5 text-green-400 hover:bg-green-500/10 transition">📚 View Education Impact</button>
     </div>
   </div>
 </div>
@@ -614,7 +687,7 @@
           <h3 class="font-bold text-base mb-1">Education & Policy Guide Agent</h3>
           <p class="text-gray-400 text-sm mb-2 leading-relaxed">Dedicated education agent — surfaces relevant learning resources for any topic, translates policy into plain language, and guides community members through complex financial and legal concepts.</p>
           <div class="edu-tip text-xs mb-3">Core to the ecosystem — this agent runs in the background of every other agent to add educational context.</div>
-          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">EE Education Core</span><button onclick="switchTab('education', document.querySelectorAll('.tab-btn')[3])" class="text-xs font-semibold text-[#c9a84c] hover:underline">Explore Hub →</button></div>
+          <div class="flex items-center justify-between"><span class="text-xs text-gray-500">EE Education Core</span><button onclick="switchTab('education', document.querySelectorAll('.tab-btn')[4])" class="text-xs font-semibold text-[#c9a84c] hover:underline">Explore Hub →</button></div>
         </div>
         <div class="agent-card">
           <div class="flex items-start justify-between mb-3"><div class="text-2xl">🤝</div><span class="chip chip-ai">Community</span></div>
@@ -729,6 +802,7 @@ function switchTab(id, btn) {
   if(btn) btn.classList.add('active');
   if(id==='matching') renderMatches();
   if(id==='hub') renderProjects();
+  if(id==='grants') renderGrants();
   if(id==='reporting') renderReporting();
   if(id==='aiagents') renderCollab();
   if(id==='intake') renderFeed();
@@ -1009,6 +1083,152 @@ function showToast(msg,icon='✦') {
   const t=document.getElementById('toast');
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ══════════════════════════
+//  GRANTS DATA
+// ══════════════════════════
+const grants = [
+  // ── FEDERAL ──
+  {id:'f1', level:'Federal', name:'WIOA Adult & Dislocated Worker Formula Grants', agency:'U.S. Dept of Labor', amount:'Varies by state allocation', deadline:'Ongoing — annual cycle', categories:['Workforce'], eligibility:'Nonprofits, workforce boards, community colleges', description:'Funds job training, career counseling, and employment services for adults and dislocated workers. Primary funding source for organizations like Uplift Workforce Alliance. No application required — access through local American Job Centers.', matchCats:['Job Training & Workforce Development','Hiring & Employment'], action:'Contact your local Workforce Development Board', link:'https://www.dol.gov/agencies/eta/wioa'},
+  {id:'f2', level:'Federal', name:'SBA 7(a) & 504 Loan Programs', agency:'U.S. Small Business Administration', amount:'Up to $5M (7a) · Up to $5.5M (504)', deadline:'Rolling — apply anytime', categories:['Finance'], eligibility:'For-profit small businesses meeting SBA size standards', description:'SBA 7(a) covers working capital, acquisitions, and refinancing. SBA 504 is for major fixed assets — real estate and equipment. AmPac Business Capital is a certified CDC and can originate 504 loans directly.', matchCats:['Access to Capital / Funding','Business Mentorship & Coaching'], action:'Contact AmPac Business Capital', link:'https://ampac.com'},
+  {id:'f3', level:'Federal', name:'EDA Economic Development Assistance Programs', agency:'U.S. Economic Development Administration', amount:'$100K – $10M', deadline:'Rolling — NOFO published quarterly', categories:['Community','Finance'], eligibility:'States, cities, counties, economic development districts, nonprofits', description:'Funds planning, technical assistance, and infrastructure for economically distressed communities. Strong fit for organizations building workforce pipelines and community economic development projects.', matchCats:['Job Training & Workforce Development','Access to Capital / Funding','Space / Facilities'], action:'Apply via Grants.gov NOFO search', link:'https://www.eda.gov/funding-opportunities'},
+  {id:'f4', level:'Federal', name:'HUD Community Development Block Grant (CDBG)', agency:'U.S. Dept of Housing & Urban Development', amount:'Allocated to cities/counties — subgrants $10K–$500K', deadline:'Contact your local CDBG office', categories:['Community','Housing'], eligibility:'Nonprofits, CBOs, local govts — must serve low-mod income areas', description:'CDBG funds a wide range of community development activities: housing rehab, small business assistance, public services, and infrastructure. Distributed through cities and counties — contact your local jurisdiction.', matchCats:['Housing & Real Estate','Space / Facilities','Job Training & Workforce Development'], action:'Contact your city/county CDBG office', link:'https://www.hud.gov/program_offices/comm_planning/cdbg'},
+  {id:'f5', level:'Federal', name:'CDFI Fund — Financial Assistance Awards', agency:'U.S. Dept of Treasury', amount:'Up to $2M per award cycle', deadline:'Annual — watch for NOFA', categories:['Finance','Community'], eligibility:'Certified CDFIs (AmPac qualifies)', description:'Direct financial assistance to CDFIs to expand lending in underserved markets. AmPac as a CDFI-certified CDC can leverage these funds to increase SBA lending capacity in target communities.', matchCats:['Access to Capital / Funding'], action:'AmPac monitors this cycle directly', link:'https://www.cdfifund.gov'},
+  {id:'f6', level:'Federal', name:'SBIR/STTR — Small Business Innovation Research', agency:'Multiple Federal Agencies (NSF, NIH, DOD, DOE)', amount:'Phase I: up to $275K · Phase II: up to $2M', deadline:'Agency-specific cycles — check SBIR.gov', categories:['Tech','Finance'], eligibility:'Small businesses with 500 or fewer employees', description:'America\'s largest source of early-stage technology funding. If your business is building an innovative product or technology solution, SBIR/STTR provides non-dilutive R&D funding with no equity taken.', matchCats:['Technology & Digital Tools'], action:'Search open solicitations at SBIR.gov', link:'https://www.sbir.gov'},
+  {id:'f7', level:'Federal', name:'New Markets Tax Credit (NMTC) Program', agency:'U.S. Dept of Treasury / CDFI Fund', amount:'39% tax credit over 7 years on qualified investments', deadline:'Annual allocation cycle', categories:['Finance','Community'], eligibility:'CDEs (Community Development Entities) — projects in low-income census tracts', description:'NMTC attracts private capital to underserved communities by offering investors a 39% federal tax credit over 7 years. Significantly reduces cost of capital for commercial real estate and business development projects.', matchCats:['Access to Capital / Funding','Housing & Real Estate','Space / Facilities'], action:'Work with a certified CDE allocatee', link:'https://www.cdfifund.gov/programs-training/programs/new-markets-tax-credit'},
+  {id:'f8', level:'Federal', name:'EPA Environmental Justice Collaborative Problem-Solving Grants', agency:'U.S. Environmental Protection Agency', amount:'Up to $1M', deadline:'Watch EPA.gov for NOFO announcements', categories:['Community'], eligibility:'Nonprofits, CBOs, tribes in EJ communities', description:'Funds community-based projects that address environmental and public health issues in disadvantaged communities. Strong fit for faith-based and nonprofit organizations serving frontline neighborhoods.', matchCats:['Health & Wellness','Food Security'], action:'Monitor EPA.gov for open solicitations', link:'https://www.epa.gov/environmentaljustice/environmental-justice-collaborative-problem-solving-cooperative-agreement'},
+  // ── STATE (CALIFORNIA) ──
+  {id:'s1', level:'State', name:'California IBank — Small Business Loan Guarantee Program', agency:'California Infrastructure & Economic Development Bank', amount:'Loan guarantees up to $2.5M', deadline:'Rolling — apply through partner lenders', categories:['Finance'], eligibility:'CA small businesses with 1-750 employees, especially underserved markets', description:'IBank guarantees up to 95% of a loan from a participating lender for businesses that can\'t fully qualify through traditional channels. Reduces lender risk and increases access to capital for underserved entrepreneurs.', matchCats:['Access to Capital / Funding','Business Mentorship & Coaching'], action:'Apply through a participating lender (AmPac can assist)', link:'https://ibank.ca.gov/small-business-finance-center'},
+  {id:'s2', level:'State', name:'California Competes Tax Credit', agency:'CA Governor\'s Office of Business & Economic Development (GO-Biz)', amount:'Varies — negotiated based on job creation', deadline:'Application periods throughout the year', categories:['Finance','Workforce'], eligibility:'Businesses that want to locate or stay/grow in California', description:'Income tax credits for businesses that create jobs in California. Amount negotiated based on number of jobs created, wages paid, and economic impact. Strong incentive for businesses expanding in the Inland Empire.', matchCats:['Hiring & Employment','Job Training & Workforce Development'], action:'Apply at CalCompetes.ca.gov during open periods', link:'https://business.ca.gov/california-competes-tax-credit'},
+  {id:'s3', level:'State', name:'Employment Training Panel (ETP) Funding', agency:'California Employment Training Panel', amount:'$500 – $2,000 per trained worker', deadline:'Rolling — quarterly funding agreements', categories:['Workforce'], eligibility:'CA employers, employer associations, and approved training agencies', description:'ETP reimburses employers for the cost of job skills training that leads to stable employment. Businesses that hire and train workers in specific industries can get direct reimbursement per employee trained and retained.', matchCats:['Job Training & Workforce Development','Hiring & Employment'], action:'Submit funding proposal to ETP at etp.ca.gov', link:'https://www.etp.ca.gov'},
+  {id:'s4', level:'State', name:'CAMEO — California Micro Enterprise Opportunity Program', agency:'CA Association for Micro Enterprise Opportunity / CDFI Network', amount:'Micro-loans $500–$50K + technical assistance', deadline:'Rolling — through CAMEO members', categories:['Finance','Community'], eligibility:'Micro-enterprises (under 5 employees), low-income entrepreneurs', description:'CAMEO connects micro-entrepreneurs with affordable capital and business training through a statewide network of CDFIs and small business development centers. Strong fit for early-stage community entrepreneurs.', matchCats:['Access to Capital / Funding','Business Mentorship & Coaching'], action:'Find a CAMEO member lender at cameonetwork.org', link:'https://www.cameonetwork.org'},
+  {id:'s5', level:'State', name:'California Small Business COVID-19 Relief Grant (Ongoing Programs)', agency:'CalOSBA / Lendistry', amount:'Up to $25,000', deadline:'Check CalOSBA for current rounds', categories:['Finance'], eligibility:'CA small businesses and nonprofits with revenue decline', description:'California continues to offer small business relief and recovery grants through designated administering partners. Check the CalOSBA website for active grant rounds — new funding is regularly added.', matchCats:['Access to Capital / Funding'], action:'Check CalOSBA.ca.gov for open rounds', link:'https://calosba.ca.gov'},
+  {id:'s6', level:'State', name:'Workforce Accelerator Fund (WAF)', agency:'California Community Colleges Chancellor\'s Office', amount:'$50K – $1M per project', deadline:'Annual competitive solicitation', categories:['Workforce','Community'], eligibility:'Community colleges, workforce agencies, nonprofits — partnerships encouraged', description:'WAF funds new and innovative workforce training solutions that meet employer demand and serve under-represented populations. Strong match for organizations building structured job training pipelines with employer partners.', matchCats:['Job Training & Workforce Development','Hiring & Employment'], action:'Watch for annual WAF solicitation at launchboard.org', link:'https://www.cccco.edu'},
+  // ── LOCAL ──
+  {id:'l1', level:'Local', name:'LA County CDBG — Community Development Programs', agency:'Los Angeles County Development Authority (LACDA)', amount:'$10K – $300K per project', deadline:'Annual cycle — applications typically spring', categories:['Community','Workforce','Housing'], eligibility:'Nonprofits operating in unincorporated LA County serving low-mod income residents', description:'LA County allocates CDBG funds to local nonprofits for public services, housing, economic development, and infrastructure. Strong track record funding workforce training, youth programs, and small business support.', matchCats:['Job Training & Workforce Development','Youth Programs','Housing & Real Estate','Space / Facilities'], action:'Contact LACDA Community Development Division', link:'https://www.lacda.org'},
+  {id:'l2', level:'Local', name:'City of LA — EWDD Workforce Development Contracts', agency:'LA Economic & Workforce Development Dept (EWDD)', amount:'$100K – $1M+ (contract-based)', deadline:'Rolling RFPs — check EWDD.org', categories:['Workforce','Contract'], eligibility:'Nonprofits and workforce organizations serving LA residents', description:'EWDD issues contracts to nonprofits and workforce organizations to deliver job training and employment services across the City of LA. These are government service contracts — apply when RFPs are posted.', matchCats:['Job Training & Workforce Development','Hiring & Employment'], action:'Monitor ewdd.lacity.org for active RFPs', link:'https://ewdd.lacity.org'},
+  {id:'l3', level:'Local', name:'Inland Empire Economic Partnership — Regional Grants', agency:'IEEP / San Bernardino & Riverside Counties', amount:'Varies by program', deadline:'Ongoing — contact IEEP', categories:['Community','Finance','Workforce'], eligibility:'Businesses, nonprofits, and community organizations in the Inland Empire', description:'The IEEP coordinates regional economic development funding across San Bernardino and Riverside Counties. Strong resource for Inland Empire projects connecting workforce training to employer hiring pipelines.', matchCats:['Job Training & Workforce Development','Hiring & Employment','Access to Capital / Funding'], action:'Contact IEEP at ieep.com', link:'https://www.ieep.com'},
+  {id:'l4', level:'Local', name:'San Bernardino County Workforce Development Grants', agency:'San Bernardino County Workforce Development Board', amount:'Varies — WIOA local formula funds', deadline:'Annual RFP cycle', categories:['Workforce'], eligibility:'Nonprofits and training providers in San Bernardino County', description:'The SB County WDB allocates local WIOA formula funding to training providers and one-stop operators. Directly funds organizations like Uplift Workforce Alliance that provide job training to county residents.', matchCats:['Job Training & Workforce Development'], action:'Contact SB County WDB at sbcounty.gov/workforce', link:'https://www.sbcounty.gov/Departments/Workforce-Development'},
+  {id:'l5', level:'Local', name:'Riverside County Economic Development Agency — Small Business Grants', agency:'Riverside County EDA', amount:'$5K – $50K', deadline:'Watch countyofriverside.us/eda for rounds', categories:['Finance','Community'], eligibility:'Small businesses and nonprofits in Riverside County', description:'Riverside County periodically offers small business grants and economic development incentives, often tied to job creation in targeted areas. Check for current programs at the County EDA website.', matchCats:['Access to Capital / Funding','Business Mentorship & Coaching'], action:'Monitor countyofriverside.us/eda', link:'https://www.countyofriverside.us/government/departments-agencies-i-z/economic-development-agency'},
+  {id:'l6', level:'Local', name:'LA County Department of Workforce Development — Youth Programs', agency:'LA County WDACS', amount:'Contract-based — $50K–$500K', deadline:'Annual RFP cycle', categories:['Youth','Workforce'], eligibility:'CBOs and nonprofits serving youth ages 16-24 in LA County', description:'LA County funds youth workforce development programs through annual RFPs. Organizations running youth training, entrepreneurship, or employment programs can apply for county service contracts.', matchCats:['Youth Programs','Job Training & Workforce Development'], action:'Monitor workforce.lacounty.gov for RFPs', link:'https://workforce.lacounty.gov'},
+  // ── GOVERNMENT CONTRACTS ──
+  {id:'c1', level:'Contract', name:'SAM.gov — Federal Contract Opportunities', agency:'U.S. General Services Administration', amount:'Varies — $25K to $100M+', deadline:'Continuous — new opportunities posted daily', categories:['Contract'], eligibility:'Registered businesses (SAM registration required, free)', description:'SAM.gov is the primary federal contracting portal. Any business can register for free and bid on federal contracts. Key set-asides for small businesses: 8(a), HUBZone, WOSB, SDVOSB. Registration takes about 1-2 weeks.', matchCats:['Technology & Digital Tools','Job Training & Workforce Development'], action:'Register at SAM.gov (free)', link:'https://sam.gov'},
+  {id:'c2', level:'Contract', name:'SBA 8(a) Business Development Program', agency:'U.S. Small Business Administration', amount:'Sole-source contracts up to $4.5M (services) / $7.5M (manufacturing)', deadline:'Apply for certification year-round', categories:['Contract','Finance'], eligibility:'Small businesses owned by socially/economically disadvantaged individuals', description:'8(a) certification gives qualifying small businesses access to sole-source federal contracts — meaning no competitive bidding required. Massive advantage for businesses in underserved communities. 9-year program with mentor-protégé options.', matchCats:['Access to Capital / Funding','Business Mentorship & Coaching'], action:'Apply for 8(a) certification at certify.sba.gov', link:'https://www.sba.gov/federal-contracting/contracting-assistance-programs/8a-business-development-program'},
+  {id:'c3', level:'Contract', name:'HUBZone Program — Historically Underutilized Business Zones', agency:'U.S. Small Business Administration', amount:'Price evaluation preference in federal contracting', deadline:'Apply for certification year-round', categories:['Contract','Community'], eligibility:'Small businesses in HUBZone designated areas — check if your address qualifies', description:'HUBZone certification gives businesses in economically distressed areas a 10% price preference in federal contract competitions. Many Inland Empire and LA County addresses qualify. Free certification through SBA.', matchCats:['Access to Capital / Funding'], action:'Check your address at sba.gov/hubzone-map', link:'https://www.sba.gov/federal-contracting/contracting-assistance-programs/hubzone-program'},
+  {id:'c4', level:'Contract', name:'CA DGS — Small Business Preference Program', agency:'California Dept of General Services', amount:'5% bid preference on state contracts', deadline:'Apply for certification year-round', categories:['Contract','Finance'], eligibility:'CA-based small businesses (size standards apply)', description:'California gives a 5% bid preference to certified small businesses on state contracts. Also includes DVBE (Disabled Veteran Business Enterprise) set-asides. Free certification through DGS. Combined with SBA programs for maximum advantage.', matchCats:['Access to Capital / Funding'], action:'Apply at caleprocure.ca.gov', link:'https://www.dgs.ca.gov/PD/Programs/Page-Content/Procurement-Division-Branch-Intro-Page-Folder/Small-Business-Program'},
+];
+
+let grantLevelFilter = 'all';
+let grantCatFilter = 'all';
+
+// ══════════════════════════
+//  GRANTS FUNCTIONS
+// ══════════════════════════
+function renderGrants() {
+  // Match grants to active projects
+  const matched = matchGrantsToProjects();
+  const matchBanner = document.getElementById('grants-matched-banner');
+  const matchList = document.getElementById('grants-matched-list');
+  document.getElementById('g-stat-matched').textContent = matched.length;
+
+  if (matched.length > 0) {
+    matchBanner.classList.remove('hidden');
+    matchList.innerHTML = matched.slice(0,4).map(m => `
+      <div class="bg-[#1c1c1e] border border-yellow-400/20 rounded-lg p-3">
+        <div class="flex items-start justify-between gap-2 mb-1">
+          <div class="text-sm font-semibold text-yellow-300">${m.grant.name}</div>
+          <span class="chip flex-shrink-0" style="background:rgba(234,179,8,0.12);color:#facc15;border:1px solid rgba(234,179,8,0.25)">${m.grant.level}</span>
+        </div>
+        <div class="text-xs text-gray-400 mb-1">Matches: <span class="text-white font-medium">${m.project.title}</span></div>
+        <div class="text-xs text-gray-500">${m.grant.agency} · ${m.grant.amount}</div>
+        <a href="${m.grant.link}" target="_blank" class="text-xs text-yellow-400 hover:underline font-semibold mt-1.5 inline-block">Apply / Learn More →</a>
+      </div>`).join('');
+  } else {
+    matchBanner.classList.add('hidden');
+  }
+
+  // Filter and render full list
+  const filtered = grants.filter(g => {
+    const levelOk = grantLevelFilter === 'all' || g.level === grantLevelFilter ||
+                    (grantLevelFilter === 'Contract' && g.categories.includes('Contract'));
+    const catOk = grantCatFilter === 'all' || g.categories.includes(grantCatFilter);
+    return levelOk && catOk;
+  });
+
+  const grid = document.getElementById('grants-grid');
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500"><div class="text-4xl mb-3 opacity-30">💰</div><p>No grants match this filter.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(g => {
+    const levelColor = {Federal:'bg-blue-500/10 text-blue-300 border-blue-500/20', State:'bg-green-500/10 text-green-300 border-green-500/20', Local:'bg-orange-500/10 text-orange-300 border-orange-500/20', Contract:'bg-purple-500/10 text-purple-300 border-purple-500/20'}[g.level] || 'bg-gray-500/10 text-gray-300';
+    const levelIcon = {Federal:'🇺🇸', State:'🏛️', Local:'📍', Contract:'📋'}[g.level] || '💰';
+
+    // Check if this grant matches any active project
+    const projectMatches = projects.filter(p =>
+      p.partners && g.matchCats.some(mc => entries.some(e => e.org && p.partners.includes(e.org) && e.category === mc))
+    );
+    const entryMatches = entries.filter(e => g.matchCats.includes(e.category));
+    const hasMatch = projectMatches.length > 0 || entryMatches.length > 0;
+
+    return `
+      <div class="bg-[#1c1c1e] border ${hasMatch ? 'border-yellow-400/35' : 'border-[rgba(201,168,76,0.12)]'} rounded-xl p-5 hover:border-yellow-400/50 transition-all relative">
+        ${hasMatch ? '<div class="absolute top-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full bg-yellow-400/15 text-yellow-400 border border-yellow-400/25">🎯 Project Match</div>' : ''}
+        <div class="flex items-start gap-3 mb-3 pr-20">
+          <span class="text-xl flex-shrink-0">${levelIcon}</span>
+          <div>
+            <div class="font-bold text-sm leading-snug mb-1">${g.name}</div>
+            <span class="chip text-xs ${levelColor} border">${g.level}</span>
+          </div>
+        </div>
+        <div class="text-xs text-gray-500 mb-2 font-medium">${g.agency}</div>
+        <p class="text-gray-400 text-xs leading-relaxed mb-3">${g.description}</p>
+        <div class="grid grid-cols-2 gap-2 mb-3 text-xs">
+          <div class="bg-white/4 rounded-lg p-2"><div class="text-gray-500 uppercase tracking-wide text-[10px] mb-0.5">Amount</div><div class="text-white font-medium">${g.amount}</div></div>
+          <div class="bg-white/4 rounded-lg p-2"><div class="text-gray-500 uppercase tracking-wide text-[10px] mb-0.5">Deadline</div><div class="text-white font-medium">${g.deadline}</div></div>
+        </div>
+        <div class="text-xs text-gray-500 mb-3"><strong class="text-gray-300">Who qualifies:</strong> ${g.eligibility}</div>
+        ${hasMatch ? `<div class="edu-tip text-xs mb-3">This grant aligns with ${entryMatches.length} submission(s) and ${projectMatches.length} project(s) already in this platform.</div>` : ''}
+        <div class="flex items-center justify-between border-t border-white/5 pt-3">
+          <div class="text-xs font-semibold text-[#c9a84c]">→ ${g.action}</div>
+          <a href="${g.link}" target="_blank" class="text-xs font-bold text-yellow-400 hover:underline">Apply / Details →</a>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function matchGrantsToProjects() {
+  const matched = [];
+  grants.forEach(g => {
+    projects.forEach(p => {
+      const hasMatch = entries.some(e =>
+        p.partners.includes(e.org) && g.matchCats.includes(e.category)
+      );
+      if (hasMatch && !matched.find(m => m.grant.id === g.id && m.project.id === p.id)) {
+        matched.push({grant: g, project: p});
+      }
+    });
+  });
+  return matched;
+}
+
+function filterGrants(btn, type, val) {
+  if (type === 'level') {
+    grantLevelFilter = val;
+    document.querySelectorAll('.g-level-btn').forEach(b => {
+      b.className = 'g-level-btn px-3 py-1.5 rounded-full text-xs font-semibold border border-white/10 bg-[#2e2e30] text-gray-400';
+    });
+    btn.className = 'g-level-btn active px-3 py-1.5 rounded-full text-xs font-semibold border border-yellow-400/40 bg-yellow-400/10 text-yellow-400';
+  } else {
+    grantCatFilter = val;
+    document.querySelectorAll('.g-cat-btn').forEach(b => {
+      b.className = 'g-cat-btn px-3 py-1.5 rounded-full text-xs border border-white/10 bg-[#2e2e30] text-gray-400';
+    });
+    btn.className = 'g-cat-btn active px-3 py-1.5 rounded-full text-xs border border-yellow-400/40 bg-yellow-400/10 text-yellow-400';
+  }
+  renderGrants();
 }
 
 // ══════════════════════════
