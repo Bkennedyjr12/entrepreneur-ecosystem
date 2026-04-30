@@ -647,8 +647,8 @@
     const overall = getOverallScore(scores);
     const rating = getRating(overall);
 
-    // ── Submit to Formspree (replace YOUR_FORM_ID at formspree.io)
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    // ── Submit to Formspree (replace xaqvwknl at formspree.io)
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqvwknl';
     const payload = {
       _subject: `Digital Health Assessment — ${userData.biz} (Score: ${overall})`,
       first_name: userData.first, last_name: userData.last,
@@ -663,7 +663,7 @@
       completed_at: new Date().toLocaleString()
     };
     try {
-      if (!FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+      if (!FORMSPREE_ENDPOINT.includes('xaqvwknl')) {
         await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },

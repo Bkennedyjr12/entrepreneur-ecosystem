@@ -608,9 +608,9 @@
     const overall = getOverallScore(scores);
     const grade = getGrade(overall);
 
-    // ── Submit to Formspree (replace YOUR_FORM_ID with your actual ID from formspree.io)
+    // ── Submit to Formspree (replace xnjwarnz with your actual ID from formspree.io)
     // SETUP INSTRUCTIONS: Go to formspree.io → New Form → Copy your form ID
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjwarnz';
 
     const payload = {
       _subject: `Financial Health Assessment — ${userData.biz} (${grade.label})`,
@@ -634,7 +634,7 @@
     };
 
     try {
-      if (!FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+      if (!FORMSPREE_ENDPOINT.includes('xnjwarnz')) {
         await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
